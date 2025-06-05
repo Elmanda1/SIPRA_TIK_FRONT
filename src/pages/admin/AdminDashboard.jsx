@@ -24,11 +24,11 @@ const Header = ({ onMenuClick, sidebarOpen }) => {
         </div>
         
         <div className="flex items-center space-x-4">
-          <button className="p-2 rounded-lg hover:bg-gray-100 relative">
+          <button className="p-2 rounded-lg bg-white hover:bg-gray-100 relative focus:outline-none">
             <Bell className="w-5 h-5 text-gray-600" />
             <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
           </button>
-          <button className="p-2 rounded-lg hover:bg-gray-100">
+          <button className="p-2 rounded-lg hover:bg-gray-100 bg-white focus:outline-none">
             <User className="w-5 h-5 text-gray-600" />
           </button>
         </div>
@@ -70,7 +70,7 @@ const Sidebar = ({ isOpen, onClose, activeMenu, setActiveMenu }) => {
     <>
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          className="fixed inset-0 bg-white bg-opacity-50 z-40 lg:hidden "
           onClick={onClose}
         />
       )}
@@ -99,10 +99,10 @@ const Sidebar = ({ isOpen, onClose, activeMenu, setActiveMenu }) => {
                     onClose();
                   }}
                   className={`
-                    w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-colors
+                    w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-colors focus:outline-none
                     ${activeMenu === item.id 
                       ? 'bg-blue-100 text-blue-700' 
-                      : 'text-gray-700 hover:bg-gray-100'
+                      : 'text-gray-700 bg-white hover:bg-gray-100'
                     }
                   `}
                 >
@@ -118,7 +118,7 @@ const Sidebar = ({ isOpen, onClose, activeMenu, setActiveMenu }) => {
         <div className="p-4 border-t border-gray-200">
           <button
             onClick={handleLogout}
-            className="w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-colors text-red-600 hover:bg-red-50 hover:text-red-700"
+            className="w-full flex items-center bg-white space-x-3 px-4 py-3 rounded-lg text-left transition-colors text-red-600 hover:bg-red-50 hover:text-red-700 focus:outline-none hover:outline-none"
           >
             <LogOut className="w-5 h-5" />
             <span>Logout</span>
