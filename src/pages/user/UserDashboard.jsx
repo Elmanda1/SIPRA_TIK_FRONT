@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import { MapPin, User, Search, Filter } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext'; // tambahkan import ini
 
 export default function BookingInterface() {
   const [selectedBooking, setSelectedBooking] = useState(null);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const navigate = useNavigate();
+  const { logout } = useAuth(); // ambil logout dari context
+  
 
   const activeBookings = [
     {
@@ -82,7 +88,7 @@ export default function BookingInterface() {
     <div className="bg-white rounded-xl shadow-sm mb-8">
       <div className="border-b border-gray-200 px-6 py-4 flex items-center justify-between">
         <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
-        <button className="p-2 text-gray-400 hover:text-gray-600">
+        <button className="p-2 text-gray-400 bg-white hover:text-gray-600">
           <Filter className="w-5 h-5" />
         </button>
       </div>
@@ -126,12 +132,12 @@ export default function BookingInterface() {
               </div>
               <div className="flex space-x-2">
                 {booking.status === 'Aktif' && (
-                  <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                  <button className="text-blue-600 bg-white hover:text-blue-800 text-sm font-medium">
                     Detail
                   </button>
                 )}
                 {booking.status === 'Dibatalkan' && (
-                  <button className="text-red-600 hover:text-red-800 text-sm font-medium">
+                  <button className="text-red-600 bg-white hover:text-red-800 text-sm font-medium">
                     Pinjam Barang
                   </button>
                 )}
@@ -151,7 +157,7 @@ export default function BookingInterface() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen w-[99vw] bg-gray-50">
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -165,12 +171,37 @@ export default function BookingInterface() {
                 <input
                   type="text"
                   placeholder="Cari peminjaman..."
-                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className="pl-10 pr-4 py-2 bg-white focus:outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                 />
               </div>
-              <button className="p-2 text-gray-600 hover:text-gray-900">
-                <User className="w-6 h-6" />
-              </button>
+              <div className="relative">
+                <button
+                  className="p-2 text-gray-600 bg-white hover:text-gray-900"
+                  onClick={() => setDropdownOpen((open) => !open)}
+                >
+                  <User className="w-6 h-6" />
+                </button>
+                {dropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border z-50">
+                    <button
+                      className="block w-full bg-white text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+                      onClick={() => setDropdownOpen(false)}
+                    >
+                      Profile
+                    </button>
+                    <button
+                      className="block w-full bg-white text-left px-4 py-2 text-red-600 hover:bg-gray-100"
+                      onClick={() => {
+                        setDropdownOpen(false);
+                        logout();
+                        navigate('/login', { replace: true });
+                      }}
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
