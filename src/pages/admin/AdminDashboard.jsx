@@ -5,6 +5,8 @@ import {
   LogOut
 } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from 'recharts';
+import { useAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 // Header Component
 const Header = ({ onMenuClick, sidebarOpen }) => {
@@ -37,6 +39,9 @@ const Header = ({ onMenuClick, sidebarOpen }) => {
 
 // Sidebar Component dengan tombol logout
 const Sidebar = ({ isOpen, onClose, activeMenu, setActiveMenu }) => {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+  
   const menuItems = [
     { id: 'dashboard', name: 'Dashboard', icon: Home },
     { id: 'users', name: 'Users', icon: Users },
@@ -47,15 +52,17 @@ const Sidebar = ({ isOpen, onClose, activeMenu, setActiveMenu }) => {
   const handleLogout = () => {
     // Tambahkan logika logout di sini
     if (window.confirm('Apakah Anda yakin ingin logout?')) {
+      logout()
       // Reset active menu
-      setActiveMenu('dashboard');
+      navigate('/login');
       // Tutup sidebar di mobile
+      alert('Logout berhasil!');
       onClose();
       // Di sini Anda bisa menambahkan logika untuk:
       // - Hapus token dari state management
       // - Redirect ke halaman login
       // - Clear user data
-      alert('Logout berhasil!');
+      
     }
   };
 
@@ -68,13 +75,10 @@ const Sidebar = ({ isOpen, onClose, activeMenu, setActiveMenu }) => {
         />
       )}
       
-      <aside className={`
-        fixed top-0 left-0 z-50 w-64 h-full bg-white shadow-lg border-r border-gray-200
-        transform transition-transform duration-300 ease-in-out
-        ${isOpen ? 'translate-x-0' : '-translate-x-full'}
-        lg:translate-x-0 lg:z-40 lg:static lg:h-screen
+      <aside className="
+        fixed top-0 left-0 z-50 w-64 h-screen bg-white shadow-lg border-r border-gray-200
         flex flex-col
-      `}>
+      ">
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">Menu</h2>
           <button 
@@ -587,7 +591,7 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="h-screen w-screen flex bg-gray-50">
       <Sidebar 
         isOpen={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
@@ -595,14 +599,14 @@ const AdminDashboard = () => {
         setActiveMenu={setActiveMenu}
       />
       
-      <div className="flex-1 flex flex-col min-h-screen lg:ml-64">
+      <div className="flex-1 flex flex-col min-h-screen ml-64">
         <Header 
           onMenuClick={() => setSidebarOpen(true)} 
           sidebarOpen={sidebarOpen}
         />
         
         <main className="flex-1 bg-gray-50">
-          <div className="p-4 lg:p-6 min-h-full">
+          <div className="p-4 lg:p-6 h-full w-full">
             {renderContent()}
           </div>
         </main>
