@@ -51,19 +51,13 @@ const Sidebar = ({ isOpen, onClose, activeMenu, setActiveMenu }) => {
 
   const handleLogout = () => {
     // Tambahkan logika logout di sini
-    if (window.confirm('Apakah Anda yakin ingin logout?')) {
+
       logout()
       // Reset active menu
       navigate('/login');
       // Tutup sidebar di mobile
       alert('Logout berhasil!');
       onClose();
-      // Di sini Anda bisa menambahkan logika untuk:
-      // - Hapus token dari state management
-      // - Redirect ke halaman login
-      // - Clear user data
-      
-    }
   };
 
   return (
