@@ -221,7 +221,7 @@ export default function BookingInterface() {
               </div>
               <div className="flex space-x-2">
                 {booking.status === 'Aktif' && (
-                  <button className="text-blue-600 bg-white hover:text-blue-800 text-sm font-medium">
+                  <button className="text-blue-900 bg-white hover:text-blue-900 text-sm font-medium">
                     Detail
                   </button>
                 )}
@@ -247,7 +247,7 @@ export default function BookingInterface() {
 
   // Dummy content untuk home
   const HomeContent = () => (
-    <div className="flex flex-col items-center justify-center min-h-[60vh]">
+    <div className=" bg-white/30 bg-opacity-50 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center min-h-[60vh] mt-10">
       <h1 className="text-5xl md:text-6xl font-bold text-gray-800 text-center mb-8">
         Web Development Blog @<br />Material Tailwind
       </h1>
@@ -280,7 +280,7 @@ export default function BookingInterface() {
   );
 
   const HistoryContent = () => (
-    <div className='overflow-y-auto'>
+    <div className='mt-10'>
           <BookingTable title="Pinjaman Aktif" bookings={activeBookings} />
           <BookingTable title="History" bookings={historyBookings} />
     </div>
@@ -291,52 +291,53 @@ export default function BookingInterface() {
       {/* Title */}
         <h2 className="text-3xl font-bold mb-4 text-gray-800">My Profile</h2>
       </div>
-      <div className="bg-white border rounded-xl shadow-sm w-full max-w-4xl p-8">
+      <div className="bg-white border rounded-xl shadow-sm w-full max-w-4xl p-8 ">
         {/* Header */}
-        <div className="flex items-center border-b pb-4 mb-6">
+        <div className="flex items-center border-b pb-4 mb-6 ml-6">
           <div className="flex-shrink-0 w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center mr-4">
             <User className="w-14 h-14 text-gray-400" />
           </div>
           <div>
-            <div className="font-bold text-xl text-gray-900">Muhammad Rafif Dwarka</div>
+            <div className="font-bold text-2xl text-gray-900">Muhammad Rafif Dwarka</div>
             <div className="text-lg text-gray-600">2407411078</div>
             <div className="text-lg text-gray-600">TI 2C</div>
           </div>
         </div>
 
         {/* Personal Information */}
-        <div className="border rounded-lg p-6 mb-8">
-          <div className="font-semibold text-gray-700 mb-4">Personal Information</div>
-          <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-sm">
-            <div className='text-black'>
-              <span className="font-semibold">First name</span><br />
+        <div className="border rounded-lg p-6 mb-8 bg-gray-100">
+          <div className=" text-xl font-semibold text-gray-700 mb-4">Personal Information
+          </div>
+          <div className="grid grid-cols-2 gap-x-5 gap-y-8">
+            <div className='text-lg text-black'>
+              <span className=" font-semibold">First name</span><br />
               Muhammad Rafif
             </div>
-            <div className='text-black'>
+            <div className='text-lg text-black'>
               <span className="font-semibold">Last name</span><br />
-              Dwarka
+              Dwiarka
             </div>
-            <div className='text-black'>
+            <div className='text-lg text-black'>
               <span className="font-semibold">Phone</span><br />
               0821-1302-0861
             </div>
-            <div className='text-black'>
+            <div className='text-lg text-black'>
               <span className="font-semibold">Program Studi</span><br />
               Sarjana Terapan - Teknik Informatika
             </div>
-            <div className='text-black'>
+            <div className='text-lg text-black'>
               <span className="font-semibold">Role</span><br />
               Mahasiswa
             </div>
-            <div className='text-black'>
+            <div className='text-lg text-black'>
               <span className="font-semibold">Alamat</span><br />
               Puri Depok mas blok L no 15
             </div>
-            <div className='text-black'>
+            <div className='text-lg text-black'>
               <span className="font-semibold">Kota</span><br />
               Depok
             </div>
-            <div className='text-black'>
+            <div className='text-lg text-black'>
               <span className="font-semibold">Provinsi</span><br />
               Jawa Barat
             </div>
@@ -344,61 +345,148 @@ export default function BookingInterface() {
         </div>
 
         {/* Account Information */}
-        <div className="border rounded-lg p-6">
+        <div className="border rounded-lg p-6 bg-gray-100">
           <div className="flex items-center justify-between mb-4">
-            <span className="font-semibold text-gray-700">Account Information</span>
-            <button className="text-xs text-gray-600 border px-2 py-1 rounded hover:bg-gray-100 flex items-center gap-1 focus:outline-none bg-white">
+            <span className=" text-xl font-semibold text-gray-700">Account Information</span>
+            <button className="text-sm text-gray-600 border mr-3 px-2 py-1 rounded hover:bg-gray-100 flex items-center gap-1 focus:outline-none bg-white">
               Change Password
             </button>
           </div>
-          <div className="mb-2 text-sm text-black">
+          <div className='grid gap-x-5 gap-y-8'>
+          <div className="text-lg mb-2 text-black">
             <span className="font-semibold">Email</span><br />
             Muhammad.Rafif.Dwarka.1824@sttupnj.ac.id
           </div>
-          <div className="text-sm text-black">
+          <div className="text-lg text-black">
             <span className="font-semibold">Password</span><br />
             <span>●●●●●●●●●</span>
+          </div>
           </div>
         </div>
       </div>
     </div>
   );
   const PinjamContent = () => (
-    <div className="bg-white rounded-xl shadow-sm p-8 text-center text-2xl font-bold text-gray-700">
-      Pinjam Page (dummy)
+    <div className="flex flex-col items-center w-full  min-h-[80vh] py-10 overflow-y-auto">
+      <h2 className="text-3xl font-bold mb-6 text-gray-800">Form Peminjaman Barang</h2>
+      <div className="bg-white/30 bg-opacity-50 backdrop-blur-sm rounded-xl rounded-xl w-full max-w-2xl p-12">
+        {/* Form */}
+        <form className="flex flex-col gap-5 items-start">
+          {/* Barang yang Dipinjam */}
+          <div className="w-full flex flex-col items-start">
+            <label className="block mb-1 font-medium text-gray-700">Barang yang Dipinjam</label>
+            <input
+              type="text"
+              className="border rounded px-3 py-2 bg-gray-100 text-black focus:outline-none focus:ring-2 focus:ring-blue-400 w-80"
+            />
+          </div>
+          {/* Durasi Peminjaman */}
+          <div className="w-full flex flex-col items-start">
+            <label className="block mb-1 font-medium text-gray-700">Durasi peminjaman</label>
+            <div className="flex gap-2">
+              <input
+                type="date"
+                className="border rounded px-3 py-2 bg-gray-100 text-black focus:outline-none focus:ring-2 focus:ring-blue-400 w-36"
+              />
+              <span className="self-center font-medium text-gray-700">Sampai</span>
+              <input
+                type="date"
+                className="border rounded px-3 py-2 bg-gray-100 text-black focus:outline-none focus:ring-2 focus:ring-blue-400 w-36"
+              />
+            </div>
+          </div>
+          {/* Nama Lengkap */}
+          <div className="w-full flex flex-col items-start">
+            <label className="block mb-1 font-medium text-gray-700">Nama Lengkap</label>
+            <input
+              type="text"
+              className="border rounded px-3 py-2 bg-gray-100 text-black focus:outline-none focus:ring-2 focus:ring-blue-400 w-80"
+              value="Muhammad Rafif Dwarka"
+              readOnly
+            />
+          </div>
+          {/* NIM */}
+          <div className="w-full flex flex-col items-start">
+            <label className="block mb-1 font-medium text-gray-700">NIM</label>
+            <input
+              type="text"
+              className="border rounded px-3 py-2 bg-gray-100 text-black focus:outline-none focus:ring-2 focus:ring-blue-400 w-80"
+              value="2407411078"
+              readOnly
+            />
+          </div>
+          {/* Kelas */}
+          <div className="w-full flex flex-col items-start">
+            <label className="block mb-1 font-medium text-gray-700">Kelas</label>
+            <input
+              type="text"
+              className="border rounded px-3 py-2 bg-gray-100 text-black focus:outline-none focus:ring-2 focus:ring-blue-400 w-80"
+              value="TI 2C"
+              readOnly
+            />
+          </div>
+          {/* No Hp */}
+          <div className="w-full flex flex-col items-start">
+            <label className="block mb-1 font-medium text-gray-700">No.Hp</label>
+            <input
+              type="text"
+              className="border rounded px-3 py-2 bg-gray-100 text-black focus:outline-none focus:ring-2 focus:ring-blue-400 w-80"
+              value="081213020861"
+              readOnly
+            />
+          </div>
+          {/* Keterangan */}
+          <div className="w-full flex flex-col items-start">
+            <label className="block mb-1 font-medium text-gray-700">Keterangan</label>
+            <textarea
+              className="border rounded px-3 py-2 bg-gray-100 text-black focus:outline-none focus:ring-2 focus:ring-blue-400 w-96"
+              rows={2}
+            />
+          </div>
+          {/* Tombol */}
+          <div className="flex justify-end w-full mt-6">
+            <button
+              type="submit"
+              className="flex items-center rounded-xl hover:bg-gray-800 bg-black focus:outline-none px-6 py-4"
+            >
+              <div className="text-white font-bold">
+                SUBMIT
+              </div>
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 
   return (
-    <div className="min-h-screen w-[99vw] bg-gray-50">
+    <div
+      className="min-h-screen w-[99vw]"
+      style={{
+        background: "linear-gradient(0deg, #5460F9 0%, #12B3EB 100%)"
+      }}
+    >
       {/* Header */}
-      <div className="bg-white/80 bg-opacity-95 backdrop-blur fixed w-screen h-20 shadow-sm border-b border-gray-200 px-72 py-4 flex items-center justify-between z-10">
+      <div className="bg-white/30 bg-opacity-50 backdrop-blur-sm fixed top-4 left-1/2 transform -translate-x-1/2 min-w-[1800px] max-w-[95vw] w-[1200px] h-30 rounded-full shadow-lg px-20 py-4 flex items-center justify-between z-10">
         <h1 className="text-3xl pl-2 font-bold text-gray-900">SIPRATIK</h1>
         {/* menu */}
         <div className="flex items-center space-x-4 gap-10">
           <a
-            className={`flex flex-row gap-2 cursor-pointer ${activeMenu === 'Home' ? 'font-bold text-blue-600' : 'text-black'}`}
+            className={`flex flex-row gap-2 cursor-pointer ${activeMenu === 'Home' ? 'font-bold text-blue-900' : 'text-black hover:text-gray-600'}`}
             onClick={() => setActiveMenu('Home')}
           >
             <ClipboardList className="w-7 h-7" />
             <p className='text-xl'>Home</p>
           </a>
           <a
-            className={`flex flex-row gap-2 cursor-pointer ${activeMenu === 'history' ? 'font-bold text-blue-600' : 'text-black'}`}
+            className={`flex flex-row gap-2 cursor-pointer ${activeMenu === 'history' ? 'font-bold text-blue-900' : 'text-black hover:text-gray-600'}`}
             onClick={() => setActiveMenu('history')}
           >
             <History className="w-7 h-7" />
             <p className='text-xl'>History</p>
           </a>
           <a
-            className={`flex flex-row gap-2 cursor-pointer ${activeMenu === 'profile' ? 'font-bold text-blue-600' : 'text-black'}`}
-            onClick={() => setActiveMenu('profile')}
-          >
-            <User className="w-7 h-7" />
-            <p className='text-xl'>Profile</p>
-          </a>
-          <a
-            className={`flex flex-row gap-2 cursor-pointer ${activeMenu === 'pinjam' ? 'font-bold text-blue-600' : 'text-black'}`}
+            className={`flex flex-row gap-2 cursor-pointer ${activeMenu === 'pinjam' ? 'font-bold text-blue-900' : 'text-black hover:text-gray-600'}`}
             onClick={() => setActiveMenu('pinjam')}
           >
             <Package className="w-7 h-7" />
@@ -406,7 +494,7 @@ export default function BookingInterface() {
           </a>
         </div>
         {/* Tombol logout */}
-        <div className="flex items-center space-x-4 pr-8">
+        <div className="flex items-center space-x-8 pr-8">
           <button
             onClick={logout}
             className="flex items-center rounded-xl hover:bg-gray-800 bg-black focus:outline-none px-6 py-4"
@@ -414,6 +502,13 @@ export default function BookingInterface() {
             <div className="text-white font-bold">
               LOGOUT
             </div>
+          </button>
+
+          <button
+            onClick={() => setActiveMenu('profile')}
+            className="flex items-center rounded-full hover:bg-gray-200 bg-white outline outline-1 outline-gray-200 focus:outline-none px-3 py-3"
+          >
+            <User className="w-8 h-8 text-black" />
           </button>
         </div>
       </div>
