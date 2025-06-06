@@ -1,13 +1,26 @@
 import React, { useState } from 'react';
-import { MapPin, User, Search, Filter ,History, Package, ClipboardList, Archive } from 'lucide-react';
+import { MapPin, User, Search, Filter ,History, Package, ClipboardList, LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import LogoutModal from '../../components/common/LogoutModal';
 
-export default function BookingInterface() {
+export default function UserDashboard() {
   const [selectedBooking, setSelectedBooking] = useState(null);
   const [activeMenu, setActiveMenu] = useState('Home'); // default: home
   const navigate = useNavigate();
   const { logout } = useAuth();
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+
+   const handleLogout = () => {
+    setShowLogoutModal(true);
+  };
+
+  const handleConfirmLogout = () => {
+    logout();
+    setShowLogoutModal(false);
+    // Optional: Show success message or toast notification
+    console.log('User logged out successfully');
+  };
 
   const activeBookings = [
     {
@@ -291,7 +304,7 @@ export default function BookingInterface() {
       {/* Title */}
         <h2 className="text-3xl font-bold mb-4 text-gray-800">My Profile</h2>
       </div>
-      <div className="bg-white border rounded-xl shadow-sm w-full max-w-4xl p-8 ">
+      <div className="bg-white/30 bg-opacity-50 backdrop-blur-sm border rounded-xl shadow-sm w-full max-w-4xl p-8 ">
         {/* Header */}
         <div className="flex items-center border-b pb-4 mb-6 ml-6">
           <div className="flex-shrink-0 w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center mr-4">
@@ -305,7 +318,7 @@ export default function BookingInterface() {
         </div>
 
         {/* Personal Information */}
-        <div className="border rounded-lg p-6 mb-8 bg-gray-100">
+        <div className="border rounded-xl p-6 mb-8 bg-white">
           <div className=" text-xl font-semibold text-gray-700 mb-4">Personal Information
           </div>
           <div className="grid grid-cols-2 gap-x-5 gap-y-8">
@@ -345,7 +358,7 @@ export default function BookingInterface() {
         </div>
 
         {/* Account Information */}
-        <div className="border rounded-lg p-6 bg-gray-100">
+        <div className="border rounded-xl p-6 bg-white">
           <div className="flex items-center justify-between mb-4">
             <span className=" text-xl font-semibold text-gray-700">Account Information</span>
             <button className="text-sm text-gray-600 border mr-3 px-2 py-1 rounded hover:bg-gray-100 flex items-center gap-1 focus:outline-none bg-white">
@@ -463,7 +476,7 @@ export default function BookingInterface() {
     <div
       className="min-h-screen w-[99vw]"
       style={{
-        background: "linear-gradient(0deg, #5460F9 0%, #12B3EB 100%)"
+        background: "linear-gradient(0deg, #EAF1F8 65%,rgb(210, 250, 255) 100%)"
       }}
     >
       {/* Header */}
@@ -496,7 +509,7 @@ export default function BookingInterface() {
         {/* Tombol logout */}
         <div className="flex items-center space-x-8 pr-8">
           <button
-            onClick={logout}
+            onClick={handleLogout}
             className="flex items-center rounded-xl hover:bg-gray-800 bg-black focus:outline-none px-6 py-4"
           >
             <div className="text-white font-bold">
@@ -562,6 +575,14 @@ export default function BookingInterface() {
           </div>
         </div>
       )}
+
+      {/* Logout Modal */}
+      <LogoutModal
+        isOpen={showLogoutModal}
+        onClose={() => setShowLogoutModal(false)}
+        onConfirm={handleConfirmLogout}
+        userRole="User"
+      />
     </div>
   );
 }

@@ -35,9 +35,9 @@ const LogoutModal = ({ isOpen, onClose, onConfirm, userRole = 'Admin' }) => {
           <button
             onClick={onClose}
             disabled={isLoading}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50"
+            className="p-2 hover:bg-blue-50 bg-white rounded-full outline outline-2 outline-gray-200 focus:outline-none transition-colors disabled:opacity-50"
           >
-            <X className="w-5 h-5 text-gray-400" />
+            <X className="w-8 h-8 text-gray-400" />
           </button>
         </div>
 
