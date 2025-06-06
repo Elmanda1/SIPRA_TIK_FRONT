@@ -31,7 +31,7 @@ const DashboardContent = () => {
     },
     {
       title: "Total Users",
-      value: "342",
+      value: "102",
       change: "+3%",
       icon: Users,
       color: "bg-purple-500"
@@ -67,54 +67,104 @@ const DashboardContent = () => {
 
   // Recent activities data
   const recentActivities = [
-    {
-      id: 1,
-      user: "Ahmad Rizki",
-      action: "Meminjam buku",
-      item: "Algoritma dan Struktur Data",
-      time: "2 jam yang lalu",
-      status: "approved"
-    },
-    {
-      id: 2,
-      user: "Siti Nurhaliza",
-      action: "Mengembalikan buku",
-      item: "Database Management System",
-      time: "3 jam yang lalu",
-      status: "returned"
-    },
-    {
-      id: 3,
-      user: "Budi Santoso",
-      action: "Meminjam buku",
-      item: "Web Development",
-      time: "5 jam yang lalu",
-      status: "pending"
-    },
-    {
-      id: 4,
-      user: "Maya Sari",
-      action: "Registrasi akun baru",
-      item: "-",
-      time: "1 hari yang lalu",
-      status: "active"
-    }
-  ];
+  {
+    id: 1,
+    user: "Ibrani Mayasari",
+    action: "Meminjam alat",
+    item: "Laptop, Proyektor",
+    time: "2 jam yang lalu",
+    status: "approved"
+  },
+  {
+    id: 2,
+    user: "Karja Melani",
+    action: "Pembatalan peminjaman",
+    item: "Ruang GSG 204",
+    time: "4 jam yang lalu",
+    status: "cancelled"
+  },
+  {
+    id: 3,
+    user: "Siti Putra",
+    action: "Meminjam ruangan",
+    item: "Ruang GSG 211",
+    time: "6 jam yang lalu",
+    status: "pending"
+  },
+  {
+    id: 4,
+    user: "Taswir Sihotang",
+    action: "Meminjam alat",
+    item: "Kamera Digital, Tripod",
+    time: "7 jam yang lalu",
+    status: "approved"
+  },
+  {
+    id: 5,
+    user: "Eva Rajata",
+    action: "Meminjam ruangan",
+    item: "Ruang AA 204",
+    time: "9 jam yang lalu",
+    status: "cancelled"
+  },
+  {
+    id: 6,
+    user: "Raditya Winarsih",
+    action: "Meminjam alat",
+    item: "Speaker",
+    time: "12 jam yang lalu",
+    status: "approved"
+  },
+  {
+    id: 7,
+    user: "Xanana Handayani",
+    action: "Meminjam ruangan",
+    item: "Ruang GSG 202",
+    time: "15 jam yang lalu",
+    status: "pending"
+  },
+  {
+    id: 8,
+    user: "Yani Sitompul",
+    action: "Meminjam alat",
+    item: "Proyektor",
+    time: "1 hari yang lalu",
+    status: "approved"
+  },
+  {
+    id: 9,
+    user: "Mulyanto Prasasta",
+    action: "Pembatalan peminjaman",
+    item: "Ruang GSG 208",
+    time: "2 hari yang lalu",
+    status: "cancelled"
+  },
+  {
+    id: 10,
+    user: "Jais Nasyidah",
+    action: "Meminjam ruangan",
+    item: "Ruang GSG 209",
+    time: "3 hari yang lalu",
+    status: "approved"
+  }
+];
 
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'approved':
-        return 'text-green-600 bg-green-100';
-      case 'pending':
-        return 'text-yellow-600 bg-yellow-100';
-      case 'returned':
-        return 'text-blue-600 bg-blue-100';
-      case 'active':
-        return 'text-purple-600 bg-purple-100';
-      default:
-        return 'text-gray-600 bg-gray-100';
-    }
-  };
+ const getStatusColor = (status) => {
+  switch (status) {
+    case 'approved':
+      return 'text-green-600 bg-green-100';
+    case 'pending':
+      return 'text-yellow-600 bg-yellow-100';
+    case 'returned':
+      return 'text-blue-600 bg-blue-100';
+    case 'active':
+      return 'text-purple-600 bg-purple-100';
+    case 'cancelled':
+      return 'text-red-600 bg-red-100';
+    default:
+      return 'text-gray-600 bg-gray-100';
+  }
+};
 
   const getStatusIcon = (status) => {
     switch (status) {
@@ -217,21 +267,21 @@ const DashboardContent = () => {
   </div>
   <div className="p-6">
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <button className="group flex items-center justify-center p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+      <button className="group flex items-center justify-center p-4 border-2 border-dashed bg-white border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
         <div className="text-center">
           <BookOpen className="w-8 h-8 text-gray-400 mx-auto mb-2 group-hover:text-blue-500 transition-colors" />
           <p className="font-medium text-gray-900">Tambah Buku Baru</p>
           <p className="text-sm text-gray-500">Kelola koleksi perpustakaan</p>
         </div>
       </button>
-      <button className="group flex items-center justify-center p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+      <button className="group flex items-center justify-center p-4 border-2 border-dashed bg-white border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
         <div className="text-center">
           <Users className="w-8 h-8 text-gray-400 mx-auto mb-2 group-hover:text-blue-500 transition-colors" />
           <p className="font-medium text-gray-900">Kelola Pengguna</p>
           <p className="text-sm text-gray-500">Manajemen akun pengguna</p>
         </div>
       </button>
-      <button className="group flex items-center justify-center p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+      <button className="group flex items-center justify-center p-4 border-2 border-dashed bg-white border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
         <div className="text-center">
           <TrendingUp className="w-8 h-8 text-gray-400 mx-auto mb-2 group-hover:text-blue-500 transition-colors" />
           <p className="font-medium text-gray-900">Lihat Laporan</p>
