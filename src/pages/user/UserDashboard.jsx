@@ -260,36 +260,33 @@ export default function UserDashboard() {
 
   // Dummy content untuk home
   const HomeContent = () => (
-    <div className=" bg-white/30 bg-opacity-50 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center min-h-[60vh] mt-10">
-      <h1 className="text-5xl md:text-6xl font-bold text-gray-800 text-center mb-8">
-        Web Development Blog @<br />Material Tailwind
-      </h1>
-      <p className="text-xl text-gray-600 text-center mb-12 max-w-2xl">
-        Expand your web development knowledge with our tutorials and learning articles.
-      </p>
-      <form
-        className="flex flex-col md:flex-row items-center gap-4 mb-4"
-        onSubmit={e => e.preventDefault()}
-      >
-        <input
-          type="email"
-          placeholder="name@creative-tim.com"
-          className="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 w-80"
-        />
-        <button
-          type="submit"
-          className="px-8 py-3 bg-black text-white font-bold rounded-lg shadow hover:bg-gray-800 transition"
-        >
-          GET STARTED
-        </button>
-      </form>
-      <p className="text-gray-600">
-        See our{" "}
-        <a href="#" className="underline">
-          Terms and Conditions
-        </a>
-      </p>
+    <div className=" flex flex-col items-center justify-center min-h-[60vh] mt-10">
+      <div className=' flex flex-col items-center justify-center'>
+        <h1 className="text-5xl md:text-6xl font-bold text-gray-800 text-center mb-8">
+          Selamat Datang di SIPRATIK!
+        </h1>
+        <p className="text-2xl text-gray-600 text-center mb-12 max-w-2xl">
+          Sistem Peminjaman Sarana Prasarana Kampus untuk Mahasiswa dan Dosen
+        </p>
+          <button
+            onClick={() => setActiveMenu('pinjam')}
+            className="px-8 py-3 bg-black text-white font-bold rounded-lg shadow hover:bg-gray-800 transition"
+          >
+            PINJAM BARANG
+          </button>
+          <br/>
+        <p className="text-gray-600">
+          Lihat{" "}
+          <a href="#" className="underline">
+            Ketentuan
+          </a>
+        </p>
+      </div>
+      <div>
+        
+      </div>
     </div>
+
   );
 
   const HistoryContent = () => (
@@ -481,9 +478,14 @@ export default function UserDashboard() {
     >
       {/* Header */}
       <div className="bg-white/30 bg-opacity-50 backdrop-blur-sm fixed top-4 left-1/2 transform -translate-x-1/2 min-w-[1800px] max-w-[95vw] w-[1200px] h-30 rounded-full shadow-lg px-20 py-4 flex items-center justify-between z-10">
-        <h1 className="text-3xl pl-2 font-bold text-gray-900">SIPRATIK</h1>
+        <a className="text-3xl pl-2 font-bold text-gray-900 cursor-pointer hover:text-black"
+          onClick={() => setActiveMenu('Home')}
+
+        >
+          SIPRATIK</a>
         {/* menu */}
         <div className="flex items-center space-x-4 gap-10">
+          <h2>............</h2>
           <a
             className={`flex flex-row gap-2 cursor-pointer ${activeMenu === 'Home' ? 'font-bold text-blue-900' : 'text-black hover:text-gray-600'}`}
             onClick={() => setActiveMenu('Home')}
@@ -530,8 +532,8 @@ export default function UserDashboard() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-8 pt-24">
         {activeMenu === 'Home' && <HomeContent />}
         {activeMenu === 'history' && <HistoryContent />}
-        {activeMenu === 'profile' && <ProfileContent />}
         {activeMenu === 'pinjam' && <PinjamContent />}
+        {activeMenu === 'profile' && <ProfileContent />}
       </div>
 
       {/* Modal untuk detail booking */}
