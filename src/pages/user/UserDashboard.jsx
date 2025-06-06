@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import { MapPin, User, Search, Filter } from 'lucide-react';
+import { MapPin, User, Search, Filter ,History, Package, ClipboardList, Archive } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext'; // tambahkan import ini
+import { useAuth } from '../../context/AuthContext';
 
 export default function BookingInterface() {
   const [selectedBooking, setSelectedBooking] = useState(null);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [activeMenu, setActiveMenu] = useState('history'); // default: history
   const navigate = useNavigate();
-  const { logout } = useAuth(); // ambil logout dari context
-  
+  const { logout } = useAuth();
 
   const activeBookings = [
     {
@@ -156,61 +155,70 @@ export default function BookingInterface() {
     </div>
   );
 
+  // Dummy content untuk Profile dan Pinjam
+  const ProfileContent = () => (
+    <div className="bg-white rounded-xl shadow-sm p-8 text-center text-2xl font-bold text-gray-700">
+      Profile Page (dummy)
+    </div>
+  );
+  const PinjamContent = () => (
+    <div className="bg-white rounded-xl shadow-sm p-8 text-center text-2xl font-bold text-gray-700">
+      Pinjam Page (dummy)
+    </div>
+  );
+
   return (
     <div className="min-h-screen w-[99vw] bg-gray-50">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-4">
-              <div className="text-2xl font-bold text-indigo-600">Spratik</div>
+      <div className="bg-white/80 bg-opacity-95 backdrop-blur fixed w-screen h-20 shadow-sm border-b border-gray-200 px-72 py-4 flex items-center justify-between z-10">
+        <h1 className="text-3xl pl-2 font-bold text-gray-900">SIPRATIK</h1>
+        {/* menu */}
+        <div className="flex items-center space-x-4 gap-10">
+          <a
+            className={`flex flex-row gap-2 cursor-pointer ${activeMenu === 'history' ? 'font-bold text-blue-600' : 'text-black'}`}
+            onClick={() => setActiveMenu('history')}
+          >
+            <History className="w-7 h-7" />
+            <p className='text-xl'>History</p>
+          </a>
+          <a
+            className={`flex flex-row gap-2 cursor-pointer ${activeMenu === 'profile' ? 'font-bold text-blue-600' : 'text-black'}`}
+            onClick={() => setActiveMenu('profile')}
+          >
+            <User className="w-7 h-7" />
+            <p className='text-xl'>Profile</p>
+          </a>
+          <a
+            className={`flex flex-row gap-2 cursor-pointer ${activeMenu === 'pinjam' ? 'font-bold text-blue-600' : 'text-black'}`}
+            onClick={() => setActiveMenu('pinjam')}
+          >
+            <Package className="w-7 h-7" />
+            <p className='text-xl'>Pinjam</p>
+          </a>
+        </div>
+        {/* Tombol logout */}
+        <div className="flex items-center space-x-4 pr-8">
+          <button
+            onClick={logout}
+            className="flex items-center rounded-xl hover:bg-gray-800 bg-black focus:outline-none px-6 py-4"
+          >
+            <div className="text-white font-bold">
+              LOGOUT
             </div>
-            <div className="flex items-center space-x-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <input
-                  type="text"
-                  placeholder="Cari peminjaman..."
-                  className="pl-10 pr-4 py-2 bg-white focus:outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-                />
-              </div>
-              <div className="relative">
-                <button
-                  className="p-2 text-gray-600 bg-white hover:text-gray-900"
-                  onClick={() => setDropdownOpen((open) => !open)}
-                >
-                  <User className="w-6 h-6" />
-                </button>
-                {dropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border z-50">
-                    <button
-                      className="block w-full bg-white text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
-                      onClick={() => setDropdownOpen(false)}
-                    >
-                      Profile
-                    </button>
-                    <button
-                      className="block w-full bg-white text-left px-4 py-2 text-red-600 hover:bg-gray-100"
-                      onClick={() => {
-                        setDropdownOpen(false);
-                        logout();
-                        navigate('/login', { replace: true });
-                      }}
-                    >
-                      Logout
-                    </button>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
+          </button>
         </div>
       </div>
 
-      {/* Main Content: Pinjaman Aktif di atas, History di bawah */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-8">
-        <BookingTable title="Pinjaman Aktif" bookings={activeBookings} />
-        <BookingTable title="History" bookings={historyBookings} />
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-8 pt-24">
+          {activeMenu === 'history' && (
+          <>
+            <BookingTable title="Pinjaman Aktif" bookings={activeBookings} />
+            <BookingTable title="History" bookings={historyBookings} />
+          </>
+        )}
+        {activeMenu === 'profile' && <ProfileContent />}
+        {activeMenu === 'pinjam' && <PinjamContent />}
       </div>
 
       {/* Modal untuk detail booking */}
