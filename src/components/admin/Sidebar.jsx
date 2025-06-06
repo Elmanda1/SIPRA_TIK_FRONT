@@ -13,10 +13,6 @@ const Sidebar = ({ isOpen, onClose, activeMenu, setActiveMenu }) => {
     if (window.confirm('Apakah Anda yakin ingin logout?')) {
       alert('Logout berhasil!');
       onClose();
-      // Di sini Anda bisa menambahkan logika untuk:
-      // - Hapus token dari state management
-      // - Redirect ke halaman login
-      // - Clear user data
     }
   };
 

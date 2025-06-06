@@ -3,44 +3,188 @@ import { Search, Plus, Edit, Trash2, User, Mail, Calendar } from 'lucide-react';
 
 const UsersManagement = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [users] = useState([
-    {
-      id: 1,
-      name: 'Ahmad Rizki',
-      email: 'ahmad.rizki@email.com',
-      role: 'user',
-      status: 'active',
-      joinDate: '2024-01-15',
-      totalBorrowings: 12
-    },
-    {
-      id: 2,
-      name: 'Siti Nurhaliza',
-      email: 'siti.nurhaliza@email.com', 
-      role: 'user',
-      status: 'active',
-      joinDate: '2024-02-20',
-      totalBorrowings: 8
-    },
-    {
-      id: 3,
-      name: 'Budi Santoso',
-      email: 'budi.santoso@email.com',
-      role: 'admin',
-      status: 'active', 
-      joinDate: '2023-12-10',
-      totalBorrowings: 25
-    },
-    {
-      id: 4,
-      name: 'Maya Sari',
-      email: 'maya.sari@email.com',
-      role: 'user',
-      status: 'inactive',
-      joinDate: '2024-01-05',
-      totalBorrowings: 3
-    }
-  ]);
+const [users] = useState([
+  {
+    id: 1,
+    name: 'Rizky Maulana',
+    email: 'rizky.maulana.tik24@stu.pnj.ac.id',
+    role: 'user',
+    status: 'active',
+    joinDate: '2024-01-10',
+    totalBorrowings: 7
+  },
+  {
+    id: 2,
+    name: 'Nadira Putri',
+    email: 'nadira.putri.tik24@stu.pnj.ac.id',
+    role: 'user',
+    status: 'active',
+    joinDate: '2024-02-14',
+    totalBorrowings: 5
+  },
+  {
+    id: 3,
+    name: 'Fajar Nugraha',
+    email: 'fajar.nugraha.tik24@stu.pnj.ac.id',
+    role: 'user',
+    status: 'inactive',
+    joinDate: '2024-01-20',
+    totalBorrowings: 3
+  },
+  {
+    id: 4,
+    name: 'Salsa Khairunnisa',
+    email: 'salsa.khairunnisa.tik24@stu.pnj.ac.id',
+    role: 'user',
+    status: 'active',
+    joinDate: '2024-03-01',
+    totalBorrowings: 9
+  },
+  {
+    id: 5,
+    name: 'Andi Saputra',
+    email: 'andi.saputra.tik24@stu.pnj.ac.id',
+    role: 'user',
+    status: 'active',
+    joinDate: '2024-02-01',
+    totalBorrowings: 6
+  },
+  {
+    id: 6,
+    name: 'Zahra Ayuningtyas',
+    email: 'zahra.ayuningtyas.tik24@stu.pnj.ac.id',
+    role: 'user',
+    status: 'inactive',
+    joinDate: '2024-01-29',
+    totalBorrowings: 2
+  },
+  {
+    id: 7,
+    name: 'Ilham Pratama',
+    email: 'ilham.pratama.tik24@stu.pnj.ac.id',
+    role: 'user',
+    status: 'active',
+    joinDate: '2024-03-10',
+    totalBorrowings: 10
+  },
+  {
+    id: 8,
+    name: 'Putri Aulia',
+    email: 'putri.aulia.tik24@stu.pnj.ac.id',
+    role: 'user',
+    status: 'active',
+    joinDate: '2024-02-28',
+    totalBorrowings: 4
+  },
+  {
+    id: 9,
+    name: 'Rama Dwiandika',
+    email: 'rama.dwiandika.tik24@stu.pnj.ac.id',
+    role: 'user',
+    status: 'inactive',
+    joinDate: '2024-01-18',
+    totalBorrowings: 1
+  },
+  {
+    id: 10,
+    name: 'Melani Oktaviani',
+    email: 'melani.oktaviani.tik24@stu.pnj.ac.id',
+    role: 'user',
+    status: 'active',
+    joinDate: '2024-03-05',
+    totalBorrowings: 7
+  },
+  {
+    id: 11,
+    name: 'Yoga Firmansyah',
+    email: 'yoga.firmansyah.tik24@stu.pnj.ac.id',
+    role: 'user',
+    status: 'active',
+    joinDate: '2024-01-25',
+    totalBorrowings: 6
+  },
+  {
+    id: 12,
+    name: 'Dewi Maharani',
+    email: 'dewi.maharani.tik24@stu.pnj.ac.id',
+    role: 'user',
+    status: 'inactive',
+    joinDate: '2024-02-02',
+    totalBorrowings: 2
+  },
+  {
+    id: 13,
+    name: 'Galang Yudha',
+    email: 'galang.yudha.tik24@stu.pnj.ac.id',
+    role: 'user',
+    status: 'active',
+    joinDate: '2024-03-12',
+    totalBorrowings: 8
+  },
+  {
+    id: 14,
+    name: 'Citra Anggraini',
+    email: 'citra.anggraini.tik24@stu.pnj.ac.id',
+    role: 'user',
+    status: 'active',
+    joinDate: '2024-01-11',
+    totalBorrowings: 5
+  },
+  {
+    id: 15,
+    name: 'Fikri Hidayat',
+    email: 'fikri.hidayat.tik24@stu.pnj.ac.id',
+    role: 'user',
+    status: 'inactive',
+    joinDate: '2024-02-21',
+    totalBorrowings: 3
+  },
+  {
+    id: 16,
+    name: 'Shinta Wulandari',
+    email: 'shinta.wulandari.tik24@stu.pnj.ac.id',
+    role: 'user',
+    status: 'active',
+    joinDate: '2024-01-22',
+    totalBorrowings: 9
+  },
+  {
+    id: 17,
+    name: 'Rizal Fauzan',
+    email: 'rizal.fauzan.tik24@stu.pnj.ac.id',
+    role: 'user',
+    status: 'active',
+    joinDate: '2024-03-09',
+    totalBorrowings: 6
+  },
+  {
+    id: 18,
+    name: 'Anisa Rahmawati',
+    email: 'anisa.rahmawati.tik24@stu.pnj.ac.id',
+    role: 'user',
+    status: 'inactive',
+    joinDate: '2024-02-05',
+    totalBorrowings: 2
+  },
+  {
+    id: 19,
+    name: 'Bayu Alfian',
+    email: 'bayu.alfian.tik24@stu.pnj.ac.id',
+    role: 'user',
+    status: 'active',
+    joinDate: '2024-01-30',
+    totalBorrowings: 5
+  },
+  {
+    id: 20,
+    name: 'Nabila Kurnia',
+    email: 'nabila.kurnia.tik24@stu.pnj.ac.id',
+    role: 'user',
+    status: 'active',
+    joinDate: '2024-03-06',
+    totalBorrowings: 7
+  }
+]);
 
   const filteredUsers = users.filter(user =>
     user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -83,7 +227,7 @@ const UsersManagement = () => {
               placeholder="Cari pengguna..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none"
+              className="w-full pl-10 pr-4 py-2 border bg-white border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none"
             />
           </div>
           
@@ -165,14 +309,14 @@ const UsersManagement = () => {
                     <div className="flex items-center justify-center gap-2">
                       <button
                         onClick={() => handleEdit(user.id)}
-                        className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
+                        className="p-2 text-blue-600 bg-white hover:bg-blue-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
                         title="Edit pengguna"
                       >
                         <Edit className="h-4 w-4" />
                       </button>
                       <button
                         onClick={() => handleDelete(user.id)}
-                        className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1"
+                        className="p-2 text-red-600 bg-white hover:bg-red-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1"
                         title="Hapus pengguna"
                       >
                         <Trash2 className="h-4 w-4" />
