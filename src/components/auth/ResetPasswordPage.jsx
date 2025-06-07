@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Mail, Lock, Eye, EyeOff, CheckCircle, AlertCircle } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext'; // Update path
 
 const ResetPasswordPage = () => {
+  const { credentials, updatePassword } = useAuth();
   const navigate = useNavigate();
   const [step, setStep] = useState(1); // 1: Email, 2: Code, 3: New Password, 4: Success
   const [email, setEmail] = useState('');
@@ -14,6 +16,7 @@ const ResetPasswordPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [countdown, setCountdown] = useState(0);
+  const [selectedRole, setSelectedRole] = useState('');
 
   // Demo data
   const validEmail = 'user@example.com';
@@ -31,16 +34,25 @@ const ResetPasswordPage = () => {
     setError('');
     setIsLoading(true);
 
-    setTimeout(() => {
-      if (email === validEmail) {
-        setStep(2);
-        setCountdown(60);
-        setError('');
-      } else {
-        setError('Email tidak ditemukan dalam sistem');
-      }
+    // Cek apakah email dan role valid
+    const userExists = credentials.find(
+      cred => cred.email === email && cred.role === selectedRole
+    );
+
+    if (!selectedRole) {
+      setError('Silakan pilih role terlebih dahulu');
       setIsLoading(false);
-    }, 1500);
+      return;
+    }
+
+    if (userExists) {
+      setStep(2);
+      setCountdown(60);
+      setError('');
+    } else {
+      setError('Email tidak ditemukan untuk role yang dipilih');
+    }
+    setIsLoading(false);
   };
 
   const handleVerifyCode = async () => {
@@ -72,6 +84,9 @@ const ResetPasswordPage = () => {
     }
 
     setIsLoading(true);
+
+    // Update password sesuai email dan role yang dipilih
+    updatePassword(email, newPassword, selectedRole);
 
     setTimeout(() => {
       setStep(4);
@@ -112,28 +127,45 @@ const ResetPasswordPage = () => {
   const renderEmailStep = () => (
     <div className="space-y-6">
       <div className="text-center">
-        <div className="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-          <Mail className="w-8 h-8 text-blue-600" />
+        <div className="mx-auto w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+          <Mail className="w-10 h-10 text-blue-600" />
         </div>
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Reset Password</h2>
         <p className="text-gray-600">
-          Masukkan email Anda untuk menerima kode verifikasi
+          Masukkan email dan pilih role Anda untuk menerima kode verifikasi
         </p>
       </div>
 
+      {/* Role Selection */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-base font-medium text-gray-700 mb-2">
+          Reset Password Untuk Role
+        </label>
+        <select
+          value={selectedRole}
+          onChange={(e) => setSelectedRole(e.target.value)}
+          className="block w-full px-4 py-3 text-lg bg-white border border-gray-300 rounded-xl text-black focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          required
+        >
+          <option value="">Pilih Role</option>
+          <option value="admin">Admin</option>
+          <option value="mahasiswa">Mahasiswa</option>
+        </select>
+      </div>
+
+      <div>
+        <label className="block text-base font-medium text-gray-700 mb-2">
           Email Address
         </label>
         <div className="relative">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <Mail className="h-5 w-5 text-gray-400" />
+          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+            <Mail className="h-6 w-6 text-gray-400" />
           </div>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="block w-full pl-10 pr-3 py-3 border bg-white border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black focus:border-transparent"
+            className="block w-full pl-12 pr-4 py-3 text-lg bg-white border border-gray-300 rounded-xl text-black focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             placeholder="Masukkan email Anda"
             required
           />
@@ -141,25 +173,19 @@ const ResetPasswordPage = () => {
       </div>
 
       {error && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-3 flex items-center space-x-2">
-          <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
+        <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex items-center space-x-2">
+          <AlertCircle className="w-6 h-6 text-red-500 flex-shrink-0" />
           <p className="text-sm text-red-700">{error}</p>
         </div>
       )}
 
       <button
         onClick={handleSendCode}
-        disabled={!email || isLoading}
-        className="w-full py-3 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+        disabled={!email || !selectedRole || isLoading}
+        className="w-full py-4 px-4 bg-blue-600 text-white rounded-xl font-medium text-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
       >
         {isLoading ? 'Mengirim...' : 'Kirim Kode Verifikasi'}
       </button>
-
-      <div className="text-center">
-        <p className="text-sm text-gray-600">
-          Demo: Gunakan email <code className="bg-gray-100 px-1 rounded">user@example.com</code>
-        </p>
-      </div>
     </div>
   );
 
@@ -367,7 +393,7 @@ const ResetPasswordPage = () => {
       />
 
       {/* Main Content */}
-      <div className="relative w-full max-w-[520px] mx-auto px-6">
+      <div className="relative w-full max-w-[600px] mx-auto px-6">
         <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl p-10 w-full">
           {/* Back Button */}
           <div className="flex items-center mb-8">

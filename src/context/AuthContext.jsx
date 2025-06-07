@@ -3,16 +3,32 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
+  const [credentials, setCredentials] = useState([
+    { 
+      username: 'admin',
+      password: 'admin123',
+      role: 'admin',
+      email: 'admin@example.com',
+      name: 'Administrator'
+    },
+    { 
+      username: 'user',
+      password: 'user123',
+      role: 'mahasiswa',
+      email: 'user@example.com',
+      name: 'User Mahasiswa'
+    }
+  ]);
+
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Load credentials dari localStorage saat aplikasi dimuat
   useEffect(() => {
-    // Check if user is logged in from localStorage
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-      setIsAuthenticated(true);
+    const storedCredentials = localStorage.getItem('credentials');
+    if (storedCredentials) {
+      setCredentials(JSON.parse(storedCredentials));
     }
     setIsLoading(false);
   }, []);
@@ -29,13 +45,26 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('user');
   };
 
+  // Update fungsi updatePassword untuk memeriksa role
+  const updatePassword = (email, newPassword, selectedRole) => {
+    const updatedCredentials = credentials.map(cred => 
+      (cred.email === email && cred.role === selectedRole) 
+        ? { ...cred, password: newPassword }
+        : cred
+    );
+    setCredentials(updatedCredentials);
+    localStorage.setItem('credentials', JSON.stringify(updatedCredentials));
+  };
+
   return (
     <AuthContext.Provider value={{ 
-      user, 
-      isAuthenticated, 
+      user,
+      isAuthenticated,
       isLoading,
       login,
-      logout 
+      logout,
+      credentials,
+      updatePassword
     }}>
       {children}
     </AuthContext.Provider>

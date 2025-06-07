@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff, Lock, User, AlertTriangle, RefreshCw, X, Settings, BookOpen, FileText, BarChart3, Users, Home, LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../context/AuthContext'; // Update path
 
 // Alert Modal Component
 const AlertModal = ({ 
@@ -111,7 +111,7 @@ const AlertModal = ({
 // Login Page Component
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, credentials } = useAuth();
   
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -119,12 +119,7 @@ const LoginPage = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [loginAttempts, setLoginAttempts] = useState(0);
   const [isBlocked, setIsBlocked] = useState(false);
-
-  // Simulasi data user dengan role
-  const validCredentials = [
-    { username: 'admin', password: '123456', role: 'admin', name: 'Administrator' },
-    { username: 'user', password: '123456', role: 'user', name: 'User Siswa' }
-  ];
+  const [selectedRole, setSelectedRole] = useState('');
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -134,13 +129,21 @@ const LoginPage = () => {
       return;
     }
 
-    const user = validCredentials.find(
-      cred => cred.username === username && cred.password === password
+    if (!selectedRole) {
+      setShowAlert(true);
+      return;
+    }
+
+    const user = credentials.find(
+      cred => cred.username === username && 
+             cred.password === password &&
+             cred.role === selectedRole
     );
 
     if (user) {
-      login(user); // Use AuthContext login
-      navigate(user.role === 'admin' ? '/admin/dashboard' : '/user/dashboard');
+      login(user);
+      // Update navigasi berdasarkan role
+      navigate(user.role === 'admin' ? '/admin/dashboard' : '/mahasiswa/dashboard');
     } else {
       const newAttempts = loginAttempts + 1;
       setLoginAttempts(newAttempts);
@@ -170,7 +173,7 @@ const LoginPage = () => {
       />
 
       {/* Main Content */}
-      <div className="relative w-full max-w-[650px] mx-auto px-6"> {/* Increased width and padding */}
+      <div className="relative w-full max-w-[600px] mx-auto px-6"> {/* Increased width and padding */}
         <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl p-10 w-full"> {/* Increased padding */}
           {/* Logo & Title */}
           <div className="text-center mb-10"> {/* Increased margin */}
@@ -182,6 +185,24 @@ const LoginPage = () => {
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4">
+            {/* Role Selection */}
+            <div>
+              <label className="block text-base font-medium text-gray-700 mb-2">
+                Login Sebagai
+              </label>
+              <select
+                value={selectedRole}
+                onChange={(e) => setSelectedRole(e.target.value)}
+                className="block w-full pl-4 pr-8 py-4 text-lg bg-white border border-gray-300 rounded-xl text-black focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                required
+                disabled={isBlocked}
+              >
+                <option value="">Pilih Role</option>
+                <option value="admin">Admin</option>
+                <option value="mahasiswa">Mahasiswa</option>
+              </select>
+            </div>
+
             <div>
               <label className="block text-base font-medium text-gray-700 mb-2">
                 Username
@@ -194,7 +215,7 @@ const LoginPage = () => {
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="block w-full pl-12 pr-4 py-4 text-lg border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400"
+                  className="block w-full pl-12 pr-4 py-4 text-lg bg-white border border-gray-300 rounded-xl text-black focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400"
                   placeholder="Masukkan username"
                   required
                   disabled={isBlocked}
@@ -214,7 +235,7 @@ const LoginPage = () => {
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full pl-12 pr-10 py-4 text-lg border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400"
+                  className="block w-full pl-12 pr-10 py-4 text-lg border bg-white border-gray-300 rounded-xl text-black focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400"
                   placeholder="Masukkan password"
                   required
                   disabled={isBlocked}
@@ -276,8 +297,13 @@ const LoginPage = () => {
           <div className="mt-6 p-4 bg-gray-50 rounded-xl">
             <h3 className="text-sm font-medium text-gray-700 mb-2">Demo Credentials:</h3>
             <div className="text-xs text-gray-600 space-y-1">
-              <p><span className="font-medium">Admin:</span> admin / 123456</p>
-              <p><span className="font-medium">User:</span> user / 123456</p>
+              {credentials.map(cred => (
+                <p key={cred.username}>
+                  <span className="font-medium">{cred.role}:</span>
+                  {' '}{cred.username} / {cred.password}
+                  {' '}({cred.email})
+                </p>
+              ))}
             </div>
           </div>
         </div>
