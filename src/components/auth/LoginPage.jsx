@@ -1,143 +1,295 @@
 import React, { useState } from 'react';
+import { Eye, EyeOff, Lock, User, AlertTriangle, RefreshCw, X, Settings, BookOpen, FileText, BarChart3, Users, Home, LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import WrongPassword from '../common/WrongPassword.jsx';
-import { User as UserIcon, Lock, Loader2 } from 'lucide-react'; // Tambahkan import lucide-react
 
-const LoginPage = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [showWrongPassword, setShowWrongPassword] = useState(false);
-  const { login } = useAuth();
-  const navigate = useNavigate();
+// Alert Modal Component
+const AlertModal = ({ 
+  isOpen, 
+  onClose, 
+  message = "Password salah. Silakan coba lagi.",
+  attemptCount = 0,
+  maxAttempts = 5,
+  onResetPassword
+}) => {
+  if (!isOpen) return null;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError('');
-    
-    try {
-      const result = await login({ username, password });
-      if (result.success) {
-        // Navigate based on role
-        if (result.user.role === 'admin') {
-          navigate('/admin/dashboard');
-        } else {
-          navigate('/user/dashboard');
-        }
-      } else {
-        setShowWrongPassword(true);
-      }
-    } catch (err) {
-      setError('Login gagal. Silakan coba lagi.');
-      setShowWrongPassword(true);
-    } finally {
-      setIsLoading(false);
+  const isMaxAttemptReached = attemptCount >= maxAttempts;
+  const remainingAttempts = maxAttempts - attemptCount;
+
+  const handleResetPassword = () => {
+    if (onResetPassword) {
+      onResetPassword();
     }
   };
 
+  const getTitle = () => {
+    if (isMaxAttemptReached) {
+      return "Akun Terblokir";
+    }
+    return "Pemberitahuan";
+  };
+
+  const getMessage = () => {
+    if (isMaxAttemptReached) {
+      return "Anda telah mencoba login sebanyak 3 kali dengan password yang salah. Silakan reset password Anda untuk melanjutkan.";
+    }
+    return `${message} Sisa percobaan: ${remainingAttempts}`;
+  };
+
   return (
-    <div className="fixed inset-0 flex items-center justify-center"
-      style={{
-        background: "linear-gradient(0deg, #EAF1F8 65%,rgb(210, 250, 255) 100%)"
-      }}
-      >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-black opacity-20"></div>
-      <div className="absolute inset-0" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-      }}></div>
-      
-      {/* Login Card */}
-      <div className="relative bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 w-full max-w-md mx-4 sm:mx-0 sm:max-w-lg lg:max-w-xl transform transition-all duration-300 hover:scale-105">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <div className="mx-auto w-20 h-20 lg:w-24 lg:h-24 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mb-6">
-            <Lock className="w-10 h-10 lg:w-12 lg:h-12 text-white" /> {/* Ganti svg dengan lucide icon */}
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-xl shadow-2xl max-w-sm w-full mx-4 transform transition-all">
+        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+          <div className="flex items-center space-x-3">
+            <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${
+              isMaxAttemptReached ? 'bg-orange-100' : 'bg-red-100'
+            }`}>
+              {isMaxAttemptReached ? (
+                <RefreshCw className="w-5 h-5 text-orange-600" />
+              ) : (
+                <AlertTriangle className="w-5 h-5 text-red-600" />
+              )}
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900">{getTitle()}</h3>
           </div>
-          <h1 className="text-4xl lg:text-5xl font-bold text-gray-800 mb-3">SIPRA TIK</h1>
-          <p className="text-gray-600 text-lg lg:text-xl">Sistem Informasi Praktek TIK</p>
+          <button
+            onClick={onClose}
+            className="p-2 hover:bg-blue-50 bg-white rounded-full outline outline-2 outline-gray-200 focus:outline-none transition-colors"
+          >
+            <X className="w-8 h-8 text-gray-400" />
+          </button>
         </div>
 
-        {/* Error Message */}
-        {error && (
-          <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg mb-6 text-sm">
-            {error}
-          </div>
-        )}
-
-        {/* Login Form */}
-        <form onSubmit={handleSubmit} className="space-y-8">
-          <div>
-            <label className="block text-base lg:text-lg font-medium text-gray-700 mb-3">
-              Username
-            </label>
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <UserIcon className="h-5 w-5 text-gray-400" /> {/* Ganti svg dengan lucide icon */}
-              </div>
-              <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 bg-white text-black focus:outline-none lg:text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-400"
-                placeholder="Masukkan username"
-                required
-              />
+        <div className="p-6">
+          <div className="text-center">
+            <div className={`mx-auto flex items-center justify-center w-16 h-16 rounded-full mb-4 ${
+              isMaxAttemptReached ? 'bg-orange-100' : 'bg-red-100'
+            }`}>
+              {isMaxAttemptReached ? (
+                <RefreshCw className="w-8 h-8 text-orange-600" />
+              ) : (
+                <AlertTriangle className="w-8 h-8 text-red-600" />
+              )}
             </div>
+            <h4 className="text-lg font-medium text-gray-900 mb-2">
+              {getMessage()}
+            </h4>
           </div>
+        </div>
 
-          <div>
-            <label className="block text-base lg:text-lg font-medium text-gray-700 mb-3">
-              Password
-            </label>
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Lock className="h-5 w-5 text-gray-400" /> {/* Ganti svg dengan lucide icon */}
-              </div>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 bg-white text-black focus:outline-none lg:text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-400"
-                placeholder="Masukkan password"
-                required
-              />
+        <div className="flex items-center justify-end px-6 py-4 bg-gray-50 rounded-b-xl space-x-3">
+          {isMaxAttemptReached ? (
+            <>
+              <button
+                onClick={onClose}
+                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+              >
+                Batal
+              </button>
+              <button
+                onClick={handleResetPassword}
+                className="px-4 py-2 text-sm font-medium text-white bg-orange-600 border border-transparent rounded-lg hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors"
+              >
+                Reset Password
+              </button>
+            </>
+          ) : (
+            <button
+              onClick={onClose}
+              className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+            >
+              Tutup
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Login Page Component
+const LoginPage = () => {
+  const navigate = useNavigate();
+  const { login } = useAuth();
+  
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [loginAttempts, setLoginAttempts] = useState(0);
+  const [isBlocked, setIsBlocked] = useState(false);
+
+  // Simulasi data user dengan role
+  const validCredentials = [
+    { username: 'admin', password: '123456', role: 'admin', name: 'Administrator' },
+    { username: 'user', password: '123456', role: 'user', name: 'User Siswa' }
+  ];
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    
+    if (isBlocked) {
+      setShowAlert(true);
+      return;
+    }
+
+    const user = validCredentials.find(
+      cred => cred.username === username && cred.password === password
+    );
+
+    if (user) {
+      login(user); // Use AuthContext login
+      navigate(user.role === 'admin' ? '/admin/dashboard' : '/user/dashboard');
+    } else {
+      const newAttempts = loginAttempts + 1;
+      setLoginAttempts(newAttempts);
+      if (newAttempts >= 3) setIsBlocked(true);
+      setShowAlert(true);
+    }
+  };
+
+  const handleResetPassword = () => {
+    navigate('/reset-password'); // Tambahkan navigasi ke halaman reset password
+  };
+
+  const handleCloseAlert = () => {
+    setShowAlert(false);
+  };
+
+  return (
+    <div className="min-h-screen w-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-black/10" />
+      <div 
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='20' cy='20' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundSize: '40px 40px'
+        }}
+      />
+
+      {/* Main Content */}
+      <div className="relative w-full max-w-[650px] mx-auto px-6"> {/* Increased width and padding */}
+        <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl p-10 w-full"> {/* Increased padding */}
+          {/* Logo & Title */}
+          <div className="text-center mb-10"> {/* Increased margin */}
+            <div className="mx-auto w-32 h-32 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center mb-8 shadow-lg"> {/* Increased size */}
+              <Lock className="w-16 h-16 text-white" /> {/* Increased icon size */}
             </div>
+            <h1 className="text-4xl font-bold text-gray-900 mb-3">SIPRA TIK</h1> {/* Increased text size */}
+            <p className="text-lg text-gray-600">Sistem Informasi Praktek TIK</p> {/* Increased text size */}
           </div>
 
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-4 px-6 text-lg font-medium rounded-lg hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {isLoading ? (
-              <div className="flex items-center justify-center">
-                <Loader2 className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" /> {/* Ganti svg dengan lucide icon */}
-                Masuk...
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div>
+              <label className="block text-base font-medium text-gray-700 mb-2">
+                Username
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <User className="h-6 w-6 text-gray-400" />
+                </div>
+                <input
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  className="block w-full pl-12 pr-4 py-4 text-lg border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400"
+                  placeholder="Masukkan username"
+                  required
+                  disabled={isBlocked}
+                />
               </div>
-            ) : (
-              'Login'
+            </div>
+
+            <div>
+              <label className="block text-base font-medium text-gray-700 mb-2">
+                Password
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <Lock className="h-6 w-6 text-gray-400" />
+                </div>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="block w-full pl-12 pr-10 py-4 text-lg border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400"
+                  placeholder="Masukkan password"
+                  required
+                  disabled={isBlocked}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                  disabled={isBlocked}
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4 text-gray-400" />
+                  ) : (
+                    <Eye className="h-4 w-4 text-gray-400" />
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {loginAttempts > 0 && loginAttempts < 3 && (
+              <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-3">
+                <p className="text-xs text-yellow-800">
+                  Peringatan: {loginAttempts}/3 percobaan login gagal
+                </p>
+              </div>
             )}
-          </button>
-        </form>
 
-        {/* Demo Credentials */}
-        <div className="mt-8 p-6 bg-gray-50 rounded-lg">
-          <h3 className="text-base lg:text-lg font-medium text-gray-700 mb-3">Demo Credentials:</h3>
-          <div className="text-sm lg:text-base text-gray-600 space-y-2">
-            <p><span className="font-medium">Admin:</span> admin / admin123</p>
-            <p><span className="font-medium">User:</span> user / user123</p>
+            {isBlocked && (
+              <div className="bg-red-50 border border-red-200 rounded-xl p-3">
+                <p className="text-xs text-red-800">
+                  Akun terblokir. Silakan reset password untuk melanjutkan.
+                </p>
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={isBlocked}
+              className={`w-full py-3 px-4 text-sm font-semibold rounded-xl transition-all duration-200 shadow-lg ${
+                isBlocked 
+                  ? 'bg-gray-400 cursor-not-allowed text-white' 
+                  : 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white hover:from-indigo-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+              }`}
+            >
+              {isBlocked ? 'Akun Terblokir' : 'Login'}
+            </button>
+
+            <div className="text-center mt-4">
+              <button
+                type="button"
+                onClick={handleResetPassword} // Ganti dengan fungsi baru
+                className="text-indigo-600 hover:text-indigo-800 text-xs font-medium hover:underline transition-colors"
+              >
+                Lupa Password? Reset di sini
+              </button>
+            </div>
+          </form>
+
+          <div className="mt-6 p-4 bg-gray-50 rounded-xl">
+            <h3 className="text-sm font-medium text-gray-700 mb-2">Demo Credentials:</h3>
+            <div className="text-xs text-gray-600 space-y-1">
+              <p><span className="font-medium">Admin:</span> admin / 123456</p>
+              <p><span className="font-medium">User:</span> user / 123456</p>
+            </div>
           </div>
         </div>
       </div>
 
-      <WrongPassword
-        isOpen={showWrongPassword}
-        onClose={() => setShowWrongPassword(false)}
-        message="Password salah. Silakan coba lagi."
+      <AlertModal
+        isOpen={showAlert}
+        onClose={handleCloseAlert}
+        message="Username atau password salah. Silakan coba lagi."
+        attemptCount={loginAttempts}
+        maxAttempts={3}
+        onResetPassword={handleResetPassword}
       />
     </div>
   );
