@@ -1,12 +1,31 @@
 // src/components/admin/DashboardContent.jsx
 import React from 'react';
-import { Users, DollarSign, ShoppingCart, TrendingUp, Clock, CheckCircle, XCircle, BookOpen, Calendar } from 'lucide-react';
+import { 
+  Users, 
+  DollarSign, 
+  ShoppingCart, 
+  TrendingUp, 
+  Clock, 
+  CheckCircle, 
+  XCircle, 
+  BookOpen, 
+  Calendar,
+  BarChart3 // Tambahkan import ini
+} from 'lucide-react';
 import StatCard from './StatCard';
 import SalesChart from './Charts/SalesChart';
 import UserActivityChart from './Charts/UserActivityChart';
+import UserActivityData, { 
+  userActivityData, 
+  userStatistics, 
+  calculateUserStats 
+} from './Charts/UserActivityData';
 
 const DashboardContent = () => {
-  // Sample data - replace with real data from your API
+  // Hitung statistik pengguna real-time
+  const userStats = calculateUserStats();
+
+  // Updated stats dengan data real dari UserActivityData
   const stats = [
     {
       title: "Total Peminjaman",
@@ -31,8 +50,8 @@ const DashboardContent = () => {
     },
     {
       title: "Total Users",
-      value: "102",
-      change: "+3%",
+      value: userStatistics.totalUsers.toString(),
+      change: userStatistics.growthRate,
       icon: Users,
       color: "bg-purple-500"
     }
@@ -54,117 +73,106 @@ const DashboardContent = () => {
     { name: 'Dec', value: 95 }
   ];
 
-  // Data untuk user activity
-  const userActivityData = [
-    { name: 'Sen', aktif: 45, baru: 12 },
-    { name: 'Sel', aktif: 52, baru: 15 },
-    { name: 'Rab', aktif: 38, baru: 8 },
-    { name: 'Kam', aktif: 65, baru: 18 },
-    { name: 'Jum', aktif: 72, baru: 22 },
-    { name: 'Sab', aktif: 58, baru: 16 },
-    { name: 'Min', aktif: 42, baru: 10 }
-  ];
-
   // Recent activities data
   const recentActivities = [
-  {
-    id: 1,
-    user: "Ibrani Mayasari",
-    action: "Meminjam alat",
-    item: "Laptop, Proyektor",
-    time: "2 jam yang lalu",
-    status: "approved"
-  },
-  {
-    id: 2,
-    user: "Karja Melani",
-    action: "Pembatalan peminjaman",
-    item: "Ruang GSG 204",
-    time: "4 jam yang lalu",
-    status: "cancelled"
-  },
-  {
-    id: 3,
-    user: "Siti Putra",
-    action: "Meminjam ruangan",
-    item: "Ruang GSG 211",
-    time: "6 jam yang lalu",
-    status: "pending"
-  },
-  {
-    id: 4,
-    user: "Taswir Sihotang",
-    action: "Meminjam alat",
-    item: "Kamera Digital, Tripod",
-    time: "7 jam yang lalu",
-    status: "approved"
-  },
-  {
-    id: 5,
-    user: "Eva Rajata",
-    action: "Meminjam ruangan",
-    item: "Ruang AA 204",
-    time: "9 jam yang lalu",
-    status: "cancelled"
-  },
-  {
-    id: 6,
-    user: "Raditya Winarsih",
-    action: "Meminjam alat",
-    item: "Speaker",
-    time: "12 jam yang lalu",
-    status: "approved"
-  },
-  {
-    id: 7,
-    user: "Xanana Handayani",
-    action: "Meminjam ruangan",
-    item: "Ruang GSG 202",
-    time: "15 jam yang lalu",
-    status: "pending"
-  },
-  {
-    id: 8,
-    user: "Yani Sitompul",
-    action: "Meminjam alat",
-    item: "Proyektor",
-    time: "1 hari yang lalu",
-    status: "approved"
-  },
-  {
-    id: 9,
-    user: "Mulyanto Prasasta",
-    action: "Pembatalan peminjaman",
-    item: "Ruang GSG 208",
-    time: "2 hari yang lalu",
-    status: "cancelled"
-  },
-  {
-    id: 10,
-    user: "Jais Nasyidah",
-    action: "Meminjam ruangan",
-    item: "Ruang GSG 209",
-    time: "3 hari yang lalu",
-    status: "approved"
-  }
-];
+    {
+      id: 1,
+      user: "Ibrani Mayasari",
+      action: "Meminjam alat",
+      item: "Laptop, Proyektor",
+      time: "2 jam yang lalu",
+      status: "approved"
+    },
+    {
+      id: 2,
+      user: "Karja Melani",
+      action: "Pembatalan peminjaman",
+      item: "Ruang GSG 204",
+      time: "4 jam yang lalu",
+      status: "cancelled"
+    },
+    {
+      id: 3,
+      user: "Siti Putra",
+      action: "Meminjam ruangan",
+      item: "Ruang GSG 211",
+      time: "6 jam yang lalu",
+      status: "pending"
+    },
+    {
+      id: 4,
+      user: "Taswir Sihotang",
+      action: "Meminjam alat",
+      item: "Kamera Digital, Tripod",
+      time: "7 jam yang lalu",
+      status: "approved"
+    },
+    {
+      id: 5,
+      user: "Eva Rajata",
+      action: "Meminjam ruangan",
+      item: "Ruang AA 204",
+      time: "9 jam yang lalu",
+      status: "cancelled"
+    },
+    {
+      id: 6,
+      user: "Raditya Winarsih",
+      action: "Meminjam alat",
+      item: "Speaker",
+      time: "12 jam yang lalu",
+      status: "approved"
+    },
+    {
+      id: 7,
+      user: "Xanana Handayani",
+      action: "Meminjam ruangan",
+      item: "Ruang GSG 202",
+      time: "15 jam yang lalu",
+      status: "pending"
+    },
+    {
+      id: 8,
+      user: "Yani Sitompul",
+      action: "Meminjam alat",
+      item: "Proyektor",
+      time: "1 hari yang lalu",
+      status: "approved"
+    },
+    {
+      id: 9,
+      user: "Mulyanto Prasasta",
+      action: "Pembatalan peminjaman",
+      item: "Ruang GSG 208",
+      time: "2 hari yang lalu",
+      status: "cancelled"
+    },
+    {
+      id: 10,
+      user: "Jais Nasyidah",
+      action: "Meminjam ruangan",
+      item: "Ruang GSG 209",
+      time: "3 hari yang lalu",
+      status: "approved"
+    }
+  ];
 
- const getStatusColor = (status) => {
-  switch (status) {
-    case 'approved':
-      return 'text-green-600 bg-green-100';
-    case 'pending':
-      return 'text-yellow-600 bg-yellow-100';
-    case 'returned':
-      return 'text-blue-600 bg-blue-100';
-    case 'active':
-      return 'text-purple-600 bg-purple-100';
-    case 'cancelled':
-      return 'text-red-600 bg-red-100';
-    default:
-      return 'text-gray-600 bg-gray-100';
-  }
-};
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'approved':
+        return 'text-green-600 bg-green-100';
+      case 'pending':
+        return 'text-yellow-600 bg-yellow-100';
+      case 'returned':
+        return 'text-blue-600 bg-blue-100';
+      case 'active':
+        return 'text-purple-600 bg-purple-100';
+      case 'cancelled':
+        return 'text-red-600 bg-red-100';
+      default:
+        return 'text-gray-600 bg-gray-100';
+    }
+  };
 
   const getStatusIcon = (status) => {
     switch (status) {
@@ -207,6 +215,48 @@ const DashboardContent = () => {
         ))}
       </div>
 
+      {/* Additional User Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-600">Pengguna Aktif Hari Ini</p>
+              <p className="text-2xl font-bold text-gray-900">{userStatistics.activeUsersToday}</p>
+            </div>
+            <div className="p-3 bg-green-100 rounded-full">
+              <Users className="w-6 h-6 text-green-600" />
+            </div>
+          </div>
+          <p className="text-xs text-gray-500 mt-2">Tingkat keaktifan: {userStatistics.activeRate}</p>
+        </div>
+
+        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-600">Pengguna Baru Minggu Ini</p>
+              <p className="text-2xl font-bold text-gray-900">{userStats.totalNewThisWeek}</p>
+            </div>
+            <div className="p-3 bg-blue-100 rounded-full">
+              <TrendingUp className="w-6 h-6 text-blue-600" />
+            </div>
+          </div>
+          <p className="text-xs text-gray-500 mt-2">Rata-rata: {userStats.averageNewPerDay}/hari</p>
+        </div>
+
+        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-600">Rata-rata Aktif/Hari</p>
+              <p className="text-2xl font-bold text-gray-900">{userStats.averageActivePerDay}</p>
+            </div>
+            <div className="p-3 bg-purple-100 rounded-full">
+              <BarChart3 className="w-6 h-6 text-purple-600" /> {/* Sekarang BarChart3 sudah didefinisikan */}
+            </div>
+          </div>
+          <p className="text-xs text-gray-500 mt-2">Total minggu ini: {userStats.totalActiveThisWeek}</p>
+        </div>
+      </div>
+
       {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Borrowing Chart */}
@@ -224,7 +274,10 @@ const DashboardContent = () => {
             <h3 className="text-lg font-semibold text-gray-900">Aktivitas Pengguna</h3>
             <Users className="w-5 h-5 text-gray-400" />
           </div>
-          <UserActivityChart data={userActivityData} />
+          <UserActivityChart />
+          <div className="mt-4 text-center text-sm text-gray-600">
+            <span>Total Aktivitas Pengguna per Hari</span>
+          </div>
         </div>
       </div>
 
@@ -262,36 +315,36 @@ const DashboardContent = () => {
 
       {/* Quick Actions */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-  <div className="p-6 border-b border-gray-200">
-    <h3 className="text-lg font-semibold text-gray-900">Aksi Cepat</h3>
-  </div>
-  <div className="p-6">
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <button className="group flex items-center justify-center p-4 border-2 border-dashed bg-white border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-        <div className="text-center">
-          <BookOpen className="w-8 h-8 text-gray-400 mx-auto mb-2 group-hover:text-blue-500 transition-colors" />
-          <p className="font-medium text-gray-900">Tambah Buku Baru</p>
-          <p className="text-sm text-gray-500">Kelola koleksi perpustakaan</p>
+        <div className="p-6 border-b border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900">Aksi Cepat</h3>
         </div>
-      </button>
-      <button className="group flex items-center justify-center p-4 border-2 border-dashed bg-white border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-        <div className="text-center">
-          <Users className="w-8 h-8 text-gray-400 mx-auto mb-2 group-hover:text-blue-500 transition-colors" />
-          <p className="font-medium text-gray-900">Kelola Pengguna</p>
-          <p className="text-sm text-gray-500">Manajemen akun pengguna</p>
+        <div className="p-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <button className="group flex items-center justify-center p-4 border-2 border-dashed bg-white border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+              <div className="text-center">
+                <BookOpen className="w-8 h-8 text-gray-400 mx-auto mb-2 group-hover:text-blue-500 transition-colors" />
+                <p className="font-medium text-gray-900">Validasi Sarana Prasarana</p>
+                <p className="text-sm text-gray-500">Kelola koleksi Sarana Prasarana TIK</p>
+              </div>
+            </button>
+            <button className="group flex items-center justify-center p-4 border-2 border-dashed bg-white border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+              <div className="text-center">
+                <Users className="w-8 h-8 text-gray-400 mx-auto mb-2 group-hover:text-blue-500 transition-colors" />
+                <p className="font-medium text-gray-900">Kelola Pengguna</p>
+                <p className="text-sm text-gray-500">Manajemen akun pengguna</p>
+              </div>
+            </button>
+            <button className="group flex items-center justify-center p-4 border-2 border-dashed bg-white border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+              <div className="text-center">
+                <TrendingUp className="w-8 h-8 text-gray-400 mx-auto mb-2 group-hover:text-blue-500 transition-colors" />
+                <p className="font-medium text-gray-900">Lihat Laporan</p>
+                <p className="text-sm text-gray-500">Analisis dan statistik</p>
+              </div>
+            </button>
+          </div>
         </div>
-      </button>
-      <button className="group flex items-center justify-center p-4 border-2 border-dashed bg-white border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-        <div className="text-center">
-          <TrendingUp className="w-8 h-8 text-gray-400 mx-auto mb-2 group-hover:text-blue-500 transition-colors" />
-          <p className="font-medium text-gray-900">Lihat Laporan</p>
-          <p className="text-sm text-gray-500">Analisis dan statistik</p>
-        </div>
-      </button>
+      </div>
     </div>
-  </div>
-</div>
-</div>
   );
 };
 

@@ -13,8 +13,7 @@ import {
 } from 'recharts';
 
 const SalesChart = ({ 
-  data = [], 
-  title = "Statistik Peminjaman", 
+  data = [],  
   showReturned = false,
   height = 300 
 }) => {
@@ -54,9 +53,6 @@ const SalesChart = ({
 
   return (
     <div className="w-full">
-      {title && (
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">{title}</h3>
-      )}
       <ResponsiveContainer width="100%" height={height}>
         <AreaChart data={chartData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
           <defs>

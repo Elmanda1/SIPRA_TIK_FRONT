@@ -11,11 +11,11 @@ import {
   X 
 } from 'lucide-react';
 
-// Import components
+// Update imports
 import DashboardContent from '../../components/admin/DashboardContent';
+import AnalyticsContent from '../../components/admin/AnalyticsContent';
 import UsersManagement from '../../components/admin/UsersManagement';
 import AdminSettings from '../../components/admin/AdminSettings';
-import SalesChart from '../../components/admin/Charts/SalesChart';
 import Header from '../../components/admin/Header';
 import LogoutModal from '../../components/common/LogoutModal';
 
@@ -37,20 +37,7 @@ const AdminDashboard = () => {
       case 'dashboard':
         return <DashboardContent />;
       case 'analytics':
-        return (
-          <div className="space-y-4 lg:space-y-6">
-            <div className="flex justify-between items-center">
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">Analytics</h1>
-                <p className="text-gray-600">Analisis dan laporan sistem perpustakaan.</p>
-              </div>
-            </div>
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Chart Peminjaman</h3>
-              <SalesChart />
-            </div>
-          </div>
-        );
+        return <AnalyticsContent />; // Langsung render AnalyticsContent
       case 'users':
         return <UsersManagement />;
       case 'settings':
