@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { MapPin, User, Search, Filter ,History, Package, ClipboardList, LogOut } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import { MapPin, User, Search, Filter, History, Package, ClipboardList, Building2, Monitor, Network, Video, Zap, MoreHorizontal, Boxes } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import LogoutModal from '../../components/common/LogoutModal';
@@ -10,6 +10,7 @@ export default function UserDashboard() {
   const navigate = useNavigate();
   const { logout } = useAuth();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const blueContainerRef = useRef(null);
 
    const handleLogout = () => {
     setShowLogoutModal(true);
@@ -185,6 +186,23 @@ export default function UserDashboard() {
     setSelectedBooking(booking);
   };
 
+    // Fungsi untuk menangani klik pada kategori di homepage
+  const handleKategoriClick = (id) => {
+    // Ubah menu aktif menjadi Barang (menampilkan BarangContent)
+    setActiveMenu('Barang');
+    // Tunggu 100ms agar konten BarangContent sudah dirender
+    setTimeout(() => {
+      // Cari elemen dengan id sesuai kategori (misal: 'ruang-kelas')
+      const barang = document.getElementById(id);
+      if (barang) {
+        // Hitung posisi scroll agar elemen berada di tengah layar
+        const y = barang.getBoundingClientRect().top + window.pageYOffset - (window.innerHeight / 2) + (barang.offsetHeight / 2);
+        // Scroll ke posisi tersebut dengan animasi smooth
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
   // Table reusable component
   const BookingTable = ({ title, bookings }) => (
     <div className="bg-white rounded-xl shadow-sm mb-8">
@@ -258,34 +276,116 @@ export default function UserDashboard() {
     </div>
   );
 
-  // Dummy content untuk home
+  //  content untuk home
   const HomeContent = () => (
-    <div className=" flex flex-col items-center justify-center min-h-[60vh] mt-10">
-      <div className=' flex flex-col items-center justify-center'>
-        <h1 className="text-5xl md:text-6xl font-bold text-gray-800 text-center mb-8">
+    <div className=" flex flex-col items-center justify-center min-h-[60vh] mt-20">
+      <div className=' flex flex-col w-full items-center justify-center pb-20 bg-opacity-80 backdrop-blur-sm rounded-xl pt-20'
+      >
+        <h1 className="text-5xl md:text-6xl font-bold text-gray-800 text-center mb-12">
           Selamat Datang di SIPRATIK!
         </h1>
         <p className="text-2xl text-gray-600 text-center mb-12 max-w-2xl">
           Sistem Peminjaman Sarana Prasarana Kampus untuk Mahasiswa dan Dosen
         </p>
+        <div className='flex flex-row items-center justify-center gap-4 mb-5'>
           <button
             onClick={() => setActiveMenu('pinjam')}
             className="px-8 py-3 bg-black text-white font-bold rounded-lg shadow hover:bg-gray-800 transition"
           >
-            PINJAM BARANG
+            PINJAM SEKARANG
           </button>
-          <br/>
-        <p className="text-gray-600">
+
+          <button
+            onClick={() => {
+              if (blueContainerRef.current) {
+                blueContainerRef.current.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="px-8 py-3 bg-black text-white font-bold rounded-lg shadow hover:bg-gray-800 transition"
+          >
+            LIHAT SARPRAS
+          </button>
+        </div>
+        <p className="text-gray-600 pl-4">
           Lihat{" "}
           <a href="#" className="underline">
-            Ketentuan
+            Syarat & Ketentuan
           </a>
+          {" "} Disini
         </p>
       </div>
-      <div>
-        
+      
+      <div className=' flex flex-col items-center justify-center  w-[80vw] h-[100vh] p-12 mt-10'>
+        <h1 className="text-3xl md:text-5xl font-bold text-gray-800 text-center mb-12">
+          Tutorial Peminjaman
+        </h1>
+        <iframe className='w-full h-full rounded-xl' src="https://www.youtube.com/embed/Im00a5ZL46I?si=UjdkRQsGxlySgfqp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+
+      <div
+        ref={blueContainerRef}
+        className=' flex flex-col items-center justify-start rounded-[30px] w-[80vw] min-h-[80vh] p-12 mt-10'
+      >
+        <h1 className="text-5xl md:text-6xl font-bold text-gray-800 text-center mb-8">
+          Kategori Sarana Prasarana
+        </h1>
+        <p className="text-2xl text-gray-600 text-center mb-12 max-w-2xl">
+          Pilih kategori sarana prasarana yang Anda butuhkan
+        </p>
+
+        <div className="w-full max-w-7xl mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div
+            className="transition hover:scale-[1.03] duration-400 cursor-pointer bg-white bg-opacity-50 rounded-2xl shadow-xl p-10 flex flex-col items-center justify-center"
+            onClick={() => handleKategoriClick('ruang-kelas')}
+          >
+            <Building2 className="w-14 h-14 text-gray-800 mb-8" />
+            <span className="text-3xl font-bold text-blue-700 mb-2">Ruang Kelas</span>
+            <p className="text-gray-600 text-center">Peminjaman ruang kelas untuk kegiatan belajar mengajar.</p>
+          </div>
+          <div
+            className="transition hover:scale-[1.03] duration-400 cursor-pointer bg-white bg-opacity-50 rounded-2xl shadow-xl p-10 flex flex-col items-center justify-center"
+            onClick={() => handleKategoriClick('peralatan-av')}
+          >
+            <Video className="w-14 h-14 text-gray-800 mb-8" />
+            <span className="text-3xl font-bold text-blue-700 mb-2">Peralatan AV</span>
+            <p className="text-gray-600 text-center">Peminjaman laboratorium komputer dan alat praktikum.</p>
+          </div>
+          <div
+            className="transition hover:scale-[1.03] duration-400 cursor-pointer bg-white bg-opacity-50 rounded-2xl shadow-xl p-10 flex flex-col items-center justify-center"
+            onClick={() => handleKategoriClick('perangkat-komputer')}
+          >
+            <Monitor className="w-14 h-14 text-gray-800 mb-8" />
+            <span className="text-3xl font-bold text-blue-700 mb-2">Perangkat Komputer</span>
+            <p className="text-gray-600 text-center">Peminjaman alat elektronik, proyektor, dan lainnya.</p>
+          </div>
+          <div
+            className="transition hover:scale-[1.03] duration-400 cursor-pointer bg-white bg-opacity-50 rounded-2xl shadow-xl p-10 flex flex-col items-center justify-center"
+            onClick={() => handleKategoriClick('peralatan-jaringan')}
+          >
+            <Network className="w-14 h-14 text-gray-800 mb-8" />
+            <span className="text-3xl font-bold text-blue-700 mb-2">Peralatan Jaringan</span>
+            <p className="text-gray-600 text-center">Router, switch, kabel UTP, tester, dan alat jaringan lainnya.</p>
+          </div>
+          <div
+            className="transition hover:scale-[1.03] duration-400 cursor-pointer bg-white bg-opacity-50 rounded-2xl shadow-xl p-10 flex flex-col items-center justify-center"
+            onClick={() => handleKategoriClick('peralatan-listrik')}
+          >
+            <Zap className="w-14 h-14 text-gray-800 mb-8" /> {/* Icon listrik */}
+            <span className="text-3xl font-bold text-blue-700 mb-2">Peralatan Listrik</span>
+            <p className="text-gray-600 text-center">Peralatan listrik seperti kabel, stop kontak, dan lainnya.</p>
+          </div>
+          <div
+            className="transition hover:scale-[1.03] duration-400 cursor-pointer bg-white bg-opacity-50 rounded-2xl shadow-xl p-10 flex flex-col items-center justify-center"
+            onClick={() => handleKategoriClick('lainnya')}
+          >
+            <MoreHorizontal className="w-14 h-14 text-gray-800 mb-8" /> {/* Icon lainnya */}
+            <span className="text-3xl font-bold text-blue-700 mb-2">Lainnya</span>
+            <p className="text-gray-600 text-center">Kategori sarana prasarana lainnya sesuai kebutuhan.</p>
+          </div>
+        </div>
       </div>
     </div>
+          
 
   );
 
@@ -301,7 +401,9 @@ export default function UserDashboard() {
       {/* Title */}
         <h2 className="text-3xl font-bold mb-4 text-gray-800">My Profile</h2>
       </div>
-      <div className="bg-white/30 bg-opacity-50 backdrop-blur-sm border rounded-xl shadow-sm w-full max-w-4xl p-8 ">
+      <div className="bg-white/30 bg-opacity-50 backdrop-blur-sm border rounded-xl shadow-sm w-full max-w-4xl p-8 "
+        
+      >
         {/* Header */}
         <div className="flex items-center border-b pb-4 mb-6 ml-6">
           <div className="flex-shrink-0 w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center mr-4">
@@ -379,7 +481,7 @@ export default function UserDashboard() {
   const PinjamContent = () => (
     <div className="flex flex-col items-center w-full  min-h-[80vh] py-10 overflow-y-auto">
       <h2 className="text-3xl font-bold mb-6 text-gray-800">Form Peminjaman Barang</h2>
-      <div className="bg-white/30 bg-opacity-50 backdrop-blur-sm rounded-xl rounded-xl w-full max-w-2xl p-12">
+      <div className="bg-white/30 bg-opacity-50 backdrop-blur-sm rounded-xl w-full max-w-2xl p-12">
         {/* Form */}
         <form className="flex flex-col gap-5 items-start">
           {/* Barang yang Dipinjam */}
@@ -469,11 +571,218 @@ export default function UserDashboard() {
     </div>
   );
 
+  // Dummy content for Barang
+  const BarangContent = () => (
+    <div className="flex flex-col items-center justify-center min-h-[60vh] w-full mt-10">
+      <h2 className="text-3xl font-bold mb-8 text-gray-800">Daftar Barang per Kategori</h2>
+      <div className="w-full max-w-5xl space-y-12">
+        {/* Ruang Kelas */}
+        <div id="ruang-kelas">
+          <div className="flex items-center gap-3 mb-2">
+            <Building2 className="w-7 h-7 text-blue-700" />
+            <span className="text-2xl font-bold text-blue-700">Ruang Kelas</span>
+          </div>
+          <table className="w-full bg-white rounded-xl shadow mb-6">
+            <thead>
+              <tr className="bg-blue-50 text-blue-900">
+                <th className="py-2 px-4 text-left">Nama Barang</th>
+                <th className="py-2 px-4 text-left">Jumlah</th>
+                <th className="py-2 px-4 text-left">Keterangan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-t">
+                <td className="py-2 px-4 text-gray-900">Meja</td>
+                <td className="py-2 px-4 text-gray-900">20</td>
+                <td className="py-2 px-4 text-gray-900">Meja belajar standar</td>
+              </tr>
+              <tr className="border-t">
+                <td className="py-2 px-4 text-gray-900">Kursi</td>
+                <td className="py-2 px-4 text-gray-900">40</td>
+                <td className="py-2 px-4 text-gray-900">Kursi plastik</td>
+              </tr>
+              <tr className="border-t">
+                <td className="py-2 px-4 text-gray-900">Papan Tulis</td>
+                <td className="py-2 px-4 text-gray-900">2</td>
+                <td className="py-2 px-4 text-gray-900">Papan tulis whiteboard</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        {/* Peralatan AV */}
+        <div id="peralatan-av">
+          <div className="flex items-center gap-3 mb-2">
+            <Video className="w-7 h-7 text-blue-700" />
+            <span className="text-2xl font-bold text-blue-700">Peralatan AV</span>
+          </div>
+          <table className="w-full bg-white rounded-xl shadow mb-6">
+            <thead>
+              <tr className="bg-blue-50 text-blue-900">
+                <th className="py-2 px-4 text-left">Nama Barang</th>
+                <th className="py-2 px-4 text-left">Jumlah</th>
+                <th className="py-2 px-4 text-left">Keterangan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-t">
+                <td className="py-2 px-4 text-gray-900">Proyektor</td>
+                <td className="py-2 px-4 text-gray-900">5</td>
+                <td className="py-2 px-4 text-gray-900">Proyektor Epson</td>
+              </tr>
+              <tr className="border-t">
+                <td className="py-2 px-4 text-gray-900">Speaker</td>
+                <td className="py-2 px-4 text-gray-900">3</td>
+                <td className="py-2 px-4 text-gray-900">Speaker portable</td>
+              </tr>
+              <tr className="border-t">
+                <td className="py-2 px-4 text-gray-900">Microphone</td>
+                <td className="py-2 px-4 text-gray-900">4</td>
+                <td className="py-2 px-4 text-gray-900">Mic wireless</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        {/* Perangkat Komputer */}
+        <div id="perangkat-komputer">
+          <div className="flex items-center gap-3 mb-2">
+            <Monitor className="w-7 h-7 text-blue-700" />
+            <span className="text-2xl font-bold text-blue-700">Perangkat Komputer</span>
+          </div>
+          <table className="w-full bg-white rounded-xl shadow mb-6">
+            <thead>
+              <tr className="bg-blue-50 text-blue-900">
+                <th className="py-2 px-4 text-left">Nama Barang</th>
+                <th className="py-2 px-4 text-left">Jumlah</th>
+                <th className="py-2 px-4 text-left">Keterangan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-t">
+                <td className="py-2 px-4 text-gray-900">PC</td>
+                <td className="py-2 px-4 text-gray-900">10</td>
+                <td className="py-2 px-4 text-gray-900">PC Lab Komputer</td>
+              </tr>
+              <tr className="border-t">
+                <td className="py-2 px-4 text-gray-900">Monitor</td>
+                <td className="py-2 px-4 text-gray-900">10</td>
+                <td className="py-2 px-4 text-gray-900">Monitor 24 inch</td>
+              </tr>
+              <tr className="border-t">
+                <td className="py-2 px-4 text-gray-900">Keyboard & Mouse</td>
+                <td className="py-2 px-4 text-gray-900">10</td>
+                <td className="py-2 px-4 text-gray-900">Set keyboard dan mouse</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        {/* Peralatan Jaringan */}
+        <div id="peralatan-jaringan">
+          <div className="flex items-center gap-3 mb-2">
+            <Network className="w-7 h-7 text-blue-700" />
+            <span className="text-2xl font-bold text-blue-700">Peralatan Jaringan</span>
+          </div>
+          <table className="w-full bg-white rounded-xl shadow mb-6">
+            <thead>
+              <tr className="bg-blue-50 text-blue-900">
+                <th className="py-2 px-4 text-left">Nama Barang</th>
+                <th className="py-2 px-4 text-left">Jumlah</th>
+                <th className="py-2 px-4 text-left">Keterangan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-t">
+                <td className="py-2 px-4 text-gray-900">Router</td>
+                <td className="py-2 px-4 text-gray-900">3</td>
+                <td className="py-2 px-4 text-gray-900">Router Mikrotik</td>
+              </tr>
+              <tr className="border-t">
+                <td className="py-2 px-4 text-gray-900">Switch</td>
+                <td className="py-2 px-4 text-gray-900">2</td>
+                <td className="py-2 px-4 text-gray-900">Switch 24 port</td>
+              </tr>
+              <tr className="border-t">
+                <td className="py-2 px-4 text-gray-900">Kabel UTP</td>
+                <td className="py-2 px-4 text-gray-900">100 meter</td>
+                <td className="py-2 px-4 text-gray-900">Kabel jaringan</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        {/* Peralatan Listrik */}
+        <div id="peralatan-listrik">
+          <div className="flex items-center gap-3 mb-2">
+            <Zap className="w-7 h-7 text-blue-700" />
+            <span className="text-2xl font-bold text-blue-700">Peralatan Listrik</span>
+          </div>
+          <table className="w-full bg-white rounded-xl shadow mb-6">
+            <thead>
+              <tr className="bg-blue-50 text-blue-900">
+                <th className="py-2 px-4 text-left">Nama Barang</th>
+                <th className="py-2 px-4 text-left">Jumlah</th>
+                <th className="py-2 px-4 text-left">Keterangan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-t">
+                <td className="py-2 px-4 text-gray-900">Stop Kontak</td>
+                <td className="py-2 px-4 text-gray-900">8</td>
+                <td className="py-2 px-4 text-gray-900">Stop kontak panjang</td>
+              </tr>
+              <tr className="border-t">
+                <td className="py-2 px-4 text-gray-900">Kabel Roll</td>
+                <td className="py-2 px-4 text-gray-900">4</td>
+                <td className="py-2 px-4 text-gray-900">Kabel roll 10 meter</td>
+              </tr>
+              <tr className="border-t">
+                <td className="py-2 px-4 text-gray-900">Lampu</td>
+                <td className="py-2 px-4 text-gray-900">10</td>
+                <td className="py-2 px-4 text-gray-900">Lampu LED</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        {/* Lainnya */}
+        <div id="lainnya">
+          <div className="flex items-center gap-3 mb-2">
+            <MoreHorizontal className="w-7 h-7 text-blue-700" />
+            <span className="text-2xl font-bold text-blue-700">Lainnya</span>
+          </div>
+          <table className="w-full bg-white rounded-xl shadow mb-6">
+            <thead>
+              <tr className="bg-blue-50 text-blue-900">
+                <th className="py-2 px-4 text-left">Nama Barang</th>
+                <th className="py-2 px-4 text-left">Jumlah</th>
+                <th className="py-2 px-4 text-left">Keterangan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-t">
+                <td className="py-2 px-4 text-gray-900">Papan Pengumuman</td>
+                <td className="py-2 px-4 text-gray-900">2</td>
+                <td className="py-2 px-4 text-gray-900">Papan pengumuman umum</td>
+              </tr>
+              <tr className="border-t">
+                <td className="py-2 px-4 text-gray-900">Dispenser</td>
+                <td className="py-2 px-4 text-gray-900">1</td>
+                <td className="py-2 px-4 text-gray-900">Dispenser air minum</td>
+              </tr>
+              <tr className="border-t">
+                <td className="py-2 px-4 text-gray-900">Lain-lain</td>
+                <td className="py-2 px-4 text-gray-900">-</td>
+                <td className="py-2 px-4 text-gray-900">Barang lain sesuai kebutuhan</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div
       className="min-h-screen w-[99vw]"
       style={{
-        background: "linear-gradient(0deg, #EAF1F8 65%,rgb(210, 250, 255) 100%)"
+        background: "linear-gradient(0deg, #EAF1F8 40%,rgb(210, 250, 255) 100%)"
       }}
     >
       {/* Header */}
@@ -482,30 +791,34 @@ export default function UserDashboard() {
           onClick={() => setActiveMenu('Home')}
 
         >
-          SIPRATIK</a>
+          SIPRATIK
+        </a>
         {/* menu */}
         <div className="flex items-center space-x-4 gap-10">
-          <h2>............</h2>
-          <a
-            className={`flex flex-row gap-2 cursor-pointer ${activeMenu === 'Home' ? 'font-bold text-blue-900' : 'text-black hover:text-gray-600'}`}
-            onClick={() => setActiveMenu('Home')}
-          >
-            <ClipboardList className="w-7 h-7" />
-            <p className='text-xl'>Home</p>
-          </a>
-          <a
-            className={`flex flex-row gap-2 cursor-pointer ${activeMenu === 'history' ? 'font-bold text-blue-900' : 'text-black hover:text-gray-600'}`}
-            onClick={() => setActiveMenu('history')}
-          >
-            <History className="w-7 h-7" />
-            <p className='text-xl'>History</p>
-          </a>
+          <h2 className='opacity-0'>............</h2>
+
           <a
             className={`flex flex-row gap-2 cursor-pointer ${activeMenu === 'pinjam' ? 'font-bold text-blue-900' : 'text-black hover:text-gray-600'}`}
             onClick={() => setActiveMenu('pinjam')}
           >
             <Package className="w-7 h-7" />
             <p className='text-xl'>Pinjam</p>
+          </a>
+
+          <a
+            className={`flex flex-row gap-2 cursor-pointer ${activeMenu === 'Barang' ? 'font-bold text-blue-900' : 'text-black hover:text-gray-600'}`}
+            onClick={() => setActiveMenu('Barang')}
+          >
+            <Boxes className="w-7 h-7" />
+            <p className='text-xl'>Barang</p>
+          </a>
+          
+          <a
+            className={`flex flex-row gap-2 cursor-pointer ${activeMenu === 'history' ? 'font-bold text-blue-900' : 'text-black hover:text-gray-600'}`}
+            onClick={() => setActiveMenu('history')}
+          >
+            <History className="w-7 h-7" />
+            <p className='text-xl'>History</p>
           </a>
         </div>
         {/* Tombol logout */}
@@ -531,6 +844,7 @@ export default function UserDashboard() {
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-8 pt-24">
         {activeMenu === 'Home' && <HomeContent />}
+        {activeMenu === 'Barang' && <BarangContent />}
         {activeMenu === 'history' && <HistoryContent />}
         {activeMenu === 'pinjam' && <PinjamContent />}
         {activeMenu === 'profile' && <ProfileContent />}
