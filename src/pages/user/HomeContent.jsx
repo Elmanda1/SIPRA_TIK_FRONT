@@ -17,7 +17,7 @@ const HomeContent = ({ setActiveMenu, blueContainerRef, handleKategoriClick }) =
         <div className='flex flex-row items-center justify-center gap-4 mb-5'>
           <button
             onClick={() => setActiveMenu('pinjam')}
-            className="px-8 py-3 bg-black text-white font-bold rounded-lg shadow hover:bg-gray-800 transition"
+            className="px-8 py-3 bg-[#00A8E8] hover:bg-[#33BBF3] text-white font-bold rounded-lg shadow transition"
           >
             PINJAM SEKARANG
           </button>
@@ -28,7 +28,7 @@ const HomeContent = ({ setActiveMenu, blueContainerRef, handleKategoriClick }) =
                 blueContainerRef.current.scrollIntoView({ behavior: 'smooth' });
               }
             }}
-            className="px-8 py-3 bg-black text-white font-bold rounded-lg shadow hover:bg-gray-800 transition"
+            className="px-8 py-3 bg-[#00A8E8] hover:bg-[#33BBF3] text-white font-bold rounded-lg shadow transition"
           >
             LIHAT SARPRAS
           </button>
@@ -69,7 +69,7 @@ const HomeContent = ({ setActiveMenu, blueContainerRef, handleKategoriClick }) =
             onClick={() => handleKategoriClick('ruang-kelas')}
           >
             <Building2 className="w-14 h-14 text-gray-800 mb-8" />
-            <span className="text-3xl font-bold text-blue-700 mb-2">Ruang Kelas</span>
+            <span className="text-3xl font-bold text-sky-600 mb-2">Ruang Kelas</span>
             <p className="text-gray-600 text-center">Peminjaman ruang kelas untuk kegiatan belajar mengajar.</p>
           </div>
           <div
@@ -77,7 +77,7 @@ const HomeContent = ({ setActiveMenu, blueContainerRef, handleKategoriClick }) =
             onClick={() => handleKategoriClick('peralatan-av')}
           >
             <Video className="w-14 h-14 text-gray-800 mb-8" />
-            <span className="text-3xl font-bold text-blue-700 mb-2">Peralatan AV</span>
+            <span className="text-3xl font-bold text-sky-600 mb-2">Peralatan AV</span>
             <p className="text-gray-600 text-center">Peminjaman laboratorium komputer dan alat praktikum.</p>
           </div>
           <div
@@ -85,7 +85,7 @@ const HomeContent = ({ setActiveMenu, blueContainerRef, handleKategoriClick }) =
             onClick={() => handleKategoriClick('perangkat-komputer')}
           >
             <Monitor className="w-14 h-14 text-gray-800 mb-8" />
-            <span className="text-3xl font-bold text-blue-700 mb-2">Perangkat Komputer</span>
+            <span className="text-3xl font-bold text-sky-600 mb-2">Perangkat Komputer</span>
             <p className="text-gray-600 text-center">Peminjaman alat elektronik, proyektor, dan lainnya.</p>
           </div>
           <div
@@ -93,7 +93,7 @@ const HomeContent = ({ setActiveMenu, blueContainerRef, handleKategoriClick }) =
             onClick={() => handleKategoriClick('peralatan-jaringan')}
           >
             <Network className="w-14 h-14 text-gray-800 mb-8" />
-            <span className="text-3xl font-bold text-blue-700 mb-2">Peralatan Jaringan</span>
+            <span className="text-3xl font-bold text-sky-600 mb-2">Peralatan Jaringan</span>
             <p className="text-gray-600 text-center">Router, switch, kabel UTP, tester, dan alat jaringan lainnya.</p>
           </div>
           <div
@@ -101,7 +101,7 @@ const HomeContent = ({ setActiveMenu, blueContainerRef, handleKategoriClick }) =
             onClick={() => handleKategoriClick('peralatan-listrik')}
           >
             <Zap className="w-14 h-14 text-gray-800 mb-8" />
-            <span className="text-3xl font-bold text-blue-700 mb-2">Peralatan Listrik</span>
+            <span className="text-3xl font-bold text-sky-600 mb-2">Peralatan Listrik</span>
             <p className="text-gray-600 text-center">Peralatan listrik seperti kabel, stop kontak, dan lainnya.</p>
           </div>
           <div
@@ -109,7 +109,7 @@ const HomeContent = ({ setActiveMenu, blueContainerRef, handleKategoriClick }) =
             onClick={() => handleKategoriClick('lainnya')}
           >
             <MoreHorizontal className="w-14 h-14 text-gray-800 mb-8" />
-            <span className="text-3xl font-bold text-blue-700 mb-2">Lainnya</span>
+            <span className="text-3xl font-bold text-sky-600 mb-2">Lainnya</span>
             <p className="text-gray-600 text-center">Kategori sarana prasarana lainnya sesuai kebutuhan.</p>
           </div>
         </div>

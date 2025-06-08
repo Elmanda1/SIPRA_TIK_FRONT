@@ -45,10 +45,24 @@ export default function UserDashboard() {
   };
 
   // Fungsi untuk menyelesaikan peminjaman
-  const handleCompleteBooking = (bookingId) => {
-    updatePeminjamanStatus(bookingId, 'Selesai');
+  const handleCompleteBooking = (bookingId, status, penaltyData = null) => {
+    const finalStatus = penaltyData?.amount > 0 ? 'Penalty' : 'Selesai';
+    
+    if (penaltyData) {
+      // Update dengan status penalty jika ada denda
+      updatePeminjamanStatus(bookingId, finalStatus, {
+        penaltyAmount: penaltyData.amount,
+        penaltyPhoto: penaltyData.photo,
+        penaltyNotes: penaltyData.notes,
+        totalDenda: penaltyData.totalPenalty
+      });
+      console.log('Peminjaman selesai dengan penalty:', penaltyData);
+    } else {
+      // Update dengan status selesai jika tidak ada denda
+      updatePeminjamanStatus(bookingId, finalStatus);
+      console.log('Peminjaman selesai normal');
+    }
     setSelectedBooking(null);
-    console.log('Peminjaman selesai');
   };
 
   // Fungsi untuk menangani klik pada kategori di homepage
@@ -68,11 +82,11 @@ export default function UserDashboard() {
     }, 100);
   };
 
-  return (
+  return (    
     <div
       className="min-h-screen w-[99vw]"
       style={{
-        background: "linear-gradient(0deg, #EAF1F8 80%,rgb(210, 250, 255) 100%)"
+        background: "linear-gradient(180deg, rgb(210, 250, 255) 0px, #EAF1F8 1000px)"
       }}
     >
       {/* Header */}
@@ -118,9 +132,9 @@ export default function UserDashboard() {
         <div className="flex items-center space-x-8 pr-8">
           <button
             onClick={handleLogout}
-            className="flex items-center rounded-xl bg-cyan-600 hover:bg-cyan-700 focus:outline-none px-6 py-4"
+            className="flex items-center rounded-xl transition-all hover:bg-sky-600 hover:bg-opacity-20 duration-200 focus:outline-none px-6 py-4 hover:shadow-lg"
           >
-            <div className="text-white font-bold">
+            <div className="text-black font-bold">
               LOGOUT
             </div>
           </button>
@@ -150,65 +164,18 @@ export default function UserDashboard() {
         )}
         {activeMenu === 'Barang' && <BarangContent />}
         {activeMenu === 'history' && (
-          <HistoryContent handleBookingClick={handleBookingClick} />
+          <HistoryContent 
+            handleBookingClick={handleBookingClick}
+            selectedBooking={selectedBooking}
+            setSelectedBooking={setSelectedBooking}
+            handleCancelBooking={handleCancelBooking}
+            handleCompleteBooking={handleCompleteBooking}
+          />
         )}
         {activeMenu === 'pinjam' && <PinjamContent />}
         {activeMenu === 'profile' && <ProfileContent />}
         {activeMenu === 'ketentuan' && <KetentuanContent />}
       </div>
-
-      {/* Modal untuk detail booking */}
-      {selectedBooking && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-xl p-6 max-w-md w-full mx-4">
-            <h3 className="text-lg text-black font-bold mb-4">Detail Peminjaman</h3>
-            <div className="text-black space-y-3">
-              <div>
-                <span className="font-medium">Nama Barang: </span> {selectedBooking.room}
-              </div>
-              <div>
-                <span className="font-medium">Tanggal:</span> {selectedBooking.date}
-              </div>
-              <div>
-                <span className="font-medium">Waktu:</span> {selectedBooking.time}
-              </div>
-              <div>
-                <span className="font-medium">Kategori:</span> {selectedBooking.building}
-              </div>
-              <div>
-                <span className="font-medium">Status:</span>
-                <span className={`ml-2 px-3 py-1 rounded-full text-xs font-medium ${selectedBooking.statusColor}`}>
-                  {selectedBooking.status}
-                </span>
-              </div>
-            </div>
-            <div className="flex justify-end space-x-3 mt-6">
-              <button
-                onClick={() => setSelectedBooking(null)}
-                className="px-4 py-2 bg-white text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50"
-              >
-                Tutup
-              </button>
-              {selectedBooking.status === 'Menunggu Verifikasi' && (
-                <button 
-                  onClick={() => handleCancelBooking(selectedBooking.id)}
-                  className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
-                >
-                  Batalkan
-                </button>
-              )}
-              {selectedBooking.status === 'Aktif' && (
-                <button 
-                  onClick={() => handleCompleteBooking(selectedBooking.id)}
-                  className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
-                >
-                  Selesai Peminjaman
-                </button>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Logout Modal */}
       <LogoutModal

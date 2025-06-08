@@ -5,9 +5,45 @@ const PeminjamanContext = createContext();
 export const PeminjamanProvider = ({ children }) => {
   const [peminjamanHistory, setPeminjamanHistory] = useState([
     {
+      id: 14,
+      room: 'Proyektor',
+      building: 'Peralatan AV',
+      date: '07 Jun 2025',
+      time: '12:00 - 15:00',
+      status: 'Aktif',
+      statusColor: 'bg-blue-100 text-blue-800'
+    },
+    {
+      id: 13,
+      room: 'Laptop',
+      building: 'Perangkat Komputer',
+      date: '07 Jun 2025',
+      time: '14:00 - 16:00',
+      status: 'Menunggu Verifikasi',
+      statusColor: 'bg-blue-100 text-blue-800',
+    },
+    {
+      id: 12,
+      room: 'Switch',
+      building: 'Peralatan Jaringan',
+      date: '07 Jun 2025',
+      time: '09:00 - 10:00',
+      status: 'Aktif',
+      statusColor: 'bg-blue-100 text-blue-800',
+    },
+    {
+      id: 11,
+      room: 'Microphone',
+      building: 'Peralatan AV',
+      date: '07 Jun 2025',
+      time: '13:00 - 15:00',
+      status: 'Aktif',
+      statusColor: 'bg-blue-100 text-blue-800',
+    },
+    {
       id: 10,
-      room: 'Ruang GSG 207',
-      building: 'Ruang Kelas',
+      room: 'PC Desktop',
+      building: 'Perangkat Komputer',
       date: '07 Jun 2025',
       time: '13:00 - 15:00',
       status: 'Aktif',
@@ -15,8 +51,8 @@ export const PeminjamanProvider = ({ children }) => {
     },
     {
       id: 9,
-      room: 'Ruang AA 205',
-      building: 'Ruang Kelas',
+      room: 'Router',
+      building: 'Peralatan Jaringan',
       date: '25 Mei 2025',
       time: '09:00 - 11:00',
       status: 'Selesai',
@@ -24,8 +60,8 @@ export const PeminjamanProvider = ({ children }) => {
     },
     {
       id: 8,
-      room: 'Ruang AA 203',
-      building: 'Ruang Kelas',
+      room: 'Speaker',
+      building: 'Peralatan AV',
       date: '18 Mei 2025',
       time: '14:00 - 16:00',
       status: 'Selesai',
@@ -33,8 +69,8 @@ export const PeminjamanProvider = ({ children }) => {
     },
     {
       id: 7,
-      room: 'Ruang AA 208',
-      building: 'Ruang Kelas',
+      room: 'Access Point',
+      building: 'Peralatan Jaringan',
       date: '12 Mei 2025',
       time: '10:00 - 12:00',
       status: 'Dibatalkan',
@@ -42,8 +78,8 @@ export const PeminjamanProvider = ({ children }) => {
     },
     {
       id: 6,
-      room: 'Ruang PUT 211',
-      building: 'Ruang Kelas',
+      room: 'Monitor LED',
+      building: 'Perangkat Komputer',
       date: '28 Apr 2025',
       time: '08:00 - 10:00',
       status: 'Selesai',
@@ -51,17 +87,17 @@ export const PeminjamanProvider = ({ children }) => {
     },
     {
       id: 5,
-      room: 'Ruang AA 203',
-      building: 'Ruang Kelas',
+      room: 'Kamera DSLR',
+      building: 'Peralatan AV',
       date: '15 Apr 2025',
       time: '13:00 - 14:00',
-      status: 'Selesai',
-      statusColor: 'bg-green-100 text-green-800',
+      status: 'Penalty',
+      statusColor: 'bg-yellow-100 text-yellow-800',
     },
     {
       id: 4,
-      room: 'Ruang AA 303',
-      building: 'Ruang Kelas',
+      room: 'Keyboard Mechanical',
+      building: 'Perangkat Komputer',
       date: '10 Apr 2025',
       time: '15:00 - 17:00',
       status: 'Selesai',
@@ -69,8 +105,8 @@ export const PeminjamanProvider = ({ children }) => {
     },
     {
       id: 3,
-      room: 'Ruang AA 206',
-      building: 'Ruang Kelas',
+      room: 'Patch Panel',
+      building: 'Peralatan Jaringan',
       date: '05 Apr 2025',
       time: '11:00 - 13:00',
       status: 'Selesai',
@@ -78,8 +114,8 @@ export const PeminjamanProvider = ({ children }) => {
     },
     {
       id: 2,
-      room: 'Ruang AA 204',
-      building: 'Ruang Kelas',
+      room: 'Video Camera',
+      building: 'Peralatan AV',
       date: '02 Apr 2025',
       time: '09:00 - 10:00',
       status: 'Selesai',
@@ -87,7 +123,7 @@ export const PeminjamanProvider = ({ children }) => {
     },
     {
       id: 1,
-      room: 'Ruang AA 201',
+      room: 'Ruangan AA 204',
       building: 'Ruang Kelas',
       date: '01 Apr 2025',
       time: '10:00 - 11:00',
@@ -115,35 +151,45 @@ export const PeminjamanProvider = ({ children }) => {
 
   // Fungsi untuk mengupdate status peminjaman
   const updatePeminjamanStatus = (id, newStatus) => {
-    setPeminjamanHistory(prev => 
-      prev.map(item => {
-        if (item.id === id) {
-          let statusColor = '';
-          switch (newStatus) {
-            case 'Aktif':
-              statusColor = 'bg-blue-100 text-blue-800';
-              break;
-            case 'Menunggu Verifikasi':
-              statusColor = 'bg-yellow-100 text-yellow-800';
-              break;
-            case 'Selesai':
-              statusColor = 'bg-green-100 text-green-800';
-              break;
-            case 'Dibatalkan':
-              statusColor = 'bg-red-100 text-red-800';
-              break;
-            default:
-              statusColor = 'bg-gray-100 text-gray-800';
-          }
-          return {
-            ...item,
+    setPeminjamanHistory(prev => {
+      const updatedItem = prev.find(item => item.id === id);
+      const otherItems = prev.filter(item => item.id !== id);
+      
+      if (updatedItem) {
+        let statusColor = '';
+        switch (newStatus) {
+          case 'Aktif':
+            statusColor = 'bg-blue-100 text-blue-800';
+            break;
+          case 'Menunggu Verifikasi':
+            statusColor = 'bg-yellow-100 text-yellow-800';
+            break;
+          case 'Selesai':
+            statusColor = 'bg-green-100 text-green-800';
+            break;
+          case 'Dibatalkan':
+            statusColor = 'bg-red-100 text-red-800';
+            break;
+          case 'Penalty':
+            statusColor = 'bg-yellow-100 text-yellow-800';
+            break;
+          default:
+            statusColor = 'bg-gray-100 text-gray-800';
+        }
+        
+        // Put the updated item at the top of the list
+        return [
+          {
+            ...updatedItem,
             status: newStatus,
             statusColor: statusColor
-          };
-        }
-        return item;
-      })
-    );
+          },
+          ...otherItems
+        ];
+      }
+      
+      return prev;
+    });
   };
 
   return (

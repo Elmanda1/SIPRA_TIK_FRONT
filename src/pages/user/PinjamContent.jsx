@@ -199,7 +199,7 @@ const PinjamContent = () => {
     barangPerKategori[selectedKategori].find(b => b.id === selectedBarang) : null;
 
   return (
-    <div className="flex flex-col items-center w-full min-h-screen py-10 overflow-y-auto bg-gradient-to-br from-blue-50 via-purple-50 to-indigo-50">
+    <div className="flex flex-col items-center rounded-lg w-full min-h-screen py-10 overflow-y-auto bg-gradient-to-br from-blue-50 via-purple-50 to-indigo-50">
       {/* Header with animated gradient text */}
       <div className="text-center mb-8">
         <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent pb-1">

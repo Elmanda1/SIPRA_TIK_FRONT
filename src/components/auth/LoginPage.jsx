@@ -162,14 +162,17 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen w-screen flex items-center justify-center bg-gradient-to-br from-blue-900 to-green-900 overflow-hidden">
+    <div className="min-h-screen w-screen flex items-center justify-center overflow-hidden"
+      style={{
+        background: "linear-gradient(0deg, #EAF1F8  30%,rgb(210, 250, 255) 100%)"
+      }}>
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-black/10" />
       <div 
         className="absolute inset-0"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='20' cy='20' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          backgroundSize: '40px 40px'
+          backgroundSize: '35px 35px'
         }}
       />
 
@@ -276,10 +279,10 @@ const LoginPage = () => {
             <button
               type="submit"
               disabled={isBlocked}
-              className={`w-full py-3 px-4 text-sm font-semibold rounded-xl transition-all duration-200 shadow-lg ${
+              className={`w-full py-3 px-4 min-h-16 text-sm font-semibold rounded-xl transition-all duration-200 shadow-lg ${
                 isBlocked 
                   ? 'bg-gray-400 cursor-not-allowed text-white' 
-                  : 'bg-gradient-to-r from-blue-600 to-green-600 text-white hover:from-blue-900 hover:to-green-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+                  : ' bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white hover:from-blue-900 hover:to-green-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
               }`}
             >
               {isBlocked ? 'Akun Terblokir' : 'Login'}
