@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertCircle, CheckCircle2, Clock, FileWarning, ScrollText, ShieldAlert, UserCog } from 'lucide-react';
+import { AlertCircle, BanknoteIcon, CheckCircle2, Clock, FileWarning, ScrollText, ShieldAlert, UserCog } from 'lucide-react';
 
 const KetentuanContent = () => {
   return (
@@ -151,6 +151,27 @@ const KetentuanContent = () => {
             <li className="flex items-start gap-2">
               <CheckCircle2 className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" />
               <span>Laporkan segera jika ada masalah atau kerusakan</span>
+            </li>
+          </ul>
+        </div>
+
+        {/* Ketentuan Denda */}
+        <div className="bg-white/40 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/30">
+          <div className="flex items-center gap-3 mb-4">            <BanknoteIcon className="w-6 h-6 text-yellow-600" />
+            <h3 className="text-2xl font-bold text-gray-800">Ketentuan Denda</h3>
+          </div>
+          <ul className="space-y-3 text-gray-700">
+            <li className="flex items-start gap-2">
+              <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2"></div>
+              <span>Keterlambatan pengembalian dikenakan denda Rp 10.000/hari</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2"></div>
+              <span>Kerusakan berat atau kehilangan dikenakan denda 100% dari harga barang</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2"></div>
+              <span>Denda harus dilunasi sebelum dapat melakukan peminjaman berikutnya</span>
             </li>
           </ul>
         </div>
