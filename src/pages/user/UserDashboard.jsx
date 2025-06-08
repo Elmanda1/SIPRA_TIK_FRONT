@@ -78,12 +78,11 @@ export default function UserDashboard() {
       <div className="bg-white/30 bg-opacity-50 backdrop-blur-sm fixed top-4 left-1/2 transform -translate-x-1/2 min-w-[1800px] max-w-[95vw] w-[1200px] h-30 rounded-full shadow-lg px-20 py-4 flex items-center justify-between z-10">
         <a className="text-3xl pl-2 font-bold text-gray-900 cursor-pointer hover:text-black"
           onClick={() => setActiveMenu('Home')}
-
         >
          <img
               src={logoImg}
               alt="Logo"
-              className="w-20 h-20"
+              className="w-70 h-10"
          />
         </a>
         {/* menu */}

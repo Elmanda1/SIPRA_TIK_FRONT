@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff, Lock, User, AlertTriangle, RefreshCw, X, Settings, BookOpen, FileText, BarChart3, Users, Home, LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import logoImg from '../../assets/SIPRATIK.png' ;
 import { useAuth } from '../../context/AuthContext'; // Update path
 
 // Alert Modal Component
@@ -161,7 +162,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen w-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 overflow-hidden">
+    <div className="min-h-screen w-screen flex items-center justify-center bg-gradient-to-br from-blue-900 to-green-900 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-black/10" />
       <div 
@@ -177,11 +178,12 @@ const LoginPage = () => {
         <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl p-10 w-full"> {/* Increased padding */}
           {/* Logo & Title */}
           <div className="text-center mb-10"> {/* Increased margin */}
-            <div className="mx-auto w-32 h-32 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center mb-8 shadow-lg"> {/* Increased size */}
-              <Lock className="w-16 h-16 text-white" /> {/* Increased icon size */}
-            </div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-3">SIPRA TIK</h1> {/* Increased text size */}
-            <p className="text-lg text-gray-600">Sistem Informasi Peminjaman Sarana dan Prasarana TIK</p> {/* Increased text size */}
+         <img
+              src={logoImg}
+              alt="Logo"
+              className="w-100 h-30 justify-center"
+         />
+            <p className="text-lg text-gray-700 mt-5">Sistem Informasi Peminjaman Sarana dan Prasarana TIK</p> {/* Increased text size */}
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4">
@@ -277,7 +279,7 @@ const LoginPage = () => {
               className={`w-full py-3 px-4 text-sm font-semibold rounded-xl transition-all duration-200 shadow-lg ${
                 isBlocked 
                   ? 'bg-gray-400 cursor-not-allowed text-white' 
-                  : 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white hover:from-indigo-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+                  : 'bg-gradient-to-r from-blue-600 to-green-600 text-white hover:from-blue-900 hover:to-green-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
               }`}
             >
               {isBlocked ? 'Akun Terblokir' : 'Login'}
@@ -287,25 +289,12 @@ const LoginPage = () => {
               <button
                 type="button"
                 onClick={handleResetPassword} // Ganti dengan fungsi baru
-                className="text-indigo-600 hover:text-indigo-800 text-xs font-medium hover:underline transition-colors"
+                className="text-blue-600 hover:text-blue-800 text-xs font-medium hover:underline transition-colors"
               >
                 Lupa Password? Reset di sini
               </button>
             </div>
-          </form>
-
-          <div className="mt-6 p-4 bg-gray-50 rounded-xl">
-            <h3 className="text-sm font-medium text-gray-700 mb-2">Demo Credentials:</h3>
-            <div className="text-xs text-gray-600 space-y-1">
-              {credentials.map(cred => (
-                <p key={cred.username}>
-                  <span className="font-medium">{cred.role}:</span>
-                  {' '}{cred.username} / {cred.password}
-                  {' '}({cred.email})
-                </p>
-              ))}
-            </div>
-          </div>
+          </form> 
         </div>
       </div>
 
