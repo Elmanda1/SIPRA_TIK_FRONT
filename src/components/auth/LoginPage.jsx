@@ -181,7 +181,7 @@ const LoginPage = () => {
               <Lock className="w-16 h-16 text-white" /> {/* Increased icon size */}
             </div>
             <h1 className="text-4xl font-bold text-gray-900 mb-3">SIPRA TIK</h1> {/* Increased text size */}
-            <p className="text-lg text-gray-600">Sistem Informasi Praktek TIK</p> {/* Increased text size */}
+            <p className="text-lg text-gray-600">Sistem Informasi Peminjaman Sarana dan Prasarana TIK</p> {/* Increased text size */}
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4">

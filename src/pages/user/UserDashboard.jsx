@@ -2,6 +2,8 @@ import React, { useRef, useState } from 'react';
 import { MapPin, User, Search, Filter, History, Package, ClipboardList, Building2, Monitor, Network, Video, Zap, MoreHorizontal, Boxes } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { usePeminjaman } from '../../context/PeminjamanContext';
+import logoImg from '../../assets/SIPRATIK.png';
 import LogoutModal from '../../components/common/LogoutModal';
 import profileImg from '../../assets/profile.jpg';
 import HomeContent from './HomeContent';
@@ -15,6 +17,7 @@ export default function UserDashboard() {
   const [activeMenu, setActiveMenu] = useState('Home'); // default: home
   const navigate = useNavigate();
   const { logout } = useAuth();
+  const { updatePeminjamanStatus } = usePeminjaman(); // Tambahkan ini
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const blueContainerRef = useRef(null);
 
@@ -33,7 +36,21 @@ export default function UserDashboard() {
     setSelectedBooking(booking);
   };
 
-    // Fungsi untuk menangani klik pada kategori di homepage
+  // Fungsi untuk membatalkan peminjaman
+  const handleCancelBooking = (bookingId) => {
+    updatePeminjamanStatus(bookingId, 'Dibatalkan');
+    setSelectedBooking(null);
+    console.log('Peminjaman dibatalkan');
+  };
+
+  // Fungsi untuk menyelesaikan peminjaman
+  const handleCompleteBooking = (bookingId) => {
+    updatePeminjamanStatus(bookingId, 'Selesai');
+    setSelectedBooking(null);
+    console.log('Peminjaman selesai');
+  };
+
+  // Fungsi untuk menangani klik pada kategori di homepage
   const handleKategoriClick = (id) => {
     // Ubah menu aktif menjadi Barang (menampilkan BarangContent)
     setActiveMenu('Barang');
@@ -54,7 +71,7 @@ export default function UserDashboard() {
     <div
       className="min-h-screen w-[99vw]"
       style={{
-        background: "linear-gradient(0deg, #EAF1F8 40%,rgb(210, 250, 255) 100%)"
+        background: "linear-gradient(0deg, #EAF1F8 80%,rgb(210, 250, 255) 100%)"
       }}
     >
       {/* Header */}
@@ -63,7 +80,11 @@ export default function UserDashboard() {
           onClick={() => setActiveMenu('Home')}
 
         >
-          SIPRATIK
+         <img
+              src={logoImg}
+              alt="Logo"
+              className="w-20 h-20"
+         />
         </a>
         {/* menu */}
         <div className="flex items-center space-x-4 gap-10">
@@ -139,10 +160,10 @@ export default function UserDashboard() {
       {selectedBooking && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-xl p-6 max-w-md w-full mx-4">
-            <h3 className="text-lg font-bold mb-4">Detail Peminjaman</h3>
+            <h3 className="text-lg text-black font-bold mb-4">Detail Peminjaman</h3>
             <div className="text-black space-y-3">
               <div>
-                <span className="font-medium">Ruang:</span> {selectedBooking.room}
+                <span className="font-medium">Nama Barang: </span> {selectedBooking.room}
               </div>
               <div>
                 <span className="font-medium">Tanggal:</span> {selectedBooking.date}
@@ -151,7 +172,7 @@ export default function UserDashboard() {
                 <span className="font-medium">Waktu:</span> {selectedBooking.time}
               </div>
               <div>
-                <span className="font-medium">Lokasi:</span> {selectedBooking.building}
+                <span className="font-medium">Kategori:</span> {selectedBooking.building}
               </div>
               <div>
                 <span className="font-medium">Status:</span>
@@ -163,13 +184,24 @@ export default function UserDashboard() {
             <div className="flex justify-end space-x-3 mt-6">
               <button
                 onClick={() => setSelectedBooking(null)}
-                className="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50"
+                className="px-4 py-2 bg-white text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50"
               >
                 Tutup
               </button>
-              {selectedBooking.status === 'Aktif' && (
-                <button className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
+              {selectedBooking.status === 'Menunggu Verifikasi' && (
+                <button 
+                  onClick={() => handleCancelBooking(selectedBooking.id)}
+                  className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+                >
                   Batalkan
+                </button>
+              )}
+              {selectedBooking.status === 'Aktif' && (
+                <button 
+                  onClick={() => handleCompleteBooking(selectedBooking.id)}
+                  className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+                >
+                  Selesai Peminjaman
                 </button>
               )}
             </div>

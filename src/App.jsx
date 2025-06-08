@@ -7,40 +7,43 @@ import UserDashboard from './pages/user/UserDashboard';
 import AuthRedirect from './components/AuthRedirect';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/routing/ProtectedRoute';
+import { PeminjamanProvider } from './context/PeminjamanContext';
 
 const App = () => {
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/reset-password" element={<ResetPasswordPage />} />
-          
-          {/* Protected Admin Routes */}
-          <Route 
-            path="/admin/*" 
-            element={
-              <ProtectedRoute requiredRole="admin">
-                <AdminDashboard />
-              </ProtectedRoute>
-            } 
-          />
-          
-          {/* Protected User Routes */}
-          <Route 
-            path="/mahasiswa/*" 
-            element={
-              <ProtectedRoute requiredRole="mahasiswa">
-                <UserDashboard />
-              </ProtectedRoute>
-            } 
-          />
+      <PeminjamanProvider>
+        <BrowserRouter>
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
+            
+            {/* Protected Admin Routes */}
+            <Route 
+              path="/admin/*" 
+              element={
+                <ProtectedRoute requiredRole="admin">
+                  <AdminDashboard />
+                </ProtectedRoute>
+              } 
+            />
+            
+            {/* Protected User Routes */}
+            <Route 
+              path="/mahasiswa/*" 
+              element={
+                <ProtectedRoute requiredRole="mahasiswa">
+                  <UserDashboard />
+                </ProtectedRoute>
+              } 
+            />
 
-          <Route path="/" element={<Navigate to="/login" replace />} />
-          <Route path="*" element={<Navigate to="/login" replace />} />
-        </Routes>
-      </BrowserRouter>
+            <Route path="/" element={<Navigate to="/login" replace />} />
+            <Route path="*" element={<Navigate to="/login" replace />} />
+          </Routes>
+        </BrowserRouter>
+      </PeminjamanProvider>
     </AuthProvider>
   );
 };
