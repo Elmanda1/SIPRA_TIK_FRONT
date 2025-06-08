@@ -4,9 +4,20 @@ import { usePeminjaman } from '../../context/PeminjamanContext';
 
 const barangPerKategori = {
   'ruang-kelas': [
-    { id: 'meja', nama: 'Meja', jumlah: 20 },
-    { id: 'kursi', nama: 'Kursi', jumlah: 40 },
-    { id: 'papan-tulis', nama: 'Papan Tulis', jumlah: 2 }
+    { id: 'aa-204', nama: 'Ruangan AA 204', jumlah: 1 },
+    { id: 'aa-205', nama: 'Ruangan AA 205', jumlah: 1 },
+    { id: 'aa-206', nama: 'Ruangan AA 206', jumlah: 1 },
+    { id: 'aa-207', nama: 'Ruangan AA 207', jumlah: 1 },
+    { id: 'aa-210', nama: 'Ruangan AA 210', jumlah: 1 },
+    { id: 'aa-211', nama: 'Ruangan AA 211', jumlah: 1 },
+    { id: 'aa-213', nama: 'Ruangan AA 213', jumlah: 1 },
+    { id: 'gsg-301', nama: 'Ruangan GSG 301', jumlah: 1 },
+    { id: 'gsg-302', nama: 'Ruangan GSG 302', jumlah: 1 },
+    { id: 'gsg-303', nama: 'Ruangan GSG 303', jumlah: 1 },
+    { id: 'gsg-304', nama: 'Ruangan GSG 304', jumlah: 1 },
+    { id: 'gsg-305', nama: 'Ruangan GSG 305', jumlah: 1 },
+    { id: 'gsg-306', nama: 'Ruangan GSG 306', jumlah: 1 },
+    { id: 'gsg-307', nama: 'Ruangan GSG 307', jumlah: 1 }
   ],
   'peralatan-av': [
     { id: 'proyektor', nama: 'Proyektor', jumlah: 5 },
@@ -191,7 +202,7 @@ const PinjamContent = () => {
     <div className="flex flex-col items-center w-full min-h-screen py-10 overflow-y-auto bg-gradient-to-br from-blue-50 via-purple-50 to-indigo-50">
       {/* Header with animated gradient text */}
       <div className="text-center mb-8">
-        <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+        <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent pb-1">
           Form Peminjaman Barang
         </h2>
         <p className="text-gray-600 text-lg">Lengkapi form berikut untuk meminjam peralatan</p>
@@ -370,7 +381,7 @@ const PinjamContent = () => {
               
               {/* Stock Info */}
               {selectedBarangData && (
-                <div className="mt-3 p-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border border-green-200 transform transition-all duration-300 hover:scale-105">
+                <div className="mt-3 p-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border border-green-200 transform transition-all duration-300 hover:scale-[1.02]">
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                     <span className="text-green-700 font-medium">

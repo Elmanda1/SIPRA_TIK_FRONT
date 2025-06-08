@@ -24,9 +24,9 @@ const BarangContent = () => (
             <tr className="border-t">
               <td className="py-2 px-4">
                 {/* Template foto 4x3 landscape */}
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -40,9 +40,9 @@ const BarangContent = () => (
             <tr className="border-t">
               <td className="py-2 px-4">
                 {/* Template foto 4x3 landscape */}
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -56,9 +56,9 @@ const BarangContent = () => (
             <tr className="border-t">
               <td className="py-2 px-4">
                 {/* Template foto 4x3 landscape */}
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -72,9 +72,9 @@ const BarangContent = () => (
             <tr className="border-t">
               <td className="py-2 px-4">
                 {/* Template foto 4x3 landscape */}
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -88,9 +88,9 @@ const BarangContent = () => (
             <tr className="border-t">
               <td className="py-2 px-4">
                 {/* Template foto 4x3 landscape */}
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -104,9 +104,9 @@ const BarangContent = () => (
             <tr className="border-t">
               <td className="py-2 px-4">
                 {/* Template foto 4x3 landscape */}
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -120,9 +120,9 @@ const BarangContent = () => (
             <tr className="border-t">
               <td className="py-2 px-4">
                 {/* Template foto 4x3 landscape */}
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -136,9 +136,9 @@ const BarangContent = () => (
             <tr className="border-t">
               <td className="py-2 px-4">
                 {/* Template foto 4x3 landscape */}
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -152,9 +152,9 @@ const BarangContent = () => (
             <tr className="border-t">
               <td className="py-2 px-4">
                 {/* Template foto 4x3 landscape */}
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -168,9 +168,9 @@ const BarangContent = () => (
             <tr className="border-t">
               <td className="py-2 px-4">
                 {/* Template foto 4x3 landscape */}
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -184,9 +184,9 @@ const BarangContent = () => (
             <tr className="border-t">
               <td className="py-2 px-4">
                 {/* Template foto 4x3 landscape */}
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -200,9 +200,9 @@ const BarangContent = () => (
             <tr className="border-t">
               <td className="py-2 px-4">
                 {/* Template foto 4x3 landscape */}
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -216,9 +216,9 @@ const BarangContent = () => (
             <tr className="border-t">
               <td className="py-2 px-4">
                 {/* Template foto 4x3 landscape */}
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -231,9 +231,9 @@ const BarangContent = () => (
             </tr><tr className="border-t">
               <td className="py-2 px-4">
                 {/* Template foto 4x3 landscape */}
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -266,9 +266,9 @@ const BarangContent = () => (
             <tr className="border-t">
               <td className="py-2 px-4">
                 {/* Template foto 4x3 landscape */}
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -282,9 +282,9 @@ const BarangContent = () => (
             <tr className="border-t">
               <td className="py-2 px-4">
                 {/* Template foto 4x3 landscape */}
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -298,9 +298,9 @@ const BarangContent = () => (
             <tr className="border-t">
               <td className="py-2 px-4">
                 {/* Template foto 4x3 landscape */}
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -313,9 +313,9 @@ const BarangContent = () => (
             </tr>
             <tr className="border-t">
               <td className="py-2 px-4">
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -328,9 +328,9 @@ const BarangContent = () => (
             </tr>
             <tr className="border-t">
               <td className="py-2 px-4">
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -343,9 +343,9 @@ const BarangContent = () => (
             </tr>
             <tr className="border-t">
               <td className="py-2 px-4">
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -358,9 +358,9 @@ const BarangContent = () => (
             </tr>
             <tr className="border-t">
               <td className="py-2 px-4">
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -373,9 +373,9 @@ const BarangContent = () => (
             </tr>
             <tr className="border-t">
               <td className="py-2 px-4">
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -388,9 +388,9 @@ const BarangContent = () => (
             </tr>
             <tr className="border-t">
               <td className="py-2 px-4">
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"  
+                    src="/src/assets/dummy-barang.png"  
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -403,9 +403,9 @@ const BarangContent = () => (
             </tr>
             <tr className="border-t">
               <td className="py-2 px-4">
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -418,9 +418,9 @@ const BarangContent = () => (
             </tr>
             <tr className="border-t">
               <td className="py-2 px-4">
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -433,9 +433,9 @@ const BarangContent = () => (
             </tr>
             <tr className="border-t">
               <td className="py-2 px-4">
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -448,9 +448,9 @@ const BarangContent = () => (
             </tr>
             <tr className="border-t">
               <td className="py-2 px-4">
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -463,9 +463,9 @@ const BarangContent = () => (
             </tr>
             <tr className="border-t">
               <td className="py-2 px-4">
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -478,9 +478,9 @@ const BarangContent = () => (
             </tr>
             <tr className="border-t">
               <td className="py-2 px-4">
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -493,9 +493,9 @@ const BarangContent = () => (
             </tr>
             <tr className="border-t">
               <td className="py-2 px-4">
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -508,9 +508,9 @@ const BarangContent = () => (
             </tr>
             <tr className="border-t">
               <td className="py-2 px-4">
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -523,9 +523,9 @@ const BarangContent = () => (
             </tr>
             <tr className="border-t">
               <td className="py-2 px-4">
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -558,9 +558,9 @@ const BarangContent = () => (
             <tr className="border-t">
               <td className="py-2 px-4">
                 {/* Template foto 4x3 landscape */}
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -574,9 +574,9 @@ const BarangContent = () => (
             <tr className="border-t">
               <td className="py-2 px-4">
                 {/* Template foto 4x3 landscape */}
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -590,9 +590,9 @@ const BarangContent = () => (
             <tr className="border-t">
               <td className="py-2 px-4">
                 {/* Template foto 4x3 landscape */}
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -606,9 +606,9 @@ const BarangContent = () => (
             <tr className="border-t">
               <td className="py-2 px-4">
                 {/* Template foto 4x3 landscape */}
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -622,9 +622,9 @@ const BarangContent = () => (
             <tr className="border-t">
               <td className="py-2 px-4">
                 {/* Template foto 4x3 landscape */}
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -656,9 +656,9 @@ const BarangContent = () => (
         <tbody>
           <tr className="border-t">
             <td className="py-2 px-4">
-              <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+              <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                 <img
-                  src="/images/barang-default.png"
+                  src="/src/assets/dummy-barang.png"
                   alt="Foto Barang"
                   className="object-cover w-full h-full"
                   style={{ aspectRatio: '4/3' }}
@@ -671,9 +671,9 @@ const BarangContent = () => (
           </tr>
           <tr className="border-t">
             <td className="py-2 px-4">
-              <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+              <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                 <img
-                  src="/images/barang-default.png"
+                  src="/src/assets/dummy-barang.png"
                   alt="Foto Barang"
                   className="object-cover w-full h-full"
                   style={{ aspectRatio: '4/3' }}
@@ -686,9 +686,9 @@ const BarangContent = () => (
           </tr>
           <tr className="border-t">
             <td className="py-2 px-4">
-              <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+              <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                 <img
-                  src="/images/barang-default.png"
+                  src="/src/assets/dummy-barang.png"
                   alt="Foto Barang"
                   className="object-cover w-full h-full"
                   style={{ aspectRatio: '4/3' }}
@@ -701,9 +701,9 @@ const BarangContent = () => (
           </tr>
           <tr className="border-t">
             <td className="py-2 px-4">
-              <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+              <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                 <img
-                  src="/images/barang-default.png"
+                  src="/src/assets/dummy-barang.png"
                   alt="Foto Barang"
                   className="object-cover w-full h-full"
                   style={{ aspectRatio: '4/3' }}
@@ -716,9 +716,9 @@ const BarangContent = () => (
           </tr>
           <tr className="border-t">
             <td className="py-2 px-4">
-              <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+              <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                 <img
-                  src="/images/barang-default.png"
+                  src="/src/assets/dummy-barang.png"
                   alt="Foto Barang"
                   className="object-cover w-full h-full"
                   style={{ aspectRatio: '4/3' }}
@@ -731,9 +731,9 @@ const BarangContent = () => (
           </tr>
           <tr className="border-t">
             <td className="py-2 px-4">
-              <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+              <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                 <img
-                  src="/images/barang-default.png"
+                  src="/src/assets/dummy-barang.png"
                   alt="Foto Barang"
                   className="object-cover w-full h-full"
                   style={{ aspectRatio: '4/3' }}
@@ -746,9 +746,9 @@ const BarangContent = () => (
           </tr>
           <tr className="border-t">
             <td className="py-2 px-4">
-              <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+              <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                 <img
-                  src="/images/barang-default.png"
+                  src="/src/assets/dummy-barang.png"
                   alt="Foto Barang"
                   className="object-cover w-full h-full"
                   style={{ aspectRatio: '4/3' }}
@@ -761,9 +761,9 @@ const BarangContent = () => (
           </tr>
           <tr className="border-t">
             <td className="py-2 px-4">
-              <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+              <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                 <img
-                  src="/images/barang-default.png"
+                  src="/src/assets/dummy-barang.png"
                   alt="Foto Barang"
                   className="object-cover w-full h-full"
                   style={{ aspectRatio: '4/3' }}
@@ -795,9 +795,9 @@ const BarangContent = () => (
         <tbody>
           <tr className="border-t">
             <td className="py-2 px-4">
-              <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+              <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                 <img
-                  src="/images/barang-default.png"
+                  src="/src/assets/dummy-barang.png"
                   alt="Foto Barang"
                   className="object-cover w-full h-full"
                   style={{ aspectRatio: '4/3' }}
@@ -810,9 +810,9 @@ const BarangContent = () => (
           </tr>
           <tr className="border-t">
             <td className="py-2 px-4">
-              <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+              <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                 <img
-                  src="/images/barang-default.png"
+                  src="/src/assets/dummy-barang.png"
                   alt="Foto Barang"
                   className="object-cover w-full h-full"
                   style={{ aspectRatio: '4/3' }}
@@ -825,9 +825,9 @@ const BarangContent = () => (
           </tr>
           <tr className="border-t">
             <td className="py-2 px-4">
-              <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+              <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                 <img
-                  src="/images/barang-default.png"
+                  src="/src/assets/dummy-barang.png"
                   alt="Foto Barang"
                   className="object-cover w-full h-full"
                   style={{ aspectRatio: '4/3' }}
@@ -840,9 +840,9 @@ const BarangContent = () => (
           </tr>
           <tr className="border-t">
             <td className="py-2 px-4">
-              <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+              <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                 <img
-                  src="/images/barang-default.png"
+                  src="/src/assets/dummy-barang.png"
                   alt="Foto Barang"
                   className="object-cover w-full h-full"
                   style={{ aspectRatio: '4/3' }}
@@ -855,9 +855,9 @@ const BarangContent = () => (
           </tr>
           <tr className="border-t">
             <td className="py-2 px-4">
-              <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+              <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                 <img
-                  src="/images/barang-default.png"
+                  src="/src/assets/dummy-barang.png"
                   alt="Foto Barang"
                   className="object-cover w-full h-full"
                   style={{ aspectRatio: '4/3' }}
@@ -870,9 +870,9 @@ const BarangContent = () => (
           </tr>
           <tr className="border-t">
             <td className="py-2 px-4">
-              <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+              <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                 <img
-                  src="/images/barang-default.png"
+                  src="/src/assets/dummy-barang.png"
                   alt="Foto Barang"
                   className="object-cover w-full h-full"
                   style={{ aspectRatio: '4/3' }}
@@ -885,9 +885,9 @@ const BarangContent = () => (
           </tr>
           <tr className="border-t">
             <td className="py-2 px-4">
-              <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+              <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                 <img
-                  src="/images/barang-default.png"
+                  src="/src/assets/dummy-barang.png"
                   alt="Foto Barang"
                   className="object-cover w-full h-full"
                   style={{ aspectRatio: '4/3' }}
@@ -900,9 +900,9 @@ const BarangContent = () => (
           </tr>
           <tr className="border-t">
             <td className="py-2 px-4">
-              <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+              <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                 <img
-                  src="/images/barang-default.png"
+                  src="/src/assets/dummy-barang.png"
                   alt="Foto Barang"
                   className="object-cover w-full h-full"
                   style={{ aspectRatio: '4/3' }}
@@ -935,9 +935,9 @@ const BarangContent = () => (
             <tr className="border-t">
               <td className="py-2 px-4">
                 {/* Template foto 4x3 landscape */}
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}
@@ -951,9 +951,9 @@ const BarangContent = () => (
             <tr className="border-t">
               <td className="py-2 px-4">
                 {/* Template foto 4x3 landscape */}
-                <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/images/barang-default.png"
+                    src="/src/assets/dummy-barang.png"
                     alt="Foto Barang"
                     className="object-cover w-full h-full"
                     style={{ aspectRatio: '4/3' }}

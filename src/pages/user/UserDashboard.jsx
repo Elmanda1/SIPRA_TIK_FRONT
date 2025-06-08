@@ -11,6 +11,7 @@ import ProfileContent from './ProfileContent';
 import BarangContent from './BarangContent';
 import HistoryContent from './HistoryContent';
 import PinjamContent from './PinjamContent';
+import KetentuanContent from './KetentuanContent';
 
 export default function UserDashboard() {
   const [selectedBooking, setSelectedBooking] = useState(null);
@@ -90,7 +91,7 @@ export default function UserDashboard() {
           <h2 className='opacity-0'>............</h2>
 
           <a
-            className={`flex flex-row gap-2 cursor-pointer ${activeMenu === 'pinjam' ? 'font-bold text-blue-900' : 'text-black hover:text-gray-600'}`}
+            className={`flex flex-row gap-2 cursor-pointer hover:text-cyan-600 ${activeMenu === 'pinjam' ? 'font-bold text-cyan-600' : 'text-black hover:text-gray-600' }`}
             onClick={() => setActiveMenu('pinjam')}
           >
             <Package className="w-7 h-7" />
@@ -98,7 +99,7 @@ export default function UserDashboard() {
           </a>
 
           <a
-            className={`flex flex-row gap-2 cursor-pointer ${activeMenu === 'Barang' ? 'font-bold text-blue-900' : 'text-black hover:text-gray-600'}`}
+            className={`flex flex-row gap-2 cursor-pointer hover:text-cyan-600 ${activeMenu === 'Barang' ? 'font-bold text-cyan-600' : 'text-black hover:text-gray-600'}`}
             onClick={() => setActiveMenu('Barang')}
           >
             <Boxes className="w-7 h-7" />
@@ -106,7 +107,7 @@ export default function UserDashboard() {
           </a>
           
           <a
-            className={`flex flex-row gap-2 cursor-pointer ${activeMenu === 'history' ? 'font-bold text-blue-900' : 'text-black hover:text-gray-600'}`}
+            className={`flex flex-row gap-2 cursor-pointer hover:text-cyan-600 ${activeMenu === 'history' ? 'font-bold text-cyan-600' : 'text-black hover:text-gray-600'}`}
             onClick={() => setActiveMenu('history')}
           >
             <History className="w-7 h-7" />
@@ -117,7 +118,7 @@ export default function UserDashboard() {
         <div className="flex items-center space-x-8 pr-8">
           <button
             onClick={handleLogout}
-            className="flex items-center rounded-xl hover:bg-gray-800 bg-black focus:outline-none px-6 py-4"
+            className="flex items-center rounded-xl bg-cyan-600 hover:bg-cyan-700 focus:outline-none px-6 py-4"
           >
             <div className="text-white font-bold">
               LOGOUT
@@ -153,6 +154,7 @@ export default function UserDashboard() {
         )}
         {activeMenu === 'pinjam' && <PinjamContent />}
         {activeMenu === 'profile' && <ProfileContent />}
+        {activeMenu === 'ketentuan' && <KetentuanContent />}
       </div>
 
       {/* Modal untuk detail booking */}

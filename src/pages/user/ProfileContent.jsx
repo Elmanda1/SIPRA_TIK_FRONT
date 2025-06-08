@@ -94,7 +94,7 @@ const ProfileContent = () => {
                   {showPassword ? 'user123' : '●●●●●●●●●'}
                   <button
                     type="button"
-                    className="ml-2 px-2 py-1 text-sm border rounded hover:bg-gray-100 flex items-center"
+                    className="ml-2 px-2 py-1 text-sm border rounded hover:bg-gray-100 flex items-center focus:outline-none"
                     onClick={() => setShowPassword((prev) => !prev)}
                     aria-label={showPassword ? 'Sembunyikan password' : 'Tampilkan password'}
                     tabIndex={0}
