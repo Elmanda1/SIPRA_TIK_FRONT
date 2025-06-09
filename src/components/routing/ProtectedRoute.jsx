@@ -6,6 +6,12 @@ import LoadingSpinner from '../common/LoadingSpinner';
 const ProtectedRoute = ({ children, requiredRole }) => {
   const { user, isAuthenticated, isLoading } = useAuth();
 
+  console.log('Protected Route Check:', {
+    user,
+    requiredRole,
+    isAuthenticated
+  });
+
   if (isLoading) {
     return <LoadingSpinner />;
   }
@@ -14,10 +20,14 @@ const ProtectedRoute = ({ children, requiredRole }) => {
     return <Navigate to="/login" replace />;
   }
 
-  if (requiredRole && user.role !== requiredRole) {
-    // Redirect ke dashboard sesuai role
-    const redirectPath = user.role === 'admin' ? '/admin/dashboard' : '/mahasiswa/dashboard';
-    return <Navigate to={redirectPath} replace />;
+  // Perbaiki pengecekan role
+  if (requiredRole) {
+    const userRole = user.role === 'mahasiswa' ? 'user' : user.role;
+    if (userRole !== requiredRole) {
+      // Redirect ke dashboard sesuai role
+      const redirectPath = userRole === 'admin' ? '/admin/dashboard' : '/user/dashboard';
+      return <Navigate to={redirectPath} replace />;
+    }
   }
 
   return children;

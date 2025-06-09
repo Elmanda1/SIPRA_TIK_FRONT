@@ -19,7 +19,7 @@ const ResetPasswordPage = () => {
   const [selectedRole, setSelectedRole] = useState('');
 
   // Demo data
-  const validEmail = 'user@example.com';
+  const validEmail = 'Muhammad.Rafif.Dwarka.tik24@stu.pnj.ac.id';
   const validCode = '123456';
 
   // Timer for resend code
@@ -34,25 +34,32 @@ const ResetPasswordPage = () => {
     setError('');
     setIsLoading(true);
 
-    // Cek apakah email dan role valid
-    const userExists = credentials.find(
-      cred => cred.email === email && cred.role === selectedRole
-    );
+    try {
+      // Validate email and role against credentials
+      const userExists = credentials.find(
+        cred => cred.email.toLowerCase() === email.toLowerCase() && 
+               (cred.role === selectedRole || 
+                (selectedRole === 'mahasiswa' && cred.role === 'user'))
+      );
 
-    if (!selectedRole) {
-      setError('Silakan pilih role terlebih dahulu');
-      setIsLoading(false);
-      return;
-    }
+      if (!selectedRole) {
+        throw new Error('Silakan pilih role terlebih dahulu');
+      }
 
-    if (userExists) {
+      if (!userExists) {
+        throw new Error('Email tidak ditemukan untuk role yang dipilih');
+      }
+
+      // If validation passes, proceed to next step
       setStep(2);
       setCountdown(60);
       setError('');
-    } else {
-      setError('Email tidak ditemukan untuk role yang dipilih');
+
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   const handleVerifyCode = async () => {
@@ -85,13 +92,34 @@ const ResetPasswordPage = () => {
 
     setIsLoading(true);
 
-    // Update password sesuai email dan role yang dipilih
-    updatePassword(email, newPassword, selectedRole);
+    try {
+      // Convert mahasiswa role to user for system consistency
+      const systemRole = selectedRole === 'mahasiswa' ? 'user' : selectedRole;
+      
+      // Find the user in credentials to verify before updating
+      const userToUpdate = credentials.find(
+        cred => cred.email.toLowerCase() === email.toLowerCase() && 
+                (cred.role === systemRole)
+      );
 
-    setTimeout(() => {
+      if (!userToUpdate) {
+        throw new Error('User tidak ditemukan');
+      }
+
+      // Call updatePassword from AuthContext
+      updatePassword(email, newPassword, systemRole);
+      
+      // Wait a bit to simulate processing
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      // Move to success step
       setStep(4);
+    } catch (error) {
+      console.error('Error updating password:', error);
+      setError('Gagal mengupdate password: ' + error.message);
+    } finally {
       setIsLoading(false);
-    }, 1500);
+    }
   };
 
   const handleResendCode = () => {
@@ -164,25 +192,31 @@ const ResetPasswordPage = () => {
           <input
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="block w-full pl-12 pr-4 py-3 text-lg bg-white border border-gray-300 rounded-xl text-black focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setError(''); // Clear error when user types
+            }}
+            className={`block w-full pl-12 pr-4 py-3 text-lg bg-white border 
+              ${error ? 'border-red-300' : 'border-gray-300'} 
+              rounded-xl text-black focus:outline-none focus:ring-2 
+              ${error ? 'focus:ring-red-500' : 'focus:ring-blue-500'} 
+              focus:border-transparent`}
             placeholder="Masukkan email Anda"
             required
           />
         </div>
+        {error && (
+          <p className="mt-2 text-sm text-red-600">{error}</p>
+        )}
       </div>
-
-      {error && (
-        <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex items-center space-x-2">
-          <AlertCircle className="w-6 h-6 text-red-500 flex-shrink-0" />
-          <p className="text-sm text-red-700">{error}</p>
-        </div>
-      )}
 
       <button
         onClick={handleSendCode}
         disabled={!email || !selectedRole || isLoading}
-        className="w-full py-4 px-4 bg-blue-600 text-white rounded-xl font-medium text-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+        className="w-full py-4 px-4 bg-blue-600 text-white rounded-xl 
+          font-medium text-lg hover:bg-blue-700 focus:outline-none 
+          focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 
+          disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
       >
         {isLoading ? 'Mengirim...' : 'Kirim Kode Verifikasi'}
       </button>
@@ -241,11 +275,6 @@ const ResetPasswordPage = () => {
         >
           {countdown > 0 ? `Kirim ulang dalam ${countdown}s` : 'Kirim ulang kode'}
         </button>
-        <div className="mt-2">
-          <p className="text-sm text-gray-600">
-            Demo: Gunakan kode <code className="bg-gray-100 px-1 rounded">123456</code>
-          </p>
-        </div>
       </div>
     </div>
   );
@@ -381,7 +410,9 @@ const ResetPasswordPage = () => {
 
   // Update return statement di ResetPasswordPage
   return (
-    <div className="min-h-screen w-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 overflow-hidden">
+    <div className="min-h-screen w-screen flex items-center justify-center overflow-hidden"
+          style={{
+        background: "linear-gradient(0deg, #EAF1F8  30%,rgb(210, 250, 255) 100%)"}}>
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-black/10" />
       <div 
@@ -399,7 +430,7 @@ const ResetPasswordPage = () => {
           <div className="flex items-center mb-8">
             <button
               onClick={() => step > 1 ? setStep(step - 1) : handleBackToLogin()}
-              className="flex items-center bg-white border-gray-300 text-gray-600 hover:text-gray-800 transition-colors text-lg"
+              className="flex items-center bg-white border-gray-300 text-gray-600 hover:text-gray-800 transition-colors text-lg focus:outline-none"
             >
               <ArrowLeft className="w-6 h-6 mr-3" />
               <span className="font-medium">
@@ -407,11 +438,7 @@ const ResetPasswordPage = () => {
               </span>
             </button>
           </div>
-
-          {/* Step Indicator */}
           {step < 4 && renderStepIndicator()}
-
-          {/* Content */}
           {step === 1 && renderEmailStep()}
           {step === 2 && renderCodeStep()}
           {step === 3 && renderPasswordStep()}

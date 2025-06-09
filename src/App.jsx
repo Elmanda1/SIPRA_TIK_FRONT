@@ -12,38 +12,46 @@ import { PeminjamanProvider } from './context/PeminjamanContext';
 const App = () => {
   return (
     <AuthProvider>
-      <PeminjamanProvider>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
         <BrowserRouter>
           <Routes>
             {/* Public Routes */}
             <Route path="/login" element={<LoginPage />} />
             <Route path="/reset-password" element={<ResetPasswordPage />} />
             
+            {/* Auth Redirect */}
+            <Route path="/auth-redirect" element={<AuthRedirect />} />
+            
             {/* Protected Admin Routes */}
             <Route 
               path="/admin/*" 
               element={
                 <ProtectedRoute requiredRole="admin">
-                  <AdminDashboard />
+                  <PeminjamanProvider>
+                    <AdminDashboard />
+                  </PeminjamanProvider>
                 </ProtectedRoute>
               } 
             />
             
             {/* Protected User Routes */}
             <Route 
-              path="/mahasiswa/*" 
+              path="/user/*" 
               element={
-                <ProtectedRoute requiredRole="mahasiswa">
-                  <UserDashboard />
+                <ProtectedRoute requiredRole="user">
+                  <PeminjamanProvider>
+                    <UserDashboard />
+                  </PeminjamanProvider>
                 </ProtectedRoute>
               } 
             />
-
+            
+            {/* Default redirect */}
             <Route path="/" element={<Navigate to="/login" replace />} />
             <Route path="*" element={<Navigate to="/login" replace />} />
           </Routes>
         </BrowserRouter>
-      </PeminjamanProvider>
+      </div>
     </AuthProvider>
   );
 };

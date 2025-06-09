@@ -111,7 +111,7 @@ const AlertModal = ({
 
 // Login Page Component
 const LoginPage = () => {
-  document.title = "Login Page";
+  document.title = "Login";
   const navigate = useNavigate();
   const { login, credentials } = useAuth();
   
@@ -126,26 +126,19 @@ const LoginPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     
-    if (isBlocked) {
-      setShowAlert(true);
-      return;
-    }
-
-    if (!selectedRole) {
-      setShowAlert(true);
-      return;
-    }
-
+    // Map role dari form ke role system
+    const systemRole = selectedRole === 'mahasiswa' ? 'user' : selectedRole;
+    
     const user = credentials.find(
       cred => cred.username === username && 
              cred.password === password &&
-             cred.role === selectedRole
+             cred.role === systemRole
     );
 
     if (user) {
       login(user);
-      // Update navigasi berdasarkan role
-      navigate(user.role === 'admin' ? '/admin/dashboard' : '/mahasiswa/dashboard');
+      // Navigasi sesuai role system
+      navigate(systemRole === 'admin' ? '/admin/dashboard' : '/user/dashboard');
     } else {
       const newAttempts = loginAttempts + 1;
       setLoginAttempts(newAttempts);
@@ -283,7 +276,7 @@ const LoginPage = () => {
               className={`w-full py-3 px-4 min-h-16 text-sm font-semibold rounded-xl transition-all duration-200 shadow-lg ${
                 isBlocked 
                   ? 'bg-gray-400 cursor-not-allowed text-white' 
-                  : ' bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white hover:from-blue-900 hover:to-green-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+                  : ' bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white hover:from-blue-700 hover:via-purple-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
               }`}
             >
               {isBlocked ? 'Akun Terblokir' : 'Login'}

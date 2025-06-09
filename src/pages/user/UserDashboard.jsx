@@ -93,7 +93,7 @@ export default function UserDashboard() {
 
     <button
       className={`flex flex-row gap-2 cursor-pointer transition-all duration-300 px-4 py-2 rounded-xl relative group hover:scale-105 active:scale-95 focus:outline-none ${
-        activeMenu === 'pinjam' ? 'bg-cyan-100/80 shadow-md' : 'hover:bg-gray-100/50'
+        activeMenu === 'pinjam' ? 'bg-cyan-100/80 shadow-md' : ''
       }`}
       onClick={() => setActiveMenu('pinjam')}
     >
@@ -109,7 +109,7 @@ export default function UserDashboard() {
 
     <button
       className={`flex flex-row gap-2 cursor-pointer transition-all duration-300 px-4 py-2 rounded-xl relative group hover:scale-105 active:scale-95 focus:outline-none ${
-        activeMenu === 'Barang' ? 'bg-cyan-100/80 shadow-md' : 'hover:bg-gray-100/50'
+        activeMenu === 'Barang' ? 'bg-cyan-100/80 shadow-md' : ''
       }`}
       onClick={() => setActiveMenu('Barang')}
     >
@@ -125,7 +125,7 @@ export default function UserDashboard() {
     
     <button
       className={`flex flex-row gap-2 cursor-pointer transition-all duration-300 px-4 py-2 rounded-xl relative group hover:scale-105 active:scale-95 focus:outline-none ${
-        activeMenu === 'history' ? 'bg-cyan-100/80 shadow-md' : 'hover:bg-gray-100/50'
+        activeMenu === 'history' ? 'bg-cyan-100/80 shadow-md' : ''
       }`}
       onClick={() => setActiveMenu('history')}
     >
