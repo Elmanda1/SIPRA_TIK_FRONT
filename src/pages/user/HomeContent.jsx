@@ -120,12 +120,12 @@
             </div>
           </div>
         </div>
-        <div className=' flex flex-col items-center justify-start bg-black rounded-[30px] w-[60vw] min-h-[80vh] p-12 mt-10'>
-          <h2 className="text-4xl font-bold text-center text-white mb-10">Langkah-Langkah Peminjaman</h2>
+        <div className=' flex flex-col items-center bg-white justify-start rounded-[30px] w-[60vw] min-h-[80vh] p-12 mt-10'>
+          <h2 className="text-4xl font-bold text-center bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-10">Langkah-Langkah Peminjaman</h2>
           <div className="relative w-full max-w-6xl">
 
                 {/* Step 1 */}
-                <div className="flex flex-row items-center mb-16">
+                <div className="flex flex-row items-center justify mb-16">
                   <div className="flex flex-col items-center bg-cyan-100 justify-center">
                     <h3 className="text-2xl font-bold">1. Isi Form Peminjaman</h3>
                     <img src="/src/assets/router.jpeg" className="rounded-lg shadow-xl" />
@@ -136,8 +136,8 @@
                 </div>
 
                 {/* Panah dari Step 1 ke Step 2 */}
-                <svg className="absolute left-40 top-[300px]" width="400" height="100">
-                  <path d="M0,0 C100,50 300,50 400,0" stroke="white" strokeWidth="2" fill="none" strokeDasharray="5,5" markerEnd="url(#arrowhead)" />
+                <svg className="absolute left-40 top-[250px]" width="500" height="150">
+                  <path d="M50,0 C100,70 300,120 420,140" stroke="black" strokeWidth="2" fill="none" strokeDasharray="5,5" markerEnd="url(#arrowhead)" />
                 </svg>
 
                 {/* Step 2 */}
@@ -152,8 +152,8 @@
                 </div>
 
                 {/* Panah dari Step 2 ke Step 3 */}
-                <svg className="absolute right-40 top-[600px]" width="400" height="100">
-                  <path d="M400,0 C300,50 100,50 0,100" stroke="white" strokeWidth="2" fill="none" strokeDasharray="5,5" markerEnd="url(#arrowhead)" />
+                <svg className="absolute right-40 top-[550px]" width="500" height="150">
+                  <path d="M400,0 C300,100 100,120 0,140" stroke="black" strokeWidth="2" fill="none" strokeDasharray="5,5" markerEnd="url(#arrowhead)" />
                 </svg>
 
                 {/* Step 3 */}
@@ -167,8 +167,8 @@
                   </div>
                 </div>
 
-                <svg className="absolute left-40 top-[900px]" width="400" height="100">
-                  <path  d="M0 0 C 50 100, 150 100, 200 0" stroke="white" strokeWidth="2" fill="none" strokeDasharray="5,5" markerEnd="url(#arrowhead)" />
+                <svg className="absolute left-40 top-[850px]" width="500" height="200">
+                  <path  d="M0 0 C 50 100, 150 150, 480 170" stroke="black" strokeWidth="2" fill="none" strokeDasharray="5,5" markerEnd="url(#arrowhead)" />
                 </svg>
 
                 {/* Step 4 */}
@@ -186,7 +186,7 @@
                 <defs>
                   <marker id="arrowhead" markerWidth="10" markerHeight="7" 
                           refX="10" refY="3.5" orient="auto">
-                    <polygon points="0 0, 10 3.5, 0 7" fill="white" />
+                    <polygon points="0 0, 10 3.5, 0 7" fill="black" />
                   </marker>
                 </defs>
               </svg>

@@ -27,7 +27,7 @@ const BarangTable = ({ title, Icon, items }) => (
         <div key={index} className="px-6 py-4 hover:bg-gray-50 transition-colors">
           <div className="grid grid-cols-4 gap-4 items-center">
             {/* Foto dipindah ke awal */}
-            <div className="w-24 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+            <div className="w-60 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
               <img
                 src={item.image || "/src/assets/dummy-barang.png"}
                 alt={`Foto ${item.name}`}
@@ -37,9 +37,6 @@ const BarangTable = ({ title, Icon, items }) => (
             </div>
             {/* Nama barang dengan icon */}
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
-                <MapPin className="w-5 h-5 text-indigo-600" />
-              </div>
               <div className="font-medium text-gray-900">{item.name}</div>
             </div>
             <div className="text-gray-900 text-center">{item.quantity}</div>
@@ -53,13 +50,13 @@ const BarangTable = ({ title, Icon, items }) => (
 
 const BarangContent = () => {
   const ruangKelas = [
-    { name: 'Ruangan AA 204', quantity: 1, description: 'Ruang belajar Gedung AA', image: '/src/assets/STIK.png' },
-    { name: 'Ruangan AA 205', quantity: 1, description: 'Ruang belajar Gedung AA' },
-    { name: 'Ruangan AA 206', quantity: 1, description: 'Ruang belajar Gedung AA' },
-    { name: 'Ruangan AA 207', quantity: 1, description: 'Ruang belajar Gedung AA' },
+    { name: 'Ruangan AA 204', quantity: 1, description: 'Ruang belajar Gedung AA', image: '/src/assets/aa-303.png' },
+    { name: 'Ruangan AA 205', quantity: 1, description: 'Ruang belajar Gedung AA', image: '/src/assets/aa-303.png'},
+    { name: 'Ruangan AA 206', quantity: 1, description: 'Ruang belajar Gedung AA', image: '/src/assets/aa-303.png' },
+    { name: 'Ruangan AA 207', quantity: 1, description: 'Ruang belajar Gedung AA', image: '/src/assets/aa-303.png' },
     { name: 'Ruangan AA 303', quantity: 1, description: 'Ruang belajar Gedung AA', image: '/src/assets/aa-303.png' },
-    { name: 'Ruangan AA 211', quantity: 1, description: 'Ruang belajar Gedung AA' },
-    { name: 'Ruangan AA 213', quantity: 1, description: 'Ruang belajar Gedung AA' },
+    { name: 'Ruangan AA 211', quantity: 1, description: 'Ruang belajar Gedung AA', image: '/src/assets/aa-303.png' },
+    { name: 'Ruangan AA 213', quantity: 1, description: 'Ruang belajar Gedung AA', image: '/src/assets/aa-303.png' },
     { name: 'Ruangan GSG 301', quantity: 1, description: 'Ruang belajar Gedung GSG' },
     { name: 'Ruangan GSG 302', quantity: 1, description: 'Ruang belajar Gedung GSG' },
     { name: 'Ruangan GSG 303', quantity: 1, description: 'Ruang belajar Gedung GSG' },
