@@ -16,10 +16,11 @@ import KetentuanContent from './KetentuanContent';
 export default function UserDashboard() {
   document.title = "SIPRATIK";
   const [selectedBooking, setSelectedBooking] = useState(null);
-  const [activeMenu, setActiveMenu] = useState('Home'); // default: home
+  const [activeMenu, setActiveMenu] = useState('Home');
+  const [selectedCategory, setSelectedCategory] = useState(null); // Tambahkan state untuk kategori yang dipilih
   const navigate = useNavigate();
   const { logout } = useAuth();
-  const { updatePeminjamanStatus } = usePeminjaman(); // Tambahkan ini
+  const { updatePeminjamanStatus } = usePeminjaman();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const blueContainerRef = useRef(null);
   const { user } = useAuth();
@@ -31,7 +32,6 @@ export default function UserDashboard() {
   const handleConfirmLogout = () => {
     logout();
     setShowLogoutModal(false);
-    // Optional: Show success message or toast notification
     console.log('User logged out successfully');
   };
 
@@ -39,34 +39,38 @@ export default function UserDashboard() {
     setSelectedBooking(booking);
   };
 
-  // Fungsi untuk membatalkan peminjaman
   const handleCancelBooking = (bookingId) => {
     updatePeminjamanStatus(bookingId, 'Dibatalkan');
     setSelectedBooking(null);
     console.log('Peminjaman dibatalkan');
   };
 
-  // Fungsi untuk menyelesaikan peminjaman
   const handleCompleteBooking = (bookingId, completeData) => {
-    // Pass data langsung ke context
     updatePeminjamanStatus(bookingId, completeData.status, completeData.penaltyData);
   };
 
-  // Fungsi untuk menangani klik pada kategori di homepage
-  const handleKategoriClick = (id) => {
-    // Ubah menu aktif menjadi Barang (menampilkan BarangContent)
+  // Perbaiki fungsi handleKategoriClick
+  const handleKategoriClick = (categoryId) => {
+    // Set kategori yang dipilih
+    setSelectedCategory(categoryId);
+    // Pindah ke menu Barang
     setActiveMenu('Barang');
-    // Tunggu 100ms agar konten BarangContent sudah dirender
+    
+    // Tunggu hingga BarangContent ter-render dengan delay yang lebih lama
     setTimeout(() => {
-      // Cari elemen dengan id sesuai kategori (misal: 'ruang-kelas')
-      const barang = document.getElementById(id);
-      if (barang) {
-        // Hitung posisi scroll agar elemen berada di tengah layar
-        const y = barang.getBoundingClientRect().top + window.pageYOffset - (window.innerHeight / 2) + (barang.offsetHeight / 2);
-        // Scroll ke posisi tersebut dengan animasi smooth
+      // Cari elemen berdasarkan ID yang sesuai
+      const targetElement = document.getElementById(categoryId);
+      if (targetElement) {
+        // Scroll ke elemen dengan offset untuk header
+        const yOffset = -100; // Offset untuk header yang fixed
+        const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
         window.scrollTo({ top: y, behavior: 'smooth' });
+      } else {
+        // Fallback: scroll ke atas halaman barang jika elemen tidak ditemukan
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        console.warn(`Element with ID '${categoryId}' not found`);
       }
-    }, 100);
+    }, 300); // Tingkatkan delay menjadi 300ms
   };
 
   return (    
@@ -79,7 +83,10 @@ export default function UserDashboard() {
     {/* Header */}
 <div className="bg-white/30 bg-opacity-50 backdrop-blur-sm fixed top-4 left-1/2 transform -translate-x-1/2 min-w-[1800px] max-w-[95vw] w-[1200px] h-30 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 px-20 py-4 flex items-center justify-between z-10 border border-white/20">
   <a className="text-3xl pl-2 font-bold text-gray-900 cursor-pointer hover:text-black transition-transform active:scale-95 duration-200 hover:scale-105"
-    onClick={() => setActiveMenu('Home')}
+    onClick={() => {
+      setActiveMenu('Home');
+      setSelectedCategory(null); // Reset kategori ketika kembali ke home
+    }}
   >
    <img
         src={logoImg}
@@ -96,7 +103,10 @@ export default function UserDashboard() {
       className={`flex flex-row gap-2 cursor-pointer transition-transform duration-300 px-4 py-2 rounded-xl relative group hover:scale-105 active:scale-95 focus:outline-none ${
         activeMenu === 'pinjam' ? 'bg-cyan-100/80 shadow-md' : ''
       }`}
-      onClick={() => setActiveMenu('pinjam')}
+      onClick={() => {
+        setActiveMenu('pinjam');
+        setSelectedCategory(null);
+      }}
     >
       <Package className={`w-7 h-7 transition-transform duration-300 group-hover:scale-110 ${
         activeMenu === 'pinjam' ? 'text-cyan-600' : 'text-black group-hover:text-cyan-600'
@@ -112,7 +122,10 @@ export default function UserDashboard() {
       className={`flex flex-row gap-2 cursor-pointer transition-transform duration-300 px-4 py-2 rounded-xl relative group hover:scale-105 active:scale-95 focus:outline-none ${
         activeMenu === 'Barang' ? 'bg-cyan-100/80 shadow-md' : ''
       }`}
-      onClick={() => setActiveMenu('Barang')}
+      onClick={() => {
+        setActiveMenu('Barang');
+        setSelectedCategory(null);
+      }}
     >
       <Boxes className={`w-7 h-7 transition-transform duration-300 group-hover:scale-110 ${
         activeMenu === 'Barang' ? 'text-cyan-600' : 'text-black group-hover:text-cyan-600'
@@ -128,7 +141,10 @@ export default function UserDashboard() {
       className={`flex flex-row gap-2 cursor-pointer transition-transform ease-in-out duration-300 px-4 py-2 rounded-xl relative group hover:scale-105 active:scale-95 focus:outline-none ${
         activeMenu === 'history' ? 'bg-cyan-100/80 shadow-md' : ''
       }`}
-      onClick={() => setActiveMenu('history')}
+      onClick={() => {
+        setActiveMenu('history');
+        setSelectedCategory(null);
+      }}
     >
       <History className={`w-7 h-7 transition-transform duration-300 group-hover:scale-110 ${
         activeMenu === 'history' ? 'text-cyan-600' : 'text-black group-hover:text-cyan-600'
@@ -153,7 +169,10 @@ export default function UserDashboard() {
     </button>
 
     <button
-      onClick={() => setActiveMenu('profile')}
+      onClick={() => {
+        setActiveMenu('profile');
+        setSelectedCategory(null);
+      }}
       className="flex items-center rounded-full hover:ring-4 active:scale-95 hover:ring-blue-400/30 bg-white outline outline-1 outline-gray-200 hover:outline-blue-300 focus:outline-none p-0 transition-all duration-300 hover:shadow-lg hover:scale-110 group"
       style={{ width: 48, height: 48, overflow: 'hidden' }}
     >
@@ -175,7 +194,9 @@ export default function UserDashboard() {
             handleKategoriClick={handleKategoriClick}
           />
         )}
-        {activeMenu === 'Barang' && <BarangContent />}
+        {activeMenu === 'Barang' && (
+          <BarangContent selectedCategory={selectedCategory} />
+        )}
         {activeMenu === 'history' && (
           <HistoryContent 
             handleBookingClick={handleBookingClick}

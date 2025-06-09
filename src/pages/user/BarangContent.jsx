@@ -1,12 +1,26 @@
 import React from 'react';
 import { Building2, Video, Monitor, Network, Zap, MoreHorizontal, MapPin, Filter } from 'lucide-react';
 
-const BarangTable = ({ title, Icon, items }) => (
-  <div className="bg-white rounded-xl shadow-sm mb-8">
-    <div className="border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+const BarangTable = ({ id, title, Icon, items, isHighlighted }) => (
+  <div 
+    id={id} // Tambahkan ID di sini
+    className={`bg-white rounded-xl shadow-sm mb-8 transition-all duration-500 ${
+      isHighlighted ? 'ring-4 ring-blue-400 ring-opacity-50 shadow-lg' : ''
+    }`}
+  >
+    <div className={`border-b border-gray-200 px-6 py-4 flex items-center justify-between ${
+      isHighlighted ? 'bg-blue-50' : ''
+    }`}>
       <div className="flex items-center gap-3">
-        <Icon className="w-7 h-7 text-blue-700" />
-        <h2 className="text-2xl font-bold text-blue-700">{title}</h2>
+        <Icon className={`w-7 h-7 ${isHighlighted ? 'text-blue-600' : 'text-blue-700'}`} />
+        <h2 className={`text-2xl font-bold ${isHighlighted ? 'text-blue-600' : 'text-blue-700'}`}>
+          {title}
+          {isHighlighted && (
+            <span className="ml-3 text-sm bg-blue-500 text-white px-2 py-1 rounded-full">
+              Kategori Dipilih
+            </span>
+          )}
+        </h2>
       </div>
       <button className="p-2 text-gray-400 bg-white hover:text-gray-600">
         <Filter className="w-5 h-5" />
@@ -26,7 +40,6 @@ const BarangTable = ({ title, Icon, items }) => (
       {items.map((item, index) => (
         <div key={index} className="px-6 py-4 hover:bg-gray-50 transition-colors">
           <div className="grid grid-cols-4 gap-4 items-center">
-            {/* Foto dipindah ke awal */}
             <div className="w-60 h-18 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
               <img
                 src={item.image || "/src/assets/dummy-barang.png"}
@@ -35,7 +48,6 @@ const BarangTable = ({ title, Icon, items }) => (
                 style={{ aspectRatio: '4/3' }}
               />
             </div>
-            {/* Nama barang dengan icon */}
             <div className="flex items-center space-x-3">
               <div className="font-medium text-gray-900">{item.name}</div>
             </div>
@@ -48,7 +60,7 @@ const BarangTable = ({ title, Icon, items }) => (
   </div>
 );
 
-const BarangContent = () => {
+const BarangContent = ({ selectedCategory }) => {
   const ruangKelas = [
     { name: 'Ruangan AA 204', quantity: 1, description: 'Ruang belajar Gedung AA', image: '/src/assets/aa-303.png' },
     { name: 'Ruangan AA 205', quantity: 1, description: 'Ruang belajar Gedung AA', image: '/src/assets/aa-303.png'},
@@ -132,14 +144,58 @@ const BarangContent = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] w-full mt-10">
-      <h2 className="text-3xl font-bold mb-8 text-gray-800">Daftar Barang per Kategori</h2>
+      <div className="text-center mb-8">
+        <h2 className="text-3xl font-bold text-gray-800">Daftar Barang per Kategori</h2>
+        {selectedCategory && (
+          <p className="text-lg text-blue-600 mt-2 font-medium">
+            Menampilkan kategori yang dipilih dari halaman utama
+          </p>
+        )}
+      </div>
+      
       <div className="w-full max-w-7xl space-y-12">
-        <BarangTable title="Ruang Kelas" Icon={Building2} items={ruangKelas} />
-        <BarangTable title="Peralatan AV" Icon={Video} items={peralatanAV} />
-        <BarangTable title="Perangkat Komputer" Icon={Monitor} items={perangkatKomputer} />
-        <BarangTable title="Peralatan Jaringan" Icon={Network} items={peralatanJaringan} />
-        <BarangTable title="Peralatan Listrik" Icon={Zap} items={peralatanListrik} />
-        <BarangTable title="Lainnya" Icon={MoreHorizontal} items={lainnya} />
+        <BarangTable 
+          id="ruang-kelas" 
+          title="Ruang Kelas" 
+          Icon={Building2} 
+          items={ruangKelas}
+          isHighlighted={selectedCategory === 'ruang-kelas'}
+        />
+        <BarangTable 
+          id="peralatan-av" 
+          title="Peralatan AV" 
+          Icon={Video} 
+          items={peralatanAV}
+          isHighlighted={selectedCategory === 'peralatan-av'}
+        />
+        <BarangTable 
+          id="perangkat-komputer" 
+          title="Perangkat Komputer" 
+          Icon={Monitor} 
+          items={perangkatKomputer}
+          isHighlighted={selectedCategory === 'perangkat-komputer'}
+        />
+        <BarangTable 
+          id="peralatan-jaringan" 
+          title="Peralatan Jaringan" 
+          Icon={Network} 
+          items={peralatanJaringan}
+          isHighlighted={selectedCategory === 'peralatan-jaringan'}
+        />
+        <BarangTable 
+          id="peralatan-listrik" 
+          title="Peralatan Listrik" 
+          Icon={Zap} 
+          items={peralatanListrik}
+          isHighlighted={selectedCategory === 'peralatan-listrik'}
+        />
+        <BarangTable 
+          id="lainnya" 
+          title="Lainnya" 
+          Icon={MoreHorizontal} 
+          items={lainnya}
+          isHighlighted={selectedCategory === 'lainnya'}
+        />
       </div>
     </div>
   );
