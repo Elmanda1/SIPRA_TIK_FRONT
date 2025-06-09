@@ -3,7 +3,7 @@ import { AlertCircle, BanknoteIcon, CheckCircle2, Clock, FileWarning, ScrollText
 
 const KetentuanContent = () => {
   return (
-    <div className="flex flex-col items-center w-full min-h-screen py-10 px-4 bg-gradient-to-br from-blue-50 via-purple-50 to-indigo-50">
+    <div className="flex flex-col items-center w-full min-h-screen py-10 px-4">
       <div className="w-full max-w-4xl space-y-8">
         {/* Header */}
         <div className="text-center">
@@ -14,7 +14,7 @@ const KetentuanContent = () => {
         </div>
 
         {/* Waktu Operasional */}
-        <div className="bg-white/40 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/30">
+        <div className="bg-white/60 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/30">
           <div className="flex items-center gap-3 mb-4">
             <Clock className="w-6 h-6 text-blue-600" />
             <h3 className="text-2xl font-bold text-gray-800">Waktu Operasional</h3>
@@ -32,7 +32,7 @@ const KetentuanContent = () => {
         </div>
 
         {/* Syarat Peminjaman */}
-        <div className="bg-white/40 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/30">
+        <div className="bg-white/60  backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/30">
           <div className="flex items-center gap-3 mb-4">
             <ScrollText className="w-6 h-6 text-purple-600" />
             <h3 className="text-2xl font-bold text-gray-800">Syarat Peminjaman</h3>
@@ -58,7 +58,7 @@ const KetentuanContent = () => {
         </div>
 
         {/* Prosedur Peminjaman */}
-        <div className="bg-white/40 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/30">
+        <div className="bg-white/60  backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/30">
           <div className="flex items-center gap-3 mb-4">
             <UserCog className="w-6 h-6 text-green-600" />
             <h3 className="text-2xl font-bold text-gray-800">Prosedur Peminjaman</h3>
@@ -104,7 +104,7 @@ const KetentuanContent = () => {
         </div>
 
         {/* Tanggung Jawab Peminjam */}
-        <div className="bg-white/40 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/30">
+        <div className="bg-white/60  backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/30">
           <div className="flex items-center gap-3 mb-4">
             <ShieldAlert className="w-6 h-6 text-red-600" />
             <h3 className="text-2xl font-bold text-gray-800">Tanggung Jawab Peminjam</h3>
@@ -130,7 +130,7 @@ const KetentuanContent = () => {
         </div>
 
         {/* Saran Penggunaan */}
-        <div className="bg-white/40 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/30">
+        <div className="bg-white/60  backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/30">
           <div className="flex items-center gap-3 mb-4">
             <AlertCircle className="w-6 h-6 text-orange-600" />
             <h3 className="text-2xl font-bold text-gray-800">Saran Penggunaan</h3>
@@ -156,7 +156,7 @@ const KetentuanContent = () => {
         </div>
 
         {/* Ketentuan Denda */}
-        <div className="bg-white/40 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/30">
+        <div className="bg-white/60  backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/30">
           <div className="flex items-center gap-3 mb-4">            <BanknoteIcon className="w-6 h-6 text-yellow-600" />
             <h3 className="text-2xl font-bold text-gray-800">Ketentuan Denda</h3>
           </div>

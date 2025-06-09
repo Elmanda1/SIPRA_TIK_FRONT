@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, Clock, User, Phone, FileText, Package, CheckCircle } from 'lucide-react';
+import { Calendar, Clock, User, Phone, FileText, Package, CheckCircle, HomeIcon, Package2 } from 'lucide-react';
 import { usePeminjaman } from '../../context/PeminjamanContext';
 
 const barangPerKategori = {
@@ -199,7 +199,7 @@ const PinjamContent = () => {
     barangPerKategori[selectedKategori].find(b => b.id === selectedBarang) : null;
 
   return (
-    <div className="flex flex-col items-center rounded-lg w-full min-h-screen py-10 overflow-y-auto bg-gradient-to-br from-blue-50 via-purple-50 to-indigo-50">
+    <div className="flex flex-col items-center rounded-lg w-full min-h-screen py-10 overflow-y-auto">
       {/* Header with animated gradient text */}
       <div className="text-center mb-8">
         <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent pb-1">
@@ -208,7 +208,7 @@ const PinjamContent = () => {
         <p className="text-gray-600 text-lg">Lengkapi form berikut untuk meminjam peralatan</p>
       </div>
 
-      <div className="bg-white/40 backdrop-blur-md rounded-2xl w-full max-w-2xl p-8 shadow-2xl border border-white/30">
+      <div className="rounded-2xl w-full max-w-2xl p-8 shadow-2xl border bg-white">
         {/* Validation Errors */}
         {validationErrors.length > 0 && (
           <div className="mb-6 p-4 bg-gradient-to-r from-red-50 to-pink-50 rounded-xl border border-red-200">
@@ -346,7 +346,7 @@ const PinjamContent = () => {
             {/* Barang yang Dipinjam */}
             <div className="group">
               <label className="flex items-center gap-2 mb-3 font-semibold text-gray-700 text-lg">
-                <Package className="w-5 h-5 text-purple-600" />
+                <Package2 className="w-5 h-5 text-blue-600" />
                 Barang yang Dipinjam <span className="text-red-500">*</span>
               </label>
               <div className="relative">
@@ -423,7 +423,7 @@ const PinjamContent = () => {
             {/* Kelas */}
             <div className="group">
               <label className="flex items-center gap-2 mb-3 font-semibold text-gray-700 text-lg">
-                <Package className="w-5 h-5 text-teal-600" />
+                <HomeIcon className="w-5 h-5 text-teal-600" />
                 Kelas
               </label>
               <input

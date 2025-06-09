@@ -14,6 +14,7 @@ import PinjamContent from './PinjamContent';
 import KetentuanContent from './KetentuanContent';
 
 export default function UserDashboard() {
+  document.title = "SIPRATIK";
   const [selectedBooking, setSelectedBooking] = useState(null);
   const [activeMenu, setActiveMenu] = useState('Home'); // default: home
   const navigate = useNavigate();
@@ -45,24 +46,9 @@ export default function UserDashboard() {
   };
 
   // Fungsi untuk menyelesaikan peminjaman
-  const handleCompleteBooking = (bookingId, status, penaltyData = null) => {
-    const finalStatus = penaltyData?.amount > 0 ? 'Penalty' : 'Selesai';
-    
-    if (penaltyData) {
-      // Update dengan status penalty jika ada denda
-      updatePeminjamanStatus(bookingId, finalStatus, {
-        penaltyAmount: penaltyData.amount,
-        penaltyPhoto: penaltyData.photo,
-        penaltyNotes: penaltyData.notes,
-        totalDenda: penaltyData.totalPenalty
-      });
-      console.log('Peminjaman selesai dengan penalty:', penaltyData);
-    } else {
-      // Update dengan status selesai jika tidak ada denda
-      updatePeminjamanStatus(bookingId, finalStatus);
-      console.log('Peminjaman selesai normal');
-    }
-    setSelectedBooking(null);
+  const handleCompleteBooking = (bookingId, completeData) => {
+    // Pass data langsung ke context
+    updatePeminjamanStatus(bookingId, completeData.status, completeData.penaltyData);
   };
 
   // Fungsi untuk menangani klik pada kategori di homepage
@@ -89,69 +75,95 @@ export default function UserDashboard() {
         background: "linear-gradient(180deg, rgb(210, 250, 255) 0px, #EAF1F8 1000px)"
       }}
     >
-      {/* Header */}
-      <div className="bg-white/30 bg-opacity-50 backdrop-blur-sm fixed top-4 left-1/2 transform -translate-x-1/2 min-w-[1800px] max-w-[95vw] w-[1200px] h-30 rounded-full shadow-lg px-20 py-4 flex items-center justify-between z-10">
-        <a className="text-3xl pl-2 font-bold text-gray-900 cursor-pointer hover:text-black"
-          onClick={() => setActiveMenu('Home')}
-        >
-         <img
-              src={logoImg}
-              alt="Logo"
-              className="w-70 h-10"
-         />
-        </a>
-        {/* menu */}
-        <div className="flex items-center space-x-4 gap-10">
-          <h2 className='opacity-0'>............</h2>
+    {/* Header */}
+<div className="bg-white/30 bg-opacity-50 backdrop-blur-sm fixed top-4 left-1/2 transform -translate-x-1/2 min-w-[1800px] max-w-[95vw] w-[1200px] h-30 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 px-20 py-4 flex items-center justify-between z-10 border border-white/20">
+  <a className="text-3xl pl-2 font-bold text-gray-900 cursor-pointer hover:text-black transition-all duration-200 hover:scale-105"
+    onClick={() => setActiveMenu('Home')}
+  >
+   <img
+        src={logoImg}
+        alt="Logo"
+        className="w-70 h-10 hover:brightness-110 transition-all duration-200"
+   />
+  </a>
+  
+  {/* menu */}
+  <div className="flex items-center space-x-4 gap-10">
+    <h2 className='opacity-0'>............</h2>
 
-          <a
-            className={`flex flex-row gap-2 cursor-pointer hover:text-cyan-600 ${activeMenu === 'pinjam' ? 'font-bold text-cyan-600' : 'text-black hover:text-gray-600' }`}
-            onClick={() => setActiveMenu('pinjam')}
-          >
-            <Package className="w-7 h-7" />
-            <p className='text-xl'>Pinjam</p>
-          </a>
+    <button
+      className={`flex flex-row gap-2 cursor-pointer transition-all duration-300 px-4 py-2 rounded-xl relative group hover:scale-105 active:scale-95 focus:outline-none ${
+        activeMenu === 'pinjam' ? 'bg-cyan-100/80 shadow-md' : 'hover:bg-gray-100/50'
+      }`}
+      onClick={() => setActiveMenu('pinjam')}
+    >
+      <Package className={`w-7 h-7 transition-all duration-300 group-hover:scale-110 ${
+        activeMenu === 'pinjam' ? 'text-cyan-600' : 'text-black group-hover:text-cyan-600'
+      }`} />
+      <p className={`text-xl transition-all duration-300 select-none relative ${
+        activeMenu === 'pinjam' ? 'text-cyan-600 font-bold' : 'text-black group-hover:text-cyan-600'
+      }`}>
+        Pinjam
+      </p>
+    </button>
 
-          <a
-            className={`flex flex-row gap-2 cursor-pointer hover:text-cyan-600 ${activeMenu === 'Barang' ? 'font-bold text-cyan-600' : 'text-black hover:text-gray-600'}`}
-            onClick={() => setActiveMenu('Barang')}
-          >
-            <Boxes className="w-7 h-7" />
-            <p className='text-xl'>Barang</p>
-          </a>
-          
-          <a
-            className={`flex flex-row gap-2 cursor-pointer hover:text-cyan-600 ${activeMenu === 'history' ? 'font-bold text-cyan-600' : 'text-black hover:text-gray-600'}`}
-            onClick={() => setActiveMenu('history')}
-          >
-            <History className="w-7 h-7" />
-            <p className='text-xl'>History</p>
-          </a>
-        </div>
-        {/* Tombol logout */}
-        <div className="flex items-center space-x-8 pr-8">
-          <button
-            onClick={handleLogout}
-            className="flex items-center rounded-xl transition-all hover:bg-sky-600 hover:bg-opacity-20 duration-200 focus:outline-none px-6 py-4 hover:shadow-lg"
-          >
-            <div className="text-black font-bold">
-              LOGOUT
-            </div>
-          </button>
-
-          <button
-            onClick={() => setActiveMenu('profile')}
-            className="flex items-center rounded-full hover:ring-2 hover:ring-blue-400 bg-white outline outline-1 outline-gray-200 focus:outline-none p-0"
-            style={{ width: 48, height: 48, overflow: 'hidden' }}
-          >
-            <img
-              src={profileImg}
-              alt="Profile"
-              className="w-12 h-12 object-cover rounded-full"
-            />
-          </button>
-        </div>
+    <button
+      className={`flex flex-row gap-2 cursor-pointer transition-all duration-300 px-4 py-2 rounded-xl relative group hover:scale-105 active:scale-95 focus:outline-none ${
+        activeMenu === 'Barang' ? 'bg-cyan-100/80 shadow-md' : 'hover:bg-gray-100/50'
+      }`}
+      onClick={() => setActiveMenu('Barang')}
+    >
+      <Boxes className={`w-7 h-7 transition-all duration-300 group-hover:scale-110 ${
+        activeMenu === 'Barang' ? 'text-cyan-600' : 'text-black group-hover:text-cyan-600'
+      }`} />
+      <p className={`text-xl transition-all duration-300 select-none relative ${
+        activeMenu === 'Barang' ? 'text-cyan-600 font-bold' : 'text-black group-hover:text-cyan-600'
+      }`}>
+        Barang
+      </p>
+    </button>
+    
+    <button
+      className={`flex flex-row gap-2 cursor-pointer transition-all duration-300 px-4 py-2 rounded-xl relative group hover:scale-105 active:scale-95 focus:outline-none ${
+        activeMenu === 'history' ? 'bg-cyan-100/80 shadow-md' : 'hover:bg-gray-100/50'
+      }`}
+      onClick={() => setActiveMenu('history')}
+    >
+      <History className={`w-7 h-7 transition-all duration-300 group-hover:scale-110 ${
+        activeMenu === 'history' ? 'text-cyan-600' : 'text-black group-hover:text-cyan-600'
+      }`} />
+      <p className={`text-xl transition-all duration-300 select-none relative ${
+        activeMenu === 'history' ? 'text-cyan-600 font-bold' : 'text-black group-hover:text-cyan-600'
+      }`}>
+        History
+      </p>
+    </button>
+  </div>
+  
+  {/* Tombol logout */}
+  <div className="flex items-center space-x-8 pr-8">
+    <button
+      onClick={handleLogout}
+      className="flex items-center rounded-xl transition-all duration-300 hover:bg-gradient-to-r hover:from-red-500/20 hover:to-pink-500/20 hover:shadow-lg hover:scale-105 focus:outline-none px-6 py-4 group border border-transparent hover:border-red-200/30"
+    >
+      <div className="text-black font-bold group-hover:text-red-600 transition-colors duration-300">
+        LOGOUT
       </div>
+    </button>
+
+    <button
+      onClick={() => setActiveMenu('profile')}
+      className="flex items-center rounded-full hover:ring-4 hover:ring-blue-400/30 bg-white outline outline-1 outline-gray-200 hover:outline-blue-300 focus:outline-none p-0 transition-all duration-300 hover:shadow-lg hover:scale-110 group"
+      style={{ width: 48, height: 48, overflow: 'hidden' }}
+    >
+      <img
+        src={profileImg}
+        alt="Profile"
+        className="w-12 h-12 object-cover rounded-full group-hover:brightness-110 transition-all duration-300"
+      />
+    </button>
+  </div>
+</div>
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-8 pt-24">

@@ -1,18 +1,24 @@
 import React from 'react';
 import { Building2, Video, Monitor, Network, Zap, MoreHorizontal } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import logoImg from '../../assets/SIPRATIK.png';
 
 const HomeContent = ({ setActiveMenu, blueContainerRef, handleKategoriClick }) => {
   const navigate = useNavigate();
   
   return (
-    <div className=" flex flex-col items-center justify-center min-h-[60vh] mt-20">
+    <div className=" flex flex-col items-center justify-center min-h-[60vh]">
       <div className=' flex flex-col w-full items-center justify-center pb-20 bg-opacity-80 backdrop-blur-sm rounded-xl pt-20'>
-        <h1 className="text-5xl md:text-6xl font-bold text-gray-800 text-center mb-12">
-          Selamat Datang di SIPRATIK!
+        <h1 className="text-5xl md:text-6xl font-bold text-gray-800 text-center mb-7">
+          Selamat Datang di          
+          <img
+              src={logoImg}
+              alt="Logo"
+              className="w-100 h-30"
+         />
         </h1>
-        <p className="text-2xl text-gray-600 text-center mb-12 max-w-2xl">
-          Sistem Peminjaman Sarana Prasarana Kampus untuk Mahasiswa dan Dosen
+        <p className="text-2xl text-gray-600 text-center mb-12 max-w-4xl">
+          Sistem Informasi Peminjaman Sarana dan Prasarana TIK untuk Mahasiswa dan Dosen
         </p>
         <div className='flex flex-row items-center justify-center gap-4 mb-5'>
           <button
@@ -45,9 +51,9 @@ const HomeContent = ({ setActiveMenu, blueContainerRef, handleKategoriClick }) =
         </p>
       </div>
       
-      <div className=' flex flex-col items-center justify-center  w-[80vw] h-[100vh] p-12 mt-10'>
+      <div className=' flex flex-col items-center justify-center  w-[80vw] h-[100vh] '>
         <h1 className="text-3xl md:text-5xl font-bold text-gray-800 text-center mb-12">
-          Politeknik Negeri Jakarta
+          Profil Politeknik Negeri Jakarta
         </h1>
         <iframe className='w-full h-full rounded-xl' src="https://www.youtube.com/embed/Im00a5ZL46I?si=UjdkRQsGxlySgfqp" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
       </div>
@@ -56,10 +62,10 @@ const HomeContent = ({ setActiveMenu, blueContainerRef, handleKategoriClick }) =
         ref={blueContainerRef}
         className=' flex flex-col items-center justify-start rounded-[30px] w-[80vw] min-h-[80vh] p-12 mt-10'
       >
-        <h1 className="text-5xl md:text-6xl font-bold text-gray-800 text-center mb-8">
+        <h1 className="text-5xl md:text-6xl font-bold text-gray-800 text-center mb-6">
           Kategori Sarana Prasarana
         </h1>
-        <p className="text-2xl text-gray-600 text-center mb-12 max-w-2xl">
+        <p className="text-2xl text-gray-600 text-center mb-7 max-w-2xl">
           Pilih kategori sarana prasarana yang Anda butuhkan
         </p>
 

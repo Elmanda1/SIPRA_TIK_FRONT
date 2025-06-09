@@ -111,6 +111,7 @@ const AlertModal = ({
 
 // Login Page Component
 const LoginPage = () => {
+  document.title = "Login Page";
   const navigate = useNavigate();
   const { login, credentials } = useAuth();
   

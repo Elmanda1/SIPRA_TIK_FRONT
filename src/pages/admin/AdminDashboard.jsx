@@ -20,6 +20,7 @@ import Header from '../../components/admin/Header';
 import LogoutModal from '../../components/common/LogoutModal';
 
 const AdminDashboard = () => {
+  document.title = "Admin SIPRATIK";
   const { logout } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [currentPage, setCurrentPage] = useState('dashboard');
