@@ -22,6 +22,7 @@ export default function UserDashboard() {
   const { updatePeminjamanStatus } = usePeminjaman(); // Tambahkan ini
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const blueContainerRef = useRef(null);
+  const { user } = useAuth();
 
   const handleLogout = () => {
     setShowLogoutModal(true);
@@ -77,13 +78,13 @@ export default function UserDashboard() {
     >
     {/* Header */}
 <div className="bg-white/30 bg-opacity-50 backdrop-blur-sm fixed top-4 left-1/2 transform -translate-x-1/2 min-w-[1800px] max-w-[95vw] w-[1200px] h-30 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 px-20 py-4 flex items-center justify-between z-10 border border-white/20">
-  <a className="text-3xl pl-2 font-bold text-gray-900 cursor-pointer hover:text-black transition-all duration-200 hover:scale-105"
+  <a className="text-3xl pl-2 font-bold text-gray-900 cursor-pointer hover:text-black transition-transform active:scale-95 duration-200 hover:scale-105"
     onClick={() => setActiveMenu('Home')}
   >
    <img
         src={logoImg}
         alt="Logo"
-        className="w-70 h-10 hover:brightness-110 transition-all duration-200"
+        className="w-70 h-10 hover:brightness-110 transition-transform duration-200"
    />
   </a>
   
@@ -92,15 +93,15 @@ export default function UserDashboard() {
     <h2 className='opacity-0'>............</h2>
 
     <button
-      className={`flex flex-row gap-2 cursor-pointer transition-all duration-300 px-4 py-2 rounded-xl relative group hover:scale-105 active:scale-95 focus:outline-none ${
+      className={`flex flex-row gap-2 cursor-pointer transition-transform duration-300 px-4 py-2 rounded-xl relative group hover:scale-105 active:scale-95 focus:outline-none ${
         activeMenu === 'pinjam' ? 'bg-cyan-100/80 shadow-md' : ''
       }`}
       onClick={() => setActiveMenu('pinjam')}
     >
-      <Package className={`w-7 h-7 transition-all duration-300 group-hover:scale-110 ${
+      <Package className={`w-7 h-7 transition-transform duration-300 group-hover:scale-110 ${
         activeMenu === 'pinjam' ? 'text-cyan-600' : 'text-black group-hover:text-cyan-600'
       }`} />
-      <p className={`text-xl transition-all duration-300 select-none relative ${
+      <p className={`text-xl transition-transform duration-300 select-none relative ${
         activeMenu === 'pinjam' ? 'text-cyan-600 font-bold' : 'text-black group-hover:text-cyan-600'
       }`}>
         Pinjam
@@ -108,15 +109,15 @@ export default function UserDashboard() {
     </button>
 
     <button
-      className={`flex flex-row gap-2 cursor-pointer transition-all duration-300 px-4 py-2 rounded-xl relative group hover:scale-105 active:scale-95 focus:outline-none ${
+      className={`flex flex-row gap-2 cursor-pointer transition-transform duration-300 px-4 py-2 rounded-xl relative group hover:scale-105 active:scale-95 focus:outline-none ${
         activeMenu === 'Barang' ? 'bg-cyan-100/80 shadow-md' : ''
       }`}
       onClick={() => setActiveMenu('Barang')}
     >
-      <Boxes className={`w-7 h-7 transition-all duration-300 group-hover:scale-110 ${
+      <Boxes className={`w-7 h-7 transition-transform duration-300 group-hover:scale-110 ${
         activeMenu === 'Barang' ? 'text-cyan-600' : 'text-black group-hover:text-cyan-600'
       }`} />
-      <p className={`text-xl transition-all duration-300 select-none relative ${
+      <p className={`text-xl transition-transform duration-300 select-none relative ${
         activeMenu === 'Barang' ? 'text-cyan-600 font-bold' : 'text-black group-hover:text-cyan-600'
       }`}>
         Barang
@@ -124,15 +125,15 @@ export default function UserDashboard() {
     </button>
     
     <button
-      className={`flex flex-row gap-2 cursor-pointer transition-all duration-300 px-4 py-2 rounded-xl relative group hover:scale-105 active:scale-95 focus:outline-none ${
+      className={`flex flex-row gap-2 cursor-pointer transition-transform ease-in-out duration-300 px-4 py-2 rounded-xl relative group hover:scale-105 active:scale-95 focus:outline-none ${
         activeMenu === 'history' ? 'bg-cyan-100/80 shadow-md' : ''
       }`}
       onClick={() => setActiveMenu('history')}
     >
-      <History className={`w-7 h-7 transition-all duration-300 group-hover:scale-110 ${
+      <History className={`w-7 h-7 transition-transform duration-300 group-hover:scale-110 ${
         activeMenu === 'history' ? 'text-cyan-600' : 'text-black group-hover:text-cyan-600'
       }`} />
-      <p className={`text-xl transition-all duration-300 select-none relative ${
+      <p className={`text-xl transition-transform duration-300 select-none relative ${
         activeMenu === 'history' ? 'text-cyan-600 font-bold' : 'text-black group-hover:text-cyan-600'
       }`}>
         History
@@ -144,7 +145,7 @@ export default function UserDashboard() {
   <div className="flex items-center space-x-8 pr-8">
     <button
       onClick={handleLogout}
-      className="flex items-center rounded-xl transition-all duration-300 hover:bg-gradient-to-r hover:from-red-500/20 hover:to-pink-500/20 hover:shadow-lg hover:scale-105 focus:outline-none px-6 py-4 group border border-transparent hover:border-red-200/30"
+      className="flex items-center rounded-xl transition-transform ease-in-out duration-300 active:scale-95 hover:bg-gradient-to-r hover:from-red-500/20 hover:to-pink-500/20 hover:shadow-lg hover:scale-105 focus:outline-none px-6 py-4 group border border-transparent hover:border-red-200/30"
     >
       <div className="text-black font-bold group-hover:text-red-600 transition-colors duration-300">
         LOGOUT
@@ -153,13 +154,13 @@ export default function UserDashboard() {
 
     <button
       onClick={() => setActiveMenu('profile')}
-      className="flex items-center rounded-full hover:ring-4 hover:ring-blue-400/30 bg-white outline outline-1 outline-gray-200 hover:outline-blue-300 focus:outline-none p-0 transition-all duration-300 hover:shadow-lg hover:scale-110 group"
+      className="flex items-center rounded-full hover:ring-4 active:scale-95 hover:ring-blue-400/30 bg-white outline outline-1 outline-gray-200 hover:outline-blue-300 focus:outline-none p-0 transition-all duration-300 hover:shadow-lg hover:scale-110 group"
       style={{ width: 48, height: 48, overflow: 'hidden' }}
     >
       <img
-        src={profileImg}
+        src={user.foto}
         alt="Profile"
-        className="w-12 h-12 object-cover rounded-full group-hover:brightness-110 transition-all duration-300"
+        className="w-12 h-12 object-cover rounded-full group-hover:brightness-110 transition-transform duration-300"
       />
     </button>
   </div>

@@ -1,7 +1,7 @@
   import React from 'react';
   import { Building2, Video, Monitor, Network, Zap, MoreHorizontal } from 'lucide-react';
   import { useNavigate } from 'react-router-dom';
-  import logoImg from '../../assets/SIPRATIK.png';
+  import logoImg from '../../assets/SIPRATIK.png';  
 
   const HomeContent = ({ setActiveMenu, blueContainerRef, handleKategoriClick }) => {
     const navigate = useNavigate();
@@ -84,7 +84,7 @@
             >
               <Video className="w-14 h-14 text-gray-800 mb-8" />
               <span className="text-3xl font-bold text-sky-600 mb-2">Peralatan AV</span>
-              <p className="text-gray-600 text-center">Peminjaman laboratorium komputer dan alat praktikum.</p>
+              <p className="text-gray-600 text-center">Peminjaman alat audio visual seperti microphone, speaker, dan lainnya.</p>
             </div>
             <div
               className="transition hover:scale-[1.03] duration-400 cursor-pointer bg-white bg-opacity-50 rounded-2xl shadow-xl p-10 flex flex-col items-center justify-center"
@@ -120,64 +120,71 @@
             </div>
           </div>
         </div>
-        <div className=' flex flex-col items-center bg-white justify-start rounded-[30px] w-[60vw] min-h-[80vh] p-12 mt-10'>
-          <h2 className="text-4xl font-bold text-center bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-10">Langkah-Langkah Peminjaman</h2>
-          <div className="relative w-full max-w-6xl">
+        <div className=' flex flex-col items-center justify-start rounded-[30px] w-[60vw] min-h-[80vh] p-12 mt-10'>
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-800 text-center mb-6">
+            Langkah Langkah Peminjam
+          </h1>
+          <p className="text-2xl text-gray-600 text-center mb-7 max-w-2xl">
+            step by step peminjaman sarana prasarana di SIPRATIK
+          </p>
+          <div className="relative w-full max-w-6xl mt-12">
 
                 {/* Step 1 */}
                 <div className="flex flex-row items-center justify mb-16">
-                  <div className="flex flex-col items-center bg-cyan-100 justify-center">
-                    <h3 className="text-2xl font-bold">1. Isi Form Peminjaman</h3>
-                    <img src="/src/assets/router.jpeg" className="rounded-lg shadow-xl" />
-                    <div className="ml-8 text-left">
-                      <p>Isi data peminjaman lengkap sesuai kebutuhan Anda.</p>
+                  <div className="px-16 py-2 flex flex-col items-center transition hover:scale-[1.03] duration-400 cursor-pointer bg-white bg-opacity-50 rounded-2xl shadow-xl justify-center gap-4">
+                    <h3 className="text-2xl font-bold text-indigo-600">Ajukan Peminjaman</h3>
+                    <img src="/src/assets/form.png" className="w-[200px] h-[200px] object-cover rounded-full shadow-xl" />
+                    <div className="text-center">
+                      <p>Akses menu <i>Pinjam </i> dan mulai mengisi form </p><p>untuk proses pengajuan peminjaman.</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Panah dari Step 1 ke Step 2 */}
-                <svg className="absolute left-40 top-[250px]" width="500" height="150">
-                  <path d="M50,0 C100,70 300,120 420,140" stroke="black" strokeWidth="2" fill="none" strokeDasharray="5,5" markerEnd="url(#arrowhead)" />
+                <svg className="absolute left-56 top-[370px]" width="500" height="150">
+                  <path d="M50,0 C80,50 200,80 300,100" stroke="black" strokeWidth="3" fill="none" strokeDasharray="15" markerEnd="url(#arrowhead)" />
                 </svg>
 
                 {/* Step 2 */}
                 <div className="flex flex-row items-center justify-end mb-16">
-                  <div className="flex flex-col items-center bg-cyan-100 justify-center">
-                    <h3 className="text-2xl font-bold">2. Menunggu Konfirmasi</h3>
-                    <img src="/src/assets/router.jpeg" className="rounded-lg shadow-xl" />
-                    <div className="ml-8 text-left">
-                      <p>Admin akan memverifikasi dan menyetujui permintaan Anda.</p>
+                  <div className="px-12 py-2 flex flex-col items-center transition hover:scale-[1.03] duration-400 cursor-pointer bg-white bg-opacity-50 rounded-2xl shadow-xl justify-center gap-4">
+                    <h3 className="text-2xl text-indigo-600 font-bold">Menunggu Verifikasi</h3>
+                    <img src="/src/assets/sitback.png" className="w-[200px] h-[200px] object-cover rounded-full shadow-xl" />
+                    <div className="text-center">
+                      <p>Permohonan Anda sedang ditinjau oleh tim </p>
+                      <p>administrasi untuk memastikan ketersediaan barang.</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Panah dari Step 2 ke Step 3 */}
-                <svg className="absolute right-40 top-[550px]" width="500" height="150">
-                  <path d="M400,0 C300,100 100,120 0,140" stroke="black" strokeWidth="2" fill="none" strokeDasharray="5,5" markerEnd="url(#arrowhead)" />
+                <svg className="absolute right-24 top-[770px]" width="500" height="150">
+                  <path d="M300,0 C200,70 80,90 50,110" stroke="black" strokeWidth="3" fill="none" strokeDasharray="15" markerEnd="url(#arrowhead)" />
                 </svg>
 
                 {/* Step 3 */}
                 <div className="flex flex-row  items-center mb-16">
-                  <div className="flex flex-col items-center bg-cyan-100 justify-center">
-                    <h3 className="text-2xl font-bold">3. Peminjaman Aktif</h3>
-                    <img src="/src/assets/router.jpeg" className="rounded-lg shadow-xl" />
-                    <div className="ml-8 text-left">
-                      <p>Gunakan sarana sesuai waktu yang telah disetujui.</p>
+                  <div className="py-2 px-2 flex flex-col items-center transition hover:scale-[1.03] duration-400 cursor-pointer bg-white bg-opacity-50 rounded-2xl shadow-xl justify-center gap-4">
+                    <h3 className="text-2xl text-indigo-600 font-bold">Peminjaman Disetujui</h3>
+                    <img src="/src/assets/pinjaman.png" className="w-[200px] h-[200px] object-cover rounded-full shadow-xl" />
+                    <div className="text-center">
+                      <p>Selamat! peminjaman Anda telah disetujui.</p>
+                      <p>Silakan gunakan fasilitas sesuai dengan jadwal dan ketentuan.</p>
                     </div>
                   </div>
                 </div>
 
-                <svg className="absolute left-40 top-[850px]" width="500" height="200">
-                  <path  d="M0 0 C 50 100, 150 150, 480 170" stroke="black" strokeWidth="2" fill="none" strokeDasharray="5,5" markerEnd="url(#arrowhead)" />
+                <svg className="absolute left-52 top-[1150px]" width="500" height="200">
+                  <path  d="M0,0 C 30 70, 100 100, 350 120" stroke="black" strokeWidth="3" fill="none" strokeDasharray="15" markerEnd="url(#arrowhead)" />
                 </svg>
 
                 {/* Step 4 */}
                 <div className="flex flex-row  items-center justify-end mb-16">
-                  <div className="flex flex-col items-center bg-cyan-100 justify-center">
-                    <h3 className="text-2xl font-bold">4. Selesaikan Peminjaman</h3>
-                    <img src="/src/assets/router.jpeg" className="rounded-lg shadow-xl" />
-                    <div className="ml-8 text-left">
-                      <p>Setelah selesai, klik selesai dan kembalikan barang.</p>
+                  <div className="py-2 px-2 flex flex-col items-center transition hover:scale-[1.03] duration-400 cursor-pointer bg-white bg-opacity-50 rounded-2xl shadow-xl justify-center gap-4">
+                    <h3 className="text-2xl font-bold text-indigo-600">Selesaikan Peminjaman</h3>
+                    <img src="/src/assets/selesai.jpg" className="w-[200px] h-[200px] object-cover rounded-full shadow-xl" />
+                    <div className="text-center">
+                      <p>Setelah peminjaman selesai, silahkan lakukan</p> <p>proses penyelesaian dengan click pinjaman aktif halaman <i>History</i>.</p>
                     </div>
                   </div>
                 </div>

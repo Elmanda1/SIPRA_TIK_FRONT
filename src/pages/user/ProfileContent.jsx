@@ -447,7 +447,7 @@ const ProfileContent = () => {
           <div className="flex items-center border-b pb-4 mb-6 ml-6">
             <div className="flex-shrink-0 w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center mr-4 overflow-hidden">
               <img
-                src={profileImg}
+                src={user?.foto}
                 alt="Profile"
                 className="w-20 h-20 object-cover rounded-full"
               />

@@ -15,6 +15,7 @@ const AuthProvider = ({ children }) => {
     { 
       username: 'RafifArka',
       password: 'user1',
+      foto: '/src/assets/profile.jpg',
       role: 'user',
       email: 'Muhammad.Rafif.Dwiarka.tik24@stu.pnj.ac.id',
       name: 'Muhammad Rafif Dwarka',
@@ -29,6 +30,7 @@ const AuthProvider = ({ children }) => {
     { 
       username: 'Falih',
       password: 'user2',
+      foto: '/src/assets/falih.png',
       role: 'user',
       email: 'Falih.Elmanda.Ghaisan.tik24@stu.pnj.ac.id',
       name: 'Falih Elmanda Ghaisan',
@@ -43,6 +45,7 @@ const AuthProvider = ({ children }) => {
     { 
       username: 'Bernard',
       password: 'user3',
+      foto: '/src/assets/bernat.jpg',
       role: 'user',
       email: 'Hari.Bernardo.tik24@stu.pnj.ac.id',
       name: 'Hari Bernardo',
@@ -57,6 +60,7 @@ const AuthProvider = ({ children }) => {
     { 
       username: 'Aurakha',
       password: 'user4',
+      foto: '/src/assets/raka.jpg',
       role: 'user',
       email: 'Muhammad.Aurakha.Ghazy.Zackhary.tik24@stu.pnj.ac.id',
       name: 'Muhammad Aurakha Ghazy Zackhary',
@@ -71,6 +75,7 @@ const AuthProvider = ({ children }) => {
     { 
       username: 'Radenmas',
       password: 'user5',
+      foto: '/src/assets/fidel.jpg',
       role: 'user',
       email: 'Raden.Mas.Fidel.Khalid.Ramadhan.tik24@stu.pnj.ac.id',
       name: 'Raden Mas Fidel Khalid Ramadhan',
