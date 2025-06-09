@@ -125,7 +125,7 @@
           <div className="relative w-full max-w-6xl">
 
                 {/* Step 1 */}
-                <div className="flex flex-row bg-gray-600 items-center mb-16">
+                <div className="flex flex-row items-center mb-16">
                   <div className="flex flex-col items-center bg-cyan-100 justify-center">
                     <h3 className="text-2xl font-bold">1. Isi Form Peminjaman</h3>
                     <img src="/src/assets/router.jpeg" className="rounded-lg shadow-xl" />
@@ -136,12 +136,12 @@
                 </div>
 
                 {/* Panah dari Step 1 ke Step 2 */}
-                <svg className="absolute left-10 top-[190px]" width="400" height="100">
+                <svg className="absolute left-40 top-[300px]" width="400" height="100">
                   <path d="M0,0 C100,50 300,50 400,0" stroke="white" strokeWidth="2" fill="none" strokeDasharray="5,5" markerEnd="url(#arrowhead)" />
                 </svg>
 
                 {/* Step 2 */}
-                <div className="flex flex-row bg-gray-600 items-center justify-end mb-16">
+                <div className="flex flex-row items-center justify-end mb-16">
                   <div className="flex flex-col items-center bg-cyan-100 justify-center">
                     <h3 className="text-2xl font-bold">2. Menunggu Konfirmasi</h3>
                     <img src="/src/assets/router.jpeg" className="rounded-lg shadow-xl" />
@@ -152,12 +152,12 @@
                 </div>
 
                 {/* Panah dari Step 2 ke Step 3 */}
-                <svg className="absolute right-20 top-[430px]" width="400" height="100">
+                <svg className="absolute right-40 top-[600px]" width="400" height="100">
                   <path d="M400,0 C300,50 100,50 0,100" stroke="white" strokeWidth="2" fill="none" strokeDasharray="5,5" markerEnd="url(#arrowhead)" />
                 </svg>
 
                 {/* Step 3 */}
-                <div className="flex flex-row bg-gray-600 items-center mb-16">
+                <div className="flex flex-row  items-center mb-16">
                   <div className="flex flex-col items-center bg-cyan-100 justify-center">
                     <h3 className="text-2xl font-bold">3. Peminjaman Aktif</h3>
                     <img src="/src/assets/router.jpeg" className="rounded-lg shadow-xl" />
@@ -167,12 +167,12 @@
                   </div>
                 </div>
 
-                <svg className="absolute left-20 top-[690px]" width="400" height="100">
-                  <path d="M0,0 C100,50 300,50 400,0" stroke="white" strokeWidth="2" fill="none" strokeDasharray="5,5" markerEnd="url(#arrowhead)" />
+                <svg className="absolute left-40 top-[900px]" width="400" height="100">
+                  <path  d="M0 0 C 50 100, 150 100, 200 0" stroke="white" strokeWidth="2" fill="none" strokeDasharray="5,5" markerEnd="url(#arrowhead)" />
                 </svg>
 
                 {/* Step 4 */}
-                <div className="flex flex-row bg-gray-600 items-center justify-end mb-16">
+                <div className="flex flex-row  items-center justify-end mb-16">
                   <div className="flex flex-col items-center bg-cyan-100 justify-center">
                     <h3 className="text-2xl font-bold">4. Selesaikan Peminjaman</h3>
                     <img src="/src/assets/router.jpeg" className="rounded-lg shadow-xl" />
