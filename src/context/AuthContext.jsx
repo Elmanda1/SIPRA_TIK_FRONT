@@ -14,9 +14,9 @@ const AuthProvider = ({ children }) => {
     },
     { 
       username: 'RafifArka',
-      password: 'user123',
+      password: 'user1',
       role: 'user',
-      email: 'Muhammad.Rafif.Dwarka.tik24@stu.pnj.ac.id',
+      email: 'Muhammad.Rafif.Dwiarka.tik24@stu.pnj.ac.id',
       name: 'Muhammad Rafif Dwarka',
       nim: '2407411078',
       class: 'TI 2C',
@@ -25,6 +25,62 @@ const AuthProvider = ({ children }) => {
       alamat: 'Puri Depok mas blok L no 15',
       kota: 'Depok',
       provinsi: 'Jawa Barat'
+    },
+    { 
+      username: 'Falih',
+      password: 'user2',
+      role: 'user',
+      email: 'Falih.Elmanda.Ghaisan.tik24@stu.pnj.ac.id',
+      name: 'Falih Elmanda Ghaisan',
+      nim: '2407411078',
+      class: 'TI 2C',
+      phone: '0813-3432-6492',
+      programStudi: 'Sarjana Terapan - Teknik Informatika',
+      alamat: 'Aku gatau mas',
+      kota: 'Jakarta',
+      provinsi: 'DKI Jakarta'
+    },
+    { 
+      username: 'Bernard',
+      password: 'user3',
+      role: 'user',
+      email: 'Hari.Bernardo.tik24@stu.pnj.ac.id',
+      name: 'Hari Bernardo',
+      nim: '2407411078',
+      class: 'TI 2C',
+      phone: '0832-6572-4629',
+      programStudi: 'Sarjana Terapan - Teknik Informatika',
+      alamat: 'Aku gatau mas',
+      kota: 'Jakarta',
+      provinsi: 'DKI Jakarta'
+    },
+    { 
+      username: 'Aurakha',
+      password: 'user4',
+      role: 'user',
+      email: 'Muhammad.Aurakha.Gazy.Zackhary.tik24@stu.pnj.ac.id',
+      name: 'Muhammad Aurakha Gazy Zackhary',
+      nim: '2407411069',
+      class: 'TI 2C',
+      phone: '2702-8347-8382',
+      programStudi: 'Sarjana Terapan - Teknik Informatika',
+      alamat: 'Aku gatau mas',
+      kota: 'Depok',
+      provinsi: 'Jawa barat'
+    },
+    { 
+      username: 'Radenmas',
+      password: 'user5',
+      role: 'user',
+      email: 'Raden.Mas.Fidel.Khalid.Ramadhan.tik24@stu.pnj.ac.id',
+      name: 'Raden Mas Fidel Khalid Ramadhan',
+      nim: '2407411071',
+      class: 'TI 2C',
+      phone: '2702-8347-8382',
+      programStudi: 'Sarjana Terapan - Teknik Informatika',
+      alamat: 'Aku gatau mas',
+      kota: 'Jakarta',
+      provinsi: 'DKI Jakarta'
     }
   ]);
 

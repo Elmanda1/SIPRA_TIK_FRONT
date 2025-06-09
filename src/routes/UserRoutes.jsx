@@ -12,10 +12,7 @@ const UserRoutes = () => (
     
     {/* User Dashboard - route utama */}
     <Route path="dashboard" element={<UserDashboard />} />
-    
-    {/* User Home */}
-    <Route path="home" element={<Home />} />
-    
+        
     {/* Profile Routes */}
     <Route 
       path="profile" 

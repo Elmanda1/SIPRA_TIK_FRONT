@@ -520,11 +520,12 @@ const ProfileContent = () => {
                 Reset Password
               </button>
             </div>
-            <div className='grid gap-x-5 gap-y-8'>
+            <div className='grid grid-cols-2 gap-x-5 gap-y-8'>
               <div className="text-lg mb-2 text-black">
-                <span className="font-semibold">Email</span><br />
-                {user.email}
+                <span className="font-semibold">Role</span><br />
+                {user.role}
               </div>
+              
               <div className="text-lg text-black flex items-center gap-2">
                 <div>
                   <span className="font-semibold">Password</span><br />
@@ -541,6 +542,11 @@ const ProfileContent = () => {
                     </button>
                   </span>
                 </div>
+              </div>
+
+              <div className="text-lg mb-2 text-black">
+                <span className="font-semibold">Email</span><br />
+                {user.email}
               </div>
             </div>
           </div>

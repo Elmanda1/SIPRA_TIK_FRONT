@@ -14,7 +14,7 @@ const HomeContent = ({ setActiveMenu, blueContainerRef, handleKategoriClick }) =
           <img
               src={logoImg}
               alt="Logo"
-              className="w-100 h-30"
+              className="w-100 h-30 mt-2"
          />
         </h1>
         <p className="text-2xl text-gray-600 text-center mb-12 max-w-4xl">
