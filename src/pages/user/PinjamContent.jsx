@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Calendar, Clock, User, Phone, FileText, Package, CheckCircle, HomeIcon, Package2 } from 'lucide-react';
 import { usePeminjaman } from '../../context/PeminjamanContext';
+import { useAuth } from '../../context/AuthContext';
 
 const barangPerKategori = {
   'ruang-kelas': [
@@ -17,7 +18,12 @@ const barangPerKategori = {
     { id: 'gsg-304', nama: 'Ruangan GSG 304', jumlah: 1 },
     { id: 'gsg-305', nama: 'Ruangan GSG 305', jumlah: 1 },
     { id: 'gsg-306', nama: 'Ruangan GSG 306', jumlah: 1 },
-    { id: 'gsg-307', nama: 'Ruangan GSG 307', jumlah: 1 }
+    { id: 'gsg-307', nama: 'Ruangan GSG 307', jumlah: 1 },
+    { id: 'lab-Database', nama: 'Laboratorium Database', jumlah: 1 },
+    { id: 'lab-Jaringan', nama: 'Laboratorium Jaringan', jumlah: 1},
+    { id: 'Teleconference', nama: 'Ruang Teleconference', jumlah: 1},
+    { id: 'Konsultasi-GSG', nama: 'Ruang Konsultasi GSG', jumlah: 1 },
+    { id: 'Konsultasi-AA', nama: 'Ruang Konsultasi AA', jumlah: 1 },
   ],
   'peralatan-av': [
     { id: 'proyektor', nama: 'Proyektor', jumlah: 5 },
@@ -75,6 +81,7 @@ const barangPerKategori = {
 
 const PinjamContent = () => {
   const { addPeminjaman } = usePeminjaman();
+  const { user } = useAuth(); // Fixed: moved inside component
   
   const [selectedKategori, setSelectedKategori] = useState('');
   const [selectedBarang, setSelectedBarang] = useState('');
@@ -86,6 +93,18 @@ const PinjamContent = () => {
     endTime: '09:00',
     keterangan: ''
   });
+
+  // Handle case when user is not logged in
+  if (!user) {
+    return (
+      <div className="flex items-center justify-center min-h-[80vh]">
+        <div className="text-center">
+          <p className="text-gray-500 text-lg mb-4">Silakan login terlebih dahulu</p>
+          <p className="text-gray-400">Anda perlu login untuk mengakses form peminjaman</p>
+        </div>
+      </div>
+    );
+  }
 
   const resetForm = () => {
     setSelectedKategori('');
@@ -244,6 +263,14 @@ const PinjamContent = () => {
                 <h3 className="text-2xl font-bold mb-4 text-gray-800">Konfirmasi Peminjaman</h3>
                 <div className="text-left bg-gray-50 rounded-lg p-4 mb-6 space-y-3">
                   <div className="flex justify-between items-center">
+                    <span className="font-semibold text-gray-600">Nama:</span>
+                    <span className="text-gray-800">{user?.name || 'Tidak ada'}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="font-semibold text-gray-600">NIM:</span>
+                    <span className="text-gray-800">{user?.nim || 'Tidak ada'}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
                     <span className="font-semibold text-gray-600">Barang:</span>
                     <span className="text-gray-800">{selectedBarangData?.nama || 'Tidak ada'}</span>
                   </div>
@@ -400,8 +427,8 @@ const PinjamContent = () => {
               </label>
               <input
                 type="text"
-                className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 bg-white/60 text-gray-700 focus:outline-none transition-all duration-300 cursor-not-allowed"
-                value="Muhammad Rafif Dwarka"
+                className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 bg-gray-50 text-gray-700 focus:outline-none transition-all duration-300 cursor-not-allowed"
+                value={user?.name || ''}
                 readOnly
               />
             </div>
@@ -414,8 +441,8 @@ const PinjamContent = () => {
               </label>
               <input
                 type="text"
-                className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 bg-white/60 text-gray-700 focus:outline-none transition-all duration-300 cursor-not-allowed"
-                value="2407411078"
+                className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 bg-gray-50 text-gray-700 focus:outline-none transition-all duration-300 cursor-not-allowed"
+                value={user?.nim || ''}
                 readOnly
               />
             </div>
@@ -428,8 +455,8 @@ const PinjamContent = () => {
               </label>
               <input
                 type="text"
-                className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 bg-white/60 text-gray-700 focus:outline-none transition-all duration-300 cursor-not-allowed"
-                value="TI 2C"
+                className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 bg-gray-50 text-gray-700 focus:outline-none transition-all duration-300 cursor-not-allowed"
+                value={user?.class || ''}
                 readOnly
               />
             </div>
@@ -442,8 +469,8 @@ const PinjamContent = () => {
               </label>
               <input
                 type="text"
-                className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 bg-white/60 text-gray-700 focus:outline-none transition-all duration-300 cursor-not-allowed"
-                value="081213020861"
+                className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 bg-gray-50 text-gray-700 focus:outline-none transition-all duration-300 cursor-not-allowed"
+                value={user?.phone || ''}
                 readOnly
               />
             </div>

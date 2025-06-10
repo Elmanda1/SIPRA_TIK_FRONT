@@ -483,10 +483,6 @@ const ProfileContent = () => {
                   {user.programStudi}
                 </div>
               )}
-              <div className='text-lg text-black'>
-                <span className="font-semibold">Role</span><br />
-                {user.role === 'mahasiswa' ? 'Mahasiswa' : 'Admin'}
-              </div>
               {user.alamat && (
                 <div className='text-lg text-black'>
                   <span className="font-semibold">Alamat</span><br />
