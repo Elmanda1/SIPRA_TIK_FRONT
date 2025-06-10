@@ -395,7 +395,7 @@ const PinjamContent = () => {
             {/* Nama Lengkap */}
             <div className="group">
               <label className="flex items-center gap-2 mb-3 font-semibold text-gray-700 text-lg">
-                <User className="w-5 h-5 text-green-600" />
+                <User className="w-5 h-5 text-blue-600" />
                 Nama Lengkap
               </label>
               <input
@@ -409,7 +409,7 @@ const PinjamContent = () => {
             {/* NIM */}
             <div className="group">
               <label className="flex items-center gap-2 mb-3 font-semibold text-gray-700 text-lg">
-                <Calendar className="w-5 h-5 text-orange-600" />
+                <Calendar className="w-5 h-5 text-blue-600" />
                 NIM
               </label>
               <input
@@ -423,7 +423,7 @@ const PinjamContent = () => {
             {/* Kelas */}
             <div className="group">
               <label className="flex items-center gap-2 mb-3 font-semibold text-gray-700 text-lg">
-                <HomeIcon className="w-5 h-5 text-teal-600" />
+                <HomeIcon className="w-5 h-5 text-blue-600" />
                 Kelas
               </label>
               <input
@@ -437,7 +437,7 @@ const PinjamContent = () => {
             {/* No HP */}
             <div className="group">
               <label className="flex items-center gap-2 mb-3 font-semibold text-gray-700 text-lg">
-                <Phone className="w-5 h-5 text-pink-600" />
+                <Phone className="w-5 h-5 text-blue-600" />
                 No. HP
               </label>
               <input
@@ -451,7 +451,7 @@ const PinjamContent = () => {
             {/* Durasi Peminjaman - Manual input only */}
             <div className="group">
               <label className="flex items-center gap-2 mb-3 font-semibold text-gray-700 text-lg">
-                <Clock className="w-5 h-5 text-indigo-600" />
+                <Clock className="w-5 h-5 text-blue-600" />
                 Durasi Peminjaman <span className="text-red-500">*</span>
               </label>
               <div className="text-sm text-gray-500 mb-3">
@@ -499,7 +499,7 @@ const PinjamContent = () => {
             {/* Keterangan - Full Width */}
             <div className="group">
               <label className="flex items-center gap-2 mb-3 font-semibold text-gray-700 text-lg">
-                <FileText className="w-5 h-5 text-gray-600" />
+                <FileText className="w-5 h-5 text-blue-600" />
                 Keterangan <span className="text-red-500">*</span>
               </label>
               <textarea

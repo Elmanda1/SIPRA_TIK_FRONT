@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Search, Plus, Edit, Trash2, User, Mail, Calendar } from 'lucide-react';
+import { Search, Plus, User, Mail, Calendar, Edit, Trash2, X, CheckCircle } from 'lucide-react';
 
 const UsersManagement = () => {
   const [searchTerm, setSearchTerm] = useState('');
-const [users] = useState([
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [userToDelete, setUserToDelete] = useState(null);
+  const [users, setUsers] = useState([
   {
     id: 1,
     name: 'Rizky Maulana',
@@ -904,9 +907,54 @@ const [users] = useState([
   joinDate: '2023-10-05',
   totalBorrowings: 11
 },
+{
+  id: 101,
+  name: 'Muhammad Rafif Dwiarka',
+  email: 'Muhammad.Rafif.Dwiarka.tik24@stu.pnj.ac.id',
+  role: 'user',
+  status: 'active',
+  joinDate: '2024-10-05',
+  totalBorrowings: 12
+},
+{
+  id: 102,
+  name: 'Falih Elmanda Ghaisan',
+  email: 'Falih.Elmanda.Ghaisan.tik24@stu.pnj.ac.id',
+  role: 'user',
+  status: 'active',
+  joinDate: '2024-09-05',
+  totalBorrowings: 24
+},
+{
+  id: 103,
+  name: 'Hari Bernardo',
+  email: 'Hari.Bernardo.tik24@stu.pnj.ac.id',
+  role: 'user',
+  status: 'active',
+  joinDate: '2024-11-05',
+  totalBorrowings: 31
+},
+{
+  id: 104,
+  name: 'Raden Mas Fidel Khalid Ramadhan',
+  email: 'Raden.Mas.Fidel.Khalid.Ramadhan.tik24@stu.pnj.ac.id',
+  role: 'user',
+  status: 'active',
+  joinDate: '2024-10-05',
+  totalBorrowings: 9
+},
+{
+  id: 105,
+  name: 'Muhammad Aurakha Ghazy Zackhary',
+  email: 'Muhammad.Aurakha.Ghazy.Zackhary.tik24@stu.pnj.ac.id',
+  role: 'user',
+  status: 'active',
+  joinDate: '2024-10-05',
+  totalBorrowings: 20
+},
 ]);
 
-  const filteredUsers = users.filter(user =>
+ const filteredUsers = users.filter(user =>
     user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     user.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -916,12 +964,32 @@ const [users] = useState([
     // Add edit logic here
   };
 
-  const handleDelete = (userId) => {
-    if (window.confirm('Apakah Anda yakin ingin menghapus pengguna ini?')) {
-      console.log('Delete user:', userId);
-      alert('Pengguna berhasil dihapus!');
-      // Add delete logic here
+  const handleDeleteClick = (user) => {
+    setUserToDelete(user);
+    setShowDeleteModal(true);
+  };
+
+  const confirmDelete = () => {
+    if (userToDelete) {
+      setUsers(prevUsers => prevUsers.filter(user => user.id !== userToDelete.id));
+      setShowDeleteModal(false);
+      setShowSuccessModal(true);
+      setUserToDelete(null);
+      
+      // Auto close success modal after 3 seconds
+      setTimeout(() => {
+        setShowSuccessModal(false);
+      }, 3000);
     }
+  };
+
+  const cancelDelete = () => {
+    setShowDeleteModal(false);
+    setUserToDelete(null);
+  };
+
+  const closeSuccessModal = () => {
+    setShowSuccessModal(false);
   };
 
   const handleAddUser = () => {
@@ -1035,7 +1103,7 @@ const [users] = useState([
                         <Edit className="h-4 w-4" />
                       </button>
                       <button
-                        onClick={() => handleDelete(user.id)}
+                        onClick={() => handleDeleteClick(user)}
                         className="p-2 text-red-600 bg-white hover:bg-red-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1"
                         title="Hapus pengguna"
                       >
@@ -1056,6 +1124,76 @@ const [users] = useState([
           </div>
         )}
       </div>
+
+      {/* Delete Confirmation Modal */}
+      {showDeleteModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-xl p-6 max-w-md w-full mx-4 shadow-xl">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="h-12 w-12 bg-red-100 rounded-full flex items-center justify-center">
+                <Trash2 className="h-6 w-6 text-red-600" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-800">Hapus Pengguna</h3>
+                <p className="text-sm text-gray-600">Konfirmasi penghapusan data</p>
+              </div>
+            </div>
+            
+            <div className="mb-6">
+              <p className="text-gray-700 mb-2">
+                Apakah Anda yakin ingin menghapus pengguna berikut?
+              </p>
+              {userToDelete && (
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <p className="font-semibold text-gray-800">{userToDelete.name}</p>
+                  <p className="text-sm text-gray-600">{userToDelete.email}</p>
+                </div>
+              )}
+              <p className="text-sm text-red-600 mt-2">
+                Data yang dihapus tidak dapat dikembalikan.
+              </p>
+            </div>
+
+            <div className="flex gap-3 justify-end">
+              <button
+                onClick={cancelDelete}
+                className="px-4 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+              >
+                Batal
+              </button>
+              <button
+                onClick={confirmDelete}
+                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+              >
+                Ya, Hapus
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Success Modal */}
+      {showSuccessModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-xl p-6 max-w-md w-full mx-4 shadow-xl">
+            <div className="text-center">
+              <div className="h-16 w-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CheckCircle className="h-8 w-8 text-green-600" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">Berhasil!</h3>
+              <p className="text-gray-600 mb-6">
+                Data pengguna berhasil dihapus dari sistem.
+              </p>
+              <button
+                onClick={closeSuccessModal}
+                className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+              >
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

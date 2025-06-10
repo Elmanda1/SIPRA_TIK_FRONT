@@ -18,6 +18,7 @@ import UsersManagement from '../../components/admin/UsersManagement';
 import AdminSettings from '../../components/admin/AdminSettings';
 import Header from '../../components/admin/Header';
 import LogoutModal from '../../components/common/LogoutModal';
+import logoImg from '../../assets/SIPRATIK.png';
 
 const AdminDashboard = () => {
   document.title = "Admin SIPRATIK";
@@ -38,7 +39,7 @@ const AdminDashboard = () => {
       case 'dashboard':
         return <DashboardContent />;
       case 'analytics':
-        return <AnalyticsContent />; // Langsung render AnalyticsContent
+        return <AnalyticsContent />;
       case 'users':
         return <UsersManagement />;
       case 'settings':
@@ -79,7 +80,11 @@ const AdminDashboard = () => {
       }`}>
         {/* Sidebar Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
-          <h1 className="text-lg font-bold text-gray-900">SIPRATIK</h1>
+             <img
+                  src={logoImg}
+                  alt="Logo"
+                  className="w-100 h-10 hover:brightness-110 transition-all duration-200"
+             />
           <button 
             onClick={() => setSidebarOpen(!sidebarOpen)}
             className="p-1 rounded-lg hover:bg-gray-100 lg:hidden focus:outline-none"

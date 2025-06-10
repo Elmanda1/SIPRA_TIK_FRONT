@@ -14,7 +14,7 @@ const Header = ({ onMenuClick, sidebarOpen }) => {
 
   return (
     <header className="bg-white shadow-sm border-b border-gray-200 px-4 lg:px-6 py-4">
-      <div className="flex items-center justify-between">
+      <div className="flex h-[56px] items-center justify-between">
         {/* Left Section */}
         <div className="flex items-center space-x-4">
           <button
@@ -23,7 +23,7 @@ const Header = ({ onMenuClick, sidebarOpen }) => {
           >
             <Menu className="w-5 h-5" />
           </button>
-          <h1 className="text-xl lg:text-2xl font-bold text-gray-900">SIPRA TIK</h1>
+          <h1 className="text-[38px] font-extrabold text-gray-900 ">Admin SIPRATIK</h1>
         </div>
 
         {/* Right Section */}

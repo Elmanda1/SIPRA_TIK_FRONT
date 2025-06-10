@@ -1,4 +1,3 @@
-// src/components/admin/DashboardContent.jsx
 import React from 'react';
 import { 
   Users, 
@@ -10,7 +9,7 @@ import {
   XCircle, 
   BookOpen, 
   Calendar,
-  BarChart3 // Tambahkan import ini
+  BarChart3 
 } from 'lucide-react';
 import StatCard from './StatCard';
 import SalesChart from './Charts/SalesChart';
@@ -36,14 +35,14 @@ const DashboardContent = () => {
     },
     {
       title: "Pending Approval",
-      value: "23",
+      value: "7",
       change: "+5%",
       icon: Clock,
       color: "bg-yellow-500"
     },
     {
       title: "Approved Today",
-      value: "18",
+      value: "10",
       change: "+8%",
       icon: CheckCircle,
       color: "bg-green-500"
@@ -73,89 +72,88 @@ const DashboardContent = () => {
     { name: 'Dec', value: 95 }
   ];
 
-  // Recent activities data
   const recentActivities = [
-    {
-      id: 1,
-      user: "Ibrani Mayasari",
-      action: "Meminjam alat",
-      item: "Laptop, Proyektor",
-      time: "2 jam yang lalu",
-      status: "approved"
-    },
-    {
-      id: 2,
-      user: "Karja Melani",
-      action: "Pembatalan peminjaman",
-      item: "Ruang GSG 204",
-      time: "4 jam yang lalu",
-      status: "cancelled"
-    },
-    {
-      id: 3,
-      user: "Siti Putra",
-      action: "Meminjam ruangan",
-      item: "Ruang GSG 211",
-      time: "6 jam yang lalu",
-      status: "pending"
-    },
-    {
-      id: 4,
-      user: "Taswir Sihotang",
-      action: "Meminjam alat",
-      item: "Kamera Digital, Tripod",
-      time: "7 jam yang lalu",
-      status: "approved"
-    },
-    {
-      id: 5,
-      user: "Eva Rajata",
-      action: "Meminjam ruangan",
-      item: "Ruang AA 204",
-      time: "9 jam yang lalu",
-      status: "cancelled"
-    },
-    {
-      id: 6,
-      user: "Raditya Winarsih",
-      action: "Meminjam alat",
-      item: "Speaker",
-      time: "12 jam yang lalu",
-      status: "approved"
-    },
-    {
-      id: 7,
-      user: "Xanana Handayani",
-      action: "Meminjam ruangan",
-      item: "Ruang GSG 202",
-      time: "15 jam yang lalu",
-      status: "pending"
-    },
-    {
-      id: 8,
-      user: "Yani Sitompul",
-      action: "Meminjam alat",
-      item: "Proyektor",
-      time: "1 hari yang lalu",
-      status: "approved"
-    },
-    {
-      id: 9,
-      user: "Mulyanto Prasasta",
-      action: "Pembatalan peminjaman",
-      item: "Ruang GSG 208",
-      time: "2 hari yang lalu",
-      status: "cancelled"
-    },
-    {
-      id: 10,
-      user: "Jais Nasyidah",
-      action: "Meminjam ruangan",
-      item: "Ruang GSG 209",
-      time: "3 hari yang lalu",
-      status: "approved"
-    }
-  ];
+  {
+    id: 1,
+    user: "Muhammad Rafif Dwarka",
+    action: "Meminjam alat",
+    item: "Laptop, Proyektor",
+    time: "2 jam yang lalu",
+    status: "approved"
+  },
+  {
+    id: 2,
+    user: "Falih Elmanda Ghaisan",
+    action: "Pembatalan peminjaman",
+    item: "Ruang GSG 204",
+    time: "4 jam yang lalu",
+    status: "cancelled"
+  },
+  {
+    id: 3,
+    user: "Hari Bernardo",
+    action: "Meminjam ruangan",
+    item: "Ruang GSG 211",
+    time: "6 jam yang lalu",
+    status: "pending"
+  },
+  {
+    id: 4,
+    user: "Muhammad Aurakha Ghazy Zackhary",
+    action: "Meminjam alat",
+    item: "Kamera Digital, Tripod",
+    time: "7 jam yang lalu",
+    status: "approved"
+  },
+  {
+    id: 5,
+    user: "Raden Mas Fidel Khalid Ramadhan",
+    action: "Meminjam ruangan",
+    item: "Ruang AA 204",
+    time: "9 jam yang lalu",
+    status: "cancelled"
+  },
+  {
+    id: 6,
+    user: "Muhammad Rafif Dwarka",
+    action: "Meminjam alat",
+    item: "Speaker",
+    time: "12 jam yang lalu",
+    status: "approved"
+  },
+  {
+    id: 7,
+    user: "Falih Elmanda Ghaisan",
+    action: "Meminjam ruangan",
+    item: "Ruang GSG 202",
+    time: "15 jam yang lalu",
+    status: "pending"
+  },
+  {
+    id: 8,
+    user: "Hari Bernardo",
+    action: "Meminjam alat",
+    item: "Proyektor",
+    time: "1 hari yang lalu",
+    status: "approved"
+  },
+  {
+    id: 9,
+    user: "Muhammad Aurakha Ghazy Zackhary",
+    action: "Pembatalan peminjaman",
+    item: "Ruang GSG 208",
+    time: "2 hari yang lalu",
+    status: "cancelled"
+  },
+  {
+    id: 10,
+    user: "Raden Mas Fidel Khalid Ramadhan",
+    action: "Meminjam ruangan",
+    item: "Ruang GSG 209",
+    time: "3 hari yang lalu",
+    status: "approved"
+  }
+];
 
   const getStatusColor = (status) => {
     switch (status) {

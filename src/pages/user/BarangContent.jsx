@@ -22,9 +22,6 @@ const BarangTable = ({ id, title, Icon, items, isHighlighted }) => (
           )}
         </h2>
       </div>
-      <button className="p-2 text-gray-400 bg-white hover:text-gray-600">
-        <Filter className="w-5 h-5" />
-      </button>
     </div>
     
     <div className="px-6 py-3 bg-gray-50 border-b border-gray-200">
@@ -69,13 +66,13 @@ const BarangContent = ({ selectedCategory }) => {
     { name: 'Ruangan AA 303', quantity: 1, description: 'Ruang belajar Gedung AA', image: '/src/assets/aa-303.png' },
     { name: 'Ruangan AA 211', quantity: 1, description: 'Ruang belajar Gedung AA', image: '/src/assets/aa-303.png' },
     { name: 'Ruangan AA 213', quantity: 1, description: 'Ruang belajar Gedung AA', image: '/src/assets/aa-303.png' },
-    { name: 'Ruangan GSG 301', quantity: 1, description: 'Ruang belajar Gedung GSG' },
-    { name: 'Ruangan GSG 302', quantity: 1, description: 'Ruang belajar Gedung GSG' },
-    { name: 'Ruangan GSG 303', quantity: 1, description: 'Ruang belajar Gedung GSG' },
-    { name: 'Ruangan GSG 304', quantity: 1, description: 'Ruang belajar Gedung GSG' },
-    { name: 'Ruangan GSG 305', quantity: 1, description: 'Ruang belajar Gedung GSG' },
-    { name: 'Ruangan GSG 306', quantity: 1, description: 'Ruang belajar Gedung GSG' },
-    { name: 'Ruangan GSG 307', quantity: 1, description: 'Ruang belajar Gedung GSG' },
+    { name: 'Ruangan GSG 301', quantity: 1, description: 'Ruang belajar Gedung GSG', image: '/src/assets/RuangGSG.jpeg' },
+    { name: 'Ruangan GSG 302', quantity: 1, description: 'Ruang belajar Gedung GSG', image: '/src/assets/RuangGSG.jpeg' },
+    { name: 'Ruangan GSG 303', quantity: 1, description: 'Ruang belajar Gedung GSG', image: '/src/assets/RuangGSG.jpeg' },
+    { name: 'Ruangan GSG 304', quantity: 1, description: 'Ruang belajar Gedung GSG', image: '/src/assets/RuangGSG.jpeg' },
+    { name: 'Ruangan GSG 305', quantity: 1, description: 'Ruang belajar Gedung GSG', image: '/src/assets/RuangGSG.jpeg' },
+    { name: 'Ruangan GSG 306', quantity: 1, description: 'Ruang belajar Gedung GSG', image: '/src/assets/RuangGSG.jpeg' },
+    { name: 'Ruangan GSG 307', quantity: 1, description: 'Ruang belajar Gedung GSG', image: '/src/assets/RuangGSG.jpeg' },
     { name: 'Laboratorium Database', quantity: 1, description: 'Laboratorium Gedung AA', image: '/src/assets/lab-database.png' },
     { name: 'Laboratorium Jaringan', quantity: 1, description: 'Laboratorium Gedung GSG', image: '/src/assets/laboratorium-jaringan.png' },
     { name: 'Ruang Teleconference', quantity: 1, description: 'Ruang Teleconference Gedung AA', image: '/src/assets/teleconference.jpg' },
